@@ -12,6 +12,8 @@ import string
 import unittest
 import nose
 
+from test import regression
+
 __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner"]
 
 class RegressionHelper():
@@ -72,17 +74,17 @@ class RegressionBase(unittest.TestCase):
 		"""
 		assert 1 > 2, "assertion failed..."
 
-	def execute(self, cexec_module_script = None, test_assert = False, import_module = False):
-		cexec_module = cexec_module_script if cexec_module_script else self.cexec_module
+	def __script_path(self, script):
+		"""Returnt the absolute path of the script
+		"""
+		path_base = "/".join(regression.__file__.split("/")[:-1])
+		self.__assert_file(path_base)
+		path_script = "%s/%s.py" % (path_base, script)
+		self.__assert_file(path_script)
+		return path_script
 
-		if import_module:
-			importlib.import_module("%s" % cexec_module)
-		else:
-			console_frame_globals = self.__console_globals()
-			execfile("%s.py" % cexec_module, console_frame_globals)
-
-		if test_assert:
-			self.assert_regression()
+	def __assert_file(self, file):
+		assert os.access(file, os.F_OK), "%s not exists" % file
 
 	def __console_globals(self):
 		"""Return the globals of the ipython console frame stack
@@ -101,6 +103,21 @@ class RegressionBase(unittest.TestCase):
 		assert _stack_frame_globals, "No ipython console globals defined"
 		return _stack_frame_globals
 
+	def execute(self, cexec_module_script = None, test_assert = False, import_module = False):
+		"""Documentation, to be done
+		"""
+		cexec_module = cexec_module_script if cexec_module_script else self.cexec_module
+
+		if import_module:
+			importlib.import_module("%s" % cexec_module)
+		else:
+			console_frame_globals = self.__console_globals()
+			cexec_script = self.__script_path(cexec_module) 
+			execfile(cexec_script, console_frame_globals)
+
+		if test_assert:
+			self.assert_regression()
+
 	@classmethod
 	def setUpClass(cls):
 		pass
@@ -110,13 +127,19 @@ class RegressionBase(unittest.TestCase):
 		pass
 
 class RegressionRunner:
+	"""This class only implements static methods, intented to be used as
+	a regression test runner
+	"""
 
 	def __init__(self):
 		raise NotImplementedError("This class only implements static methods")
 
 	@staticmethod
 	def execute(test, nose_argv = None):
-		test_module = importlib.import_module("%s" % test)
+		"""Execute the regression test by using nose with the nose arguments
+		and with -d -s --verbosity=2" and --with-xunit (xml generated)
+		"""
+		test_module = importlib.import_module("test.regression.%s" % test)
 
 		if test_module.__dict__.has_key("__all__"):
 
