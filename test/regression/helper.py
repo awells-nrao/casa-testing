@@ -8,9 +8,12 @@ import os
 import importlib
 import inspect
 import string
+import shutil
+#from enum import Enum
 
 import unittest
 import nose
+
 
 from test import regression
 
@@ -36,6 +39,30 @@ class RegressionHelper():
 	@staticmethod
 	def regression_data():
 		return os.environ.get("CASA_REGRESSION_DATA", "unset")
+
+	@staticmethod
+	def assert_file(file):
+		assert os.access(file, os.F_OK), "%s not exists" % file
+
+	@staticmethod
+	def data_copy(array_path):
+		"""Given an array of paths, it will iterate and copy all to the
+		current workind directory, which is where casapy is executed
+		"""
+		destination = os.getcwd()
+		
+		for data_path in array_path:
+			
+			RegressionHelper.assert_file(data_path)
+
+			if os.path.isdir(data_path):
+				shutil.copytree(data_path, destination)
+			else:
+				shutil.copy(data_path, destination)
+
+	@staticmethod
+	def data_remove(array_path):
+		pass
 
 class RegressionBase(unittest.TestCase):
 
@@ -78,13 +105,10 @@ class RegressionBase(unittest.TestCase):
 		"""Returnt the absolute path of the script
 		"""
 		path_base = "/".join(regression.__file__.split("/")[:-1])
-		self.__assert_file(path_base)
+		RegressionHelper.assert_file(path_base)
 		path_script = "%s/%s.py" % (path_base, script)
-		self.__assert_file(path_script)
+		RegressionHelper.assert_file(path_script)
 		return path_script
-
-	def __assert_file(self, file):
-		assert os.access(file, os.F_OK), "%s not exists" % file
 
 	def __console_globals(self):
 		"""Return the globals of the ipython console frame stack
@@ -119,11 +143,11 @@ class RegressionBase(unittest.TestCase):
 			self.assert_regression()
 
 	@classmethod
-	def setUpClass(cls):
+	def setUpClass(class_instance):
 		pass
 
 	@classmethod
-	def tearDownClass(cls):
+	def tearDownClass(class_instance):
 		pass
 
 class RegressionRunner:

@@ -15,10 +15,43 @@ __all__ = ["Tutorial3c219"]
 # @unittest.skip("reason")
 class Tutorial3c219(RegressionBase):
 
-	def setUp(self):
-		self.cexec_module = "cexec_3c129_tutorial"
+	# this method is executed just once and before for all tests
+	# rather than for every test like setUp, useful for data
+	# setup, e.g.: copy data, use ```this_class``` instead of ```self```
+	# for this method, it is and instance of this class, this is managed
+	# by the pytunit testing framework
+	@classmethod
+	def setUpClass(class_instance):
+		class_instance.cexec_module = "cexec_3c129_tutorial"
 		
-	# in order to skip the test execution
+		# this should be done in a different way...
+		relative_data_path = "/home/casa/data/trunk/regression/3C129"
+		test_data = []
+		test_data.append("%s/%s" % (relative_data_path, "AT166_1"))
+		test_data.append("%s/%s" % (relative_data_path, "AT166_2"))
+		test_data.append("%s/%s" % (relative_data_path, "AT166_3"))
+		RegressionHelper.data_copy(test_data)
+
+	# Define all your setup here, beware that this method
+	# is execute before each test_* method defined for this
+	# class
+	def setUp(self):
+		pass
+
+	# this is predifined but not mandatory, you can define
+	# your tests methods by adding the prefix ```test_```
+	# in order to skip the test execution, uncomment
 	#@unittest.skip("reason")
 	def test_execution(self):
 		self.execute()
+
+	# this method is excuted after every test_* method
+	# defined in this class
+	def tearDown(self):
+		pass
+
+	# this method is executed just once and after for all tests
+	# rather than for every test like setUp
+	@classmethod
+	def tearDown(class_instance):
+		pass
