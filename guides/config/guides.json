@@ -1,0 +1,11 @@
+{
+    "base_uri": "http://casaguides.nrao.edu/index.php?title=",
+
+    "guides": [
+        { "enable": 0, "guide": "Calibrating_a_VLA_5_GHz_continuum_survey", "cspec": "casa_spec_01", "data": [ "1.tgz", "2.tgz" ] },
+        { "enable": 0, "guide": "EVLA_high_frequency_Spectral_Line_tutorial_-_IRC%2B10216", "cspec": "", "data": [ "1.tgz", "2.tgz" ] },
+        { "enable": 1, "guide": "EVLA_3-bit_Tutorial_G192", "cspec": "", "data": [ "1.tgz", "2.tgz" ] }
+    ],
+
+    "keyworks": ["Deterministic Flagging", "Deterministic Flagging"]
+}

@@ -1,0 +1,93 @@
+#*
+Phrase/Keywords defined:
+initial data split
+initial listobs run
+creating a plot of the already flagged data
+priori data flagging
+RFI flagging
+splitting off the good data
+listobs run on the flagged and split data
+running setjy using the 3C147 model
+antenna position corrections
+creating cal tables containing the gain curves
+creating the weather plot to look at opacity
+creating cal table to correct atmospheric opacity 
+*#
+#!/usr/bin/env python
+
+# script generated
+
+import os
+import sys
+
+from CASATest import CASARegression
+from CASATest import TestFileCreation
+from CASATest import TestFlaggingState
+
+regression = CASARegression('G192.16-3.84')
+
+#foreach ($entry in $map)
+#foreach ($section in $map[$entry])
+
+\#------------------------------------------------------------------------------
+\# $entry
+\#
+regression.startSection("$entry")
+
+#if($entry == "initial data split")
+$section
+#end
+
+#if($entry == "initial listobs run")
+$section
+#end
+
+#if($entry == "creating a plot of the already flagged data")
+$section
+#end
+
+#if($entry == "priori data flagging")
+$section
+#end
+
+#if($entry == "RFI flagging")
+$section
+#end
+
+#if($entry == "splitting off the good data")
+$section
+#end
+
+#if($entry == "listobs run on the flagged and split data") 
+$section
+#end
+
+#if($entry == "running setjy using the 3C147 model")
+$section
+#end
+
+#if($entry == "antenna position corrections")
+$section
+#end
+
+#if($entry == "creating cal tables containing the gain curves")
+$section
+#end
+
+#if($entry == "creating the weather plot to look at opacity")
+$section
+#end
+
+#if($entry == "creating cal table to correct atmospheric opacity")
+$section
+#end
+regression.endSection()
+
+#end
+#end
+
+\#------------------------------------------------------------------------------ 
+regression.endRegression()
+regression.printReport()
+
+\# _o0o_
