@@ -7,12 +7,13 @@ import json
 
 from optparse import OptionParser
 from airspeed import *
-from casa.test.guides.merge import GuideMerge
+
+from test.guides.merge import GuideMerge
 
 if __name__ == '__main__':
 
     # defaults
-    default_config = ("%s/%s") % (os.getenv("CGUIDES_CONFIG"), "cguides.json")
+    default_config = ("%s/%s") % (os.getenv("CGUIDES_CONFIG"), "guides.json")
     default_regression_dir = os.getenv("CGUIDES_REGRESSION")
     default_cspec_dir = os.getenv("CGUIDES_CSPECS")
     default_extracted_dir = os.getenv("CGUIDES_EXTRACTED")
@@ -32,14 +33,20 @@ if __name__ == '__main__':
 
         for element in json_obj["guides"]:
             if element["enable"]:
-                guide = element["guide"].replace(":","").replace("_","")
+                guide = element["guide"].replace(":", "").replace("_", "")
 
                 script = ("%s/%s.py") % (options.script, guide)
-                template = ("%s/%s.cspec") % (options.cspec, guide)
-                output = ("%s/%s.py") % (options.output, guide)
+                template = ("%s/%s.template") % (options.cspec, element["template"])
+                output = ("%s/%s.py") % (options.output, "regression_%s" % guide)
 
-                #try:
-                merger = GuideMerge(script, template, output)
-                merger.merge()
-                #except Exception, e:
-                #    print "Something has gone wrong with %s: \n %s" % (script, e)
+                print "-" * 80
+                print "%s" % guide 
+                print "\t|__extracted\t: %s" % script
+                print "\t|__template \t: %s" % template
+                print "\t|__output\t: %s" % output
+
+                try:
+                    merger = GuideMerge(script, template, output)
+                    merger.merge()
+                except Exception, e:
+                    print "Something went wrong with %s: \n %s" % (script, e)

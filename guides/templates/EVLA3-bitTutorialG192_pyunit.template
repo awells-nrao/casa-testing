@@ -1,0 +1,63 @@
+#*
+Phrase/Keywords defined:
+	initial listobs run
+	initial data split
+	creating a plot of the already flagged data
+*#
+#!/usr/bin/env python
+
+# This is a generated script
+# all modified changes will be lost in the next code generation
+
+# working keywords #foreach ($entry in $map)
+# keyword-phrase: "$entry" #end
+
+
+import sys
+
+assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+
+import os
+import unittest
+
+from test.regression.helper import RegressionHelper
+from test.regression.helper import RegressionBase
+
+__keyword_phrase_map = {} #foreach ($entry in $map)
+__keyword_phrase_map["$entry"] = "Test_$entry.replace(" ","_").lower()" #end
+
+
+# define which classes within the module should be visible for testing
+__all__ =  __keyword_phrase_map.values()
+
+
+#foreach ($entry in $map)
+#set($entry_script = $entry.replace(" ", "_").lower())
+class Test_${guide}_${entry_script}(RegressionBase):
+	""" Testing $entry
+	"""
+	
+	@classmethod
+	def setUpClass(class_instance):
+		pass
+
+	def setUp(self):
+		pass
+
+	def tearDown(self):
+		pass
+
+	@classmethod
+	def tearDown(class_instance):
+		pass
+
+	#set($counter = 0)
+	#foreach ($section in $map[$entry])
+	def test_${guide}_${entry_script}_${counter}(self):
+		"""Test cexec_${guide}_${entry_script}_${counter}.py
+		"""
+		self.execute("cexec_${guide}_${entry_script}_${counter}")
+	#set($counter = $counter + 1)
+	#end
+
+#end

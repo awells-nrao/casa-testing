@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
-import os
 import sys
-import re
-import json
 
 assert sys.version >= '2', "Python 2.0 or greater is supported"
+
+import os
+import re
+import json
 
 from optparse import OptionParser
 from airspeed import *
@@ -21,6 +22,7 @@ class GuideMerge:
         self._map = {}
         self._template_str = ""
 
+    # this should be improved > TODO
     def __mapPhrases(self):
     	"""Construct the map/dict  
     	"""
@@ -55,9 +57,26 @@ class GuideMerge:
     	in order to be expanded in the template
     	"""
         template = Template(self._template_str)
+
+        # local helpers... inefficient but isn't to many string data
+        # to hold in memory
         map = self._map
+        guide = self._script.split("/")[-1:][0].split(".")[0]
+
         beautified = self.__beautifier(template.merge(locals()))
-        self.__write(beautified)
+        self.__write(self._output, beautified)
+
+    def __generate_snippets(self):
+        """ generate the executable snippets in the same workspace
+        were regression module is generated
+        """
+        guide = self._script.split("/")[-1:][0].split(".")[0]
+        snippet_dir = "/".join(self._output.split("/")[:-1])
+        for entry in self._map:
+            counter = 0
+            for content in self._map[entry]:
+                 entry_script = "%s/cexec_%s_%s_%s.py" % (snippet_dir, guide, entry.replace(" ", "_").lower(), counter)
+                 self.__write(entry_script, content)
 
     def __beautifier(self, body):
     	"""Remove the excesive amount of blank lines
@@ -74,11 +93,12 @@ class GuideMerge:
                 beautified += ("%s\n") % lines[i]
         return beautified
 
-    def __write(self, data):
-        with open(self._output, 'w') as output:
+    def __write(self, file, data):
+        with open(file, 'w') as output:
             output.write(data)
 
     def merge(self):
         self.__mapPhrases()
         self.__readTemplate()
         self.__merge()
+        self.__generate_snippets()

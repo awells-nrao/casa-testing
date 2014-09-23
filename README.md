@@ -22,6 +22,14 @@ The easy way to do it, is by modifying the provided templates, take a look to th
 
 ### Pyunit hints
 
+## CASA data simple index
+```
+#!/usr/bin/env bash
+CASA_DATA=$0
+CASA_DATA=/home/casa/data/trunk
+time find -L $CASA_DATA | grep -v -i svn | sort -u > icdata0.index
+```
+
 ## About CASA
 
 See [http://casa.nrao.edu/](casa.nrao.edu) for more info and licenses.

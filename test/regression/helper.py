@@ -14,7 +14,6 @@ import shutil
 import unittest
 import nose
 
-
 from test import regression
 
 __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner"]
@@ -176,10 +175,11 @@ class RegressionRunner:
 				else:
 					test_argv = [
 						test_module.__name__.lower(), 
-						"-d", 
-						"-s", 
-						"--verbosity=2", 
-						"--with-xunit", 
+						"-d",
+						"-s",
+						"-v",
+						#"--processes=-1"
+						"--with-xunit"
 						"--xunit-file=%s.xml" % test_object.__name__.lower()
 					]
 				

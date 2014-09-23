@@ -6,15 +6,15 @@ import json
 
 from optparse import OptionParser
 
-from casa.test.guides import extract
+from test.guides import extract
 
 if __name__ == "__main__":
 
     # defined by the profile
-    default_config = ("%s/%s") % (os.getenv("CGUIDES_CONFIG"), "cguides.json") 
+    default_config = ("%s/%s") % (os.getenv("CGUIDES_CONFIG"), "guides.json") 
     default_extracted_dir = os.getenv("CGUIDES_EXTRACTED")
 
-    default_config = os.getenv("CGUIDES_CONFIG") + "/cguides.json"
+    default_config = os.getenv("CGUIDES_CONFIG") + "/guides.json"
     default_ws_pass1 = os.getenv("CGUIDES_PASS1")
 
     # options
@@ -38,5 +38,4 @@ if __name__ == "__main__":
                 try:
                     extract.main(uri, options)
                 except Exception, e:
-			    	print "Something has gone wrong with %s: \n %s" % (script, e)
-    json_data.
+			    	print "Something went wrong with %s: \n %s" % (script, e)

@@ -22,7 +22,7 @@ class Tutorial3c219(RegressionBase):
 	# by the pytunit testing framework
 	@classmethod
 	def setUpClass(class_instance):
-		class_instance.cexec_module = "cexec_3c129_tutorial"
+		#class_instance.cexec_module = 
 		
 		# this should be done in a different way...
 		relative_data_path = "/home/casa/data/trunk/regression/3C129"
@@ -43,7 +43,9 @@ class Tutorial3c219(RegressionBase):
 	# in order to skip the test execution, uncomment
 	#@unittest.skip("reason")
 	def test_execution(self):
-		self.execute()
+		"""Testing execution of exec_3c129_tutorial
+		"""
+		self.execute("cexec_3c129_tutorial")
 
 	# this method is excuted after every test_* method
 	# defined in this class
