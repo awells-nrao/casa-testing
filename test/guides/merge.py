@@ -2,7 +2,7 @@
 
 import sys
 
-assert sys.version >= '2', "Python 2.0 or greater is supported"
+assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
 
 import os
 import re
@@ -16,62 +16,42 @@ __all__ = ["GuideMerge"]
 class GuideMerge:
 
     def __init__(self, script, template, output):
-        self._script = script
-        self._template = template
-        self._output = output
-        self._map = {}
-        self._template_str = ""
+        self.__script_path = script
+        self.__template_path = template
+        self.__output_path = output
 
-    # this should be improved > TODO
-    def __mapPhrases(self):
-    	"""Construct the map/dict  
-    	"""
-        with open(self._script, 'r') as script:
+    def __read_phrases(self):
+        phrases = []
+
+        with open(self.__script_path, 'r') as script:      
             phrase = None
             base_re = "(((# In CASA)+(:?)){1})+"
-	    appendLine = False
+            append_line = False
 
             for line in script:
-                isInCASA = re.search("%s.*" % base_re, line)
-                isPhrase = re.search("%s.(\w)+" % base_re, line)
+                is_incasa = re.search("%s.*" % base_re, line)
+                is_phrase = re.search("%s.(\w)+" % base_re, line)
 
-                if isInCASA and isPhrase:
+                if is_incasa:
+                    phrase = None
+
+                if phrase and len(line) and not is_incasa:
+                    phrases[-1:][0][1] += line
+
+                if is_incasa and is_phrase:
                     phrase = re.split(base_re, line)[-1:][0].strip()
-		    if not phrase in self._map:
-			self._map[phrase] = []
-		    self._map[phrase].append("")
-		    appendLine = True
-		
-		if isInCASA and not isPhrase:
-		    appendLine = False
-                
-                if not isInCASA and not isPhrase and phrase and appendLine:
-                    self._map[phrase][len(self._map[phrase]) - 1] += line
+                    phrases.append([phrase, ""])
 
-    def __readTemplate(self):
-        with open(self._template, 'r') as template:
-            self._template_str = template.read()
+        return phrases
 
-    def __merge(self):
-    	"""Is using the populated map/dict
-    	in order to be expanded in the template
-    	"""
-        template = Template(self._template_str)
-
-        # local helpers... inefficient but isn't to many string data
-        # to hold in memory
-        map = self._map
-        guide = self._script.split("/")[-1:][0].split(".")[0]
-
-        beautified = self.__beautifier(template.merge(locals()))
-        self.__write(self._output, beautified)
-
+    def __merge(self, template_data, template_helper):
+        template = Template(template_data)
+        return template.merge(locals())
+        
     def __generate_snippets(self):
-        """ generate the executable snippets in the same workspace
-        were regression module is generated
-        """
-        guide = self._script.split("/")[-1:][0].split(".")[0]
-        snippet_dir = "/".join(self._output.split("/")[:-1])
+
+        guide = self.__script_path.split("/")[-1:][0].split(".")[0]
+        snippet_dir = "/".join(self.__output_path.split("/")[:-1])
         for entry in self._map:
             counter = 0
             for content in self._map[entry]:
@@ -79,9 +59,6 @@ class GuideMerge:
                  self.__write(entry_script, content)
 
     def __beautifier(self, body):
-    	"""Remove the excesive amount of blank lines
-    	in the parsed code
-    	"""
         lines = body.splitlines()
         size = len(lines)
         beautified = ""
@@ -91,14 +68,33 @@ class GuideMerge:
                 beautified += ("\n%s\n") % lines[i]
             elif len(lines[i].strip()):
                 beautified += ("%s\n") % lines[i]
+                
         return beautified
+
+    def __read(self, file):
+        self.__assert_file(file)
+        content = None
+        with open(file, 'r') as template:
+            content = template.read()
+        return content
 
     def __write(self, file, data):
         with open(file, 'w') as output:
             output.write(data)
 
+    def __assert_file(self, file):
+        assert os.access(file, os.F_OK), "%s not exists" % file
+
     def merge(self):
-        self.__mapPhrases()
-        self.__readTemplate()
-        self.__merge()
-        self.__generate_snippets()
+        phrases = self.__read_phrases()
+        template = self.__read(self.__template_path)
+
+        template_helper = {}
+        template_helper["phrases"] = phrases
+        template_helper["guide"] = self.__script_path.split("/")[-1:][0].split(".")[0]
+
+        merged_raw = self.__merge(template, template_helper) 
+        merged_beautified = self.__beautifier(merged_raw)
+        self.__write(self.__output_path, merged_beautified)
+
+        #self.__generate_snippets()

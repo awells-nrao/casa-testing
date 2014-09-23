@@ -1,16 +1,18 @@
-#*
-Phrase/Keywords defined:
-	initial listobs run
-	initial data split
-	creating a plot of the already flagged data
-*#
+## define template variables
+#set($guide_phrases = $template_helper["phrases"])
+#set($guide = $template_helper["guide"])
+#set($guide_safe = $guide.replace("-", ""))
+#set($guide_class = "Test_" + $guide_safe)
+##
 #!/usr/bin/env python
 
-# This is a generated script
+
+# This is a generated module
 # all modified changes will be lost in the next code generation
 
-# working keywords #foreach ($entry in $map)
-# keyword-phrase: "$entry" #end
+
+# Defined keyword-phrases #foreach ($phrase in $guide_phrases)
+# keyword-phrase: "$phrase[0]" #end
 
 
 import sys
@@ -23,20 +25,12 @@ import unittest
 from test.regression.helper import RegressionHelper
 from test.regression.helper import RegressionBase
 
-__keyword_phrase_map = {} #foreach ($entry in $map)
-__keyword_phrase_map["$entry"] = "Test_$entry.replace(" ","_").lower()" #end
+__all__ = ["$guide_class"]
 
-
-# define which classes within the module should be visible for testing
-__all__ =  __keyword_phrase_map.values()
-
-
-#foreach ($entry in $map)
-#set($entry_script = $entry.replace(" ", "_").lower())
-class Test_${guide}_${entry_script}(RegressionBase):
-	""" Testing $entry
+class ${guide_class}(RegressionBase):
+	""" Testing CASA $guide
 	"""
-	
+
 	@classmethod
 	def setUpClass(class_instance):
 		pass
@@ -52,12 +46,11 @@ class Test_${guide}_${entry_script}(RegressionBase):
 		pass
 
 	#set($counter = 0)
-	#foreach ($section in $map[$entry])
-	def test_${guide}_${entry_script}_${counter}(self):
-		"""Test cexec_${guide}_${entry_script}_${counter}.py
+	#foreach ($phrase in $guide_phrases)
+	def test_${guide_safe}_0${counter}_${phrase[0].replace(" ", "_").lower()}(self):
+		"""$guide testing keyword-phrase: $phrase[0]
+		it will execute the generated cexec_${guide_safe}_0${counter}_${phrase[0].replace(" ", "_").lower()}.py script
 		"""
-		self.execute("cexec_${guide}_${entry_script}_${counter}")
+		self.execute("cexec_${guide_safe}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
 	#set($counter = $counter + 1)
 	#end
-
-#end
