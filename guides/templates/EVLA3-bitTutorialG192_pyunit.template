@@ -1,7 +1,7 @@
 ## define template variables
 #set($guide_phrases = $template_helper["phrases"])
 #set($guide = $template_helper["guide"])
-#set($guide_safe = $guide.replace("-", ""))
+#set($guide_safe = $template_helper["guide_safe"])
 #set($guide_class = "Test_" + $guide_safe)
 ##
 #!/usr/bin/env python

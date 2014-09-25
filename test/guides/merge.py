@@ -2,7 +2,7 @@
 
 import sys
 
-assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+#assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
 
 import os
 import re
@@ -48,15 +48,16 @@ class GuideMerge:
         template = Template(template_data)
         return template.merge(locals())
         
-    def __generate_snippets(self):
+    def __generate_snippets(self, script_path, phrases):
 
-        guide = self.__script_path.split("/")[-1:][0].split(".")[0]
-        snippet_dir = "/".join(self.__output_path.split("/")[:-1])
-        for entry in self._map:
-            counter = 0
-            for content in self._map[entry]:
-                 entry_script = "%s/cexec_%s_%s_%s.py" % (snippet_dir, guide, entry.replace(" ", "_").lower(), counter)
-                 self.__write(entry_script, content)
+        guide = script_path.split("/")[-1:][0].split(".")[0]
+        snippet_dir = "/".join(script_path.split("/")[:-1])
+
+        counter = 0
+        for phrase in phrases:
+            snippet = "%s/cexec_%s_0%s_%s.py" % (snippet_dir, guide, counter, phrase[0].replace(" ", "_").lower())
+            self.__write(snippet, phrase[1])
+            counter += 1      
 
     def __beautifier(self, body):
         lines = body.splitlines()
@@ -68,7 +69,7 @@ class GuideMerge:
                 beautified += ("\n%s\n") % lines[i]
             elif len(lines[i].strip()):
                 beautified += ("%s\n") % lines[i]
-                
+
         return beautified
 
     def __read(self, file):
@@ -89,12 +90,17 @@ class GuideMerge:
         phrases = self.__read_phrases()
         template = self.__read(self.__template_path)
 
+        guide = self.__script_path.split("/")[-1:][0].split(".")[0]
+        guide_safe = guide.replace("-", "")
+
         template_helper = {}
         template_helper["phrases"] = phrases
-        template_helper["guide"] = self.__script_path.split("/")[-1:][0].split(".")[0]
+        template_helper["guide"] = guide
+        template_helper["guide_safe"] = guide_safe
 
         merged_raw = self.__merge(template, template_helper) 
         merged_beautified = self.__beautifier(merged_raw)
+
         self.__write(self.__output_path, merged_beautified)
 
-        #self.__generate_snippets()
+        self.__generate_snippets(self.__output_path, phrases)
