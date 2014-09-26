@@ -1,15 +1,13 @@
 ## define template variables
 #set($guide_phrases = $template_helper["phrases"])
 #set($guide = $template_helper["guide"])
-#set($guide_safe = $template_helper["guide_safe"])
-#set($guide_class = "Test_" + $guide_safe)
+#set($guide_class = "Test_" + $guide)
+#set($uri = $template_helper["uri"])
 ##
 #!/usr/bin/env python
 
-
 # This is a generated module
 # all modified changes will be lost in the next code generation
-
 
 # Defined keyword-phrases #foreach ($phrase in $guide_phrases)
 # keyword-phrase: "$phrase[0]" #end
@@ -22,13 +20,13 @@ assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greate
 import os
 import unittest
 
-from test.regression.helper import RegressionHelper
-from test.regression.helper import RegressionBase
+from testc.regression.helper import RegressionHelper
+from testc.regression.helper import RegressionBase
 
 __all__ = ["$guide_class"]
 
 class ${guide_class}(RegressionBase):
-	""" Testing CASA $guide
+	""" Testing guides from $uri
 	"""
 
 	@classmethod
@@ -47,10 +45,11 @@ class ${guide_class}(RegressionBase):
 
 	#set($counter = 0)
 	#foreach ($phrase in $guide_phrases)
-	def test_${guide_safe}_0${counter}_${phrase[0].replace(" ", "_").lower()}(self):
-		"""$guide testing keyword-phrase: $phrase[0]
-		it will execute the generated cexec_${guide_safe}_0${counter}_${phrase[0].replace(" ", "_").lower()}.py script
+	def test_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}(self):
+		"""$uri ($guide) 
+		testing keyword-phrase: $phrase[0]
+		it will execute the generated casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}.py script
 		"""
-		self.execute("cexec_${guide_safe}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
+		self.execute("casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
 	#set($counter = $counter + 1)
 	#end

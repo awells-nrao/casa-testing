@@ -14,7 +14,7 @@ import shutil
 import unittest
 import nose
 
-from test import regression
+from testc import regression
 
 __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner"]
 
@@ -68,30 +68,9 @@ class RegressionBase(unittest.TestCase):
 	def setUp(self):
 		"""All the custom setup should be implemented by the developer
 		"""
-		self.cexec_module = None
-		
-		#self.setUpData()
-		#self.setUpRegression()
+		self.casapy_script = None
 
 	def tearDown(self):
-		pass
-
-	def setUpData(self):
-		"""Not mandatory to be implemented, but if is needed to setup data,
-		must be implemented in this method, executed by setUp.
-		"""
-		raise NotImplementedError("should be implemented by the developer")
-
-	def setUpRegression(self):
-		"""Do what is needed to prepare the regression, from move the data 
-		to clean everything, this must be implementd in the child class.
-		"""
-		raise NotImplementedError("should be implemented by the developer")
-
-	def test_execution(self):
-		"""A lazy method to execute the casa executable script if this method
-		is not implementd in the child class. 
-		"""
 		pass
 
 	def assert_regression(self):
@@ -100,14 +79,25 @@ class RegressionBase(unittest.TestCase):
 		"""
 		assert 1 > 2, "assertion failed..."
 
-	def __script_path(self, script):
+	def base_path(self, file):
+		return "/".join(file.split("/")[:-1])
+
+	def __script_path(self, script_module_path, script):
 		"""Returnt the absolute path of the script
 		"""
-		path_base = "/".join(regression.__file__.split("/")[:-1])
-		RegressionHelper.assert_file(path_base)
-		path_script = "%s/%s.py" % (path_base, script)
+		RegressionHelper.assert_file(script_module_path)
+		path_script = "%s/%s.py" % (script_module_path, script)
 		RegressionHelper.assert_file(path_script)
 		return path_script
+
+	def __class_module_path(self):
+		"""Return the class module path (where is located), this method
+		is intended to be used by child classes to resolve where
+		the class extended is locate, will return the base path
+		"""
+		module_path =  self.base_path(importlib.import_module(self.__module__).__file__)
+		RegressionHelper.assert_file(module_path)
+		return module_path
 
 	def __console_globals(self):
 		"""Return the globals of the ipython console frame stack
@@ -126,16 +116,17 @@ class RegressionBase(unittest.TestCase):
 		assert _stack_frame_globals, "No ipython console globals defined"
 		return _stack_frame_globals
 
-	def execute(self, cexec_module_script = None, test_assert = False, import_module = False):
+	def execute(self, script = None, test_assert = False, import_module = False):
 		"""Documentation, to be done
+		2. will execute the casapy script (located in the same path where the test class module is)
 		"""
-		cexec_module = cexec_module_script if cexec_module_script else self.cexec_module
+		casapy_script = script if script else self.casapy_script
 
 		if import_module:
-			importlib.import_module("%s" % cexec_module)
+			importlib.import_module("%s" % casapy_script)
 		else:
 			console_frame_globals = self.__console_globals()
-			cexec_script = self.__script_path(cexec_module) 
+			cexec_script = self.__script_path(self.__class_module_path(), casapy_script) # 
 			execfile(cexec_script, console_frame_globals)
 
 		if test_assert:
@@ -158,11 +149,14 @@ class RegressionRunner:
 		raise NotImplementedError("This class only implements static methods")
 
 	@staticmethod
-	def execute(test, nose_argv = None):
+	def execute(test, nose_argv = None, guide = False):
 		"""Execute the regression test by using nose with the nose arguments
-		and with -d -s --verbosity=2" and --with-xunit (xml generated)
+		and with -d -s -v" and --with-xunit (xml generated)
 		"""
-		test_module = importlib.import_module("test.regression.%s" % test)
+		test_module_uri = "testc.regression" if not guide else "testc.guide"
+		test_module = importlib.import_module("%s.%s" % (test_module_uri, test))
+
+		
 
 		if test_module.__dict__.has_key("__all__"):
 
@@ -179,13 +173,13 @@ class RegressionRunner:
 						"-s",
 						"-v",
 						#"--processes=-1"
-						"--with-xunit"
+						"--with-xunit",
 						"--xunit-file=%s.xml" % test_object.__name__.lower()
 					]
 				
-				nose.run(argv = test_argv, suite = test_suite)
+				print nose.run(argv = test_argv, suite = test_suite)
 
-		del  test_module
+		del test_module
 
 #
 # Within casa:

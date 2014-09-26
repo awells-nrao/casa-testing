@@ -5,8 +5,8 @@ assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greate
 import os
 import unittest
 
-from test.regression.helper import RegressionHelper
-from test.regression.helper import RegressionBase
+from testc.regression.helper import RegressionHelper
+from testc.regression.helper import RegressionBase
 
 # define which classes within the module should be visible for testing
 __all__ = ["Tutorial3c219"]
@@ -45,7 +45,7 @@ class Tutorial3c219(RegressionBase):
 	def test_execution(self):
 		"""Testing execution of exec_3c129_tutorial
 		"""
-		self.execute("cexec_3c129_tutorial")
+		self.execute("casapy_3c129_tutorial")
 
 	# this method is excuted after every test_* method
 	# defined in this class

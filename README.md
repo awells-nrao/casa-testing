@@ -7,7 +7,7 @@ Is a bunch of python scritps to execute the tests wrapped in a pyunit, later to 
 Copy the ```test``` directory into the python directory of your casa installation and within CASA, 
 
 ```
-from test.regression.helper import RegressionRunner
+from testc.regression.helper import RegressionRunner
 RegressionRunner.execute("regression_3c129_tutorial")
 ```
 

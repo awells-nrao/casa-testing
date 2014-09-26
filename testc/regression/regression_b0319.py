@@ -5,18 +5,25 @@ assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greate
 import os
 import unittest
 
-from test.regression.helper import RegressionHelper
-from test.regression.helper import RegressionBase
+from testc.regression.helper import RegressionHelper
+from testc.regression.helper import RegressionBase
+
+from casac import casac
+from taskinit import casalog
+from imageTest import * 
+from visTest import * 
+from testbase import *
+from tableMaker import *
 
 # define which classes within the module should be visible for testing
-__all__ = ["Coordsystest"]
+__all__ = ["B0319"]
 
 # in order to skip the test execution
 # @unittest.skip("reason")
-class Coordsystest(RegressionBase):
+class B0319(RegressionBase):
 
 	def setUpRegression(self):
-		self.cexec_module = "cexec_coordsystest"
+		self.casapy_script = "casapy_b0319"
 		
 	# in order to skip the test execution
 	#@unittest.skip("reason")

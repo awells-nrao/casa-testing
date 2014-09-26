@@ -106,3 +106,7 @@ By default it will:
 Currently, these keywords are still not added to the guides. An example is already extracted with some keywords
 
 ## Keyword-phrase convention/standard
+
+
+## Data
+/home/casa/casaGuideData
