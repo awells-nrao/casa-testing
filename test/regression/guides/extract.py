@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 '''
 A script to transform CASA Guide webpages and casapy scripts to casapy
 scripts suited for interactive or non-interactive use.  This script can be
@@ -28,19 +30,20 @@ The script runs in one of three modes:
    benchmarks of performance, e.g., as a function of machine.
 '''
 
-# =====================
-# IMPORTS
-# =====================
-
-import urllib
-import urllib2
 import sys
+
+#assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+
+import os
 import codecs
 import re
 import string
-import os, os.path
-from optparse import OptionParser
+import urllib
+import urllib2
+import os.path
 import json
+
+from optparse import OptionParser
 
 # =====================
 # DEFINITIONS
@@ -604,3 +607,34 @@ def main( URL, options ):
     print "New file " + outFile + " written to current directory."
     print "In casapy, run the file using ",
     print 'execfile("' + outFile + '")'
+
+if __name__ == "__main__":
+
+    # defined by the profile
+    default_config = ("%s/%s") % (os.getenv("CGUIDES_CONFIG"), "guides.json") 
+    default_extracted_dir = os.getenv("CGUIDES_EXTRACTED")
+
+    default_config = os.getenv("CGUIDES_CONFIG") + "/guides.json"
+    default_ws_pass1 = os.getenv("CGUIDES_PASS1")
+
+    parser = OptionParser()
+    parser.add_option('-b', '--benchmark', action="store_true", default=False, help="produce benchmark test script" )
+    parser.add_option('-n', '--noninteractive', action="store_true", default=False, help="make script non-interactive (non-benchmark mode only)")
+    parser.add_option('-p', '--plotmsoff', action="store_true", help="turn off all plotms commands")
+    parser.add_option('-c', '--config', help="Get the guides specified in a json file", default=default_config)
+    parser.add_option('-o', '--output', help='output dir for files', default=default_extracted_dir)
+    
+    (options, args) = parser.parse_args()
+
+    # iterate over the configuration file
+    with open(options.config) as json_data:
+        json_obj = json.load(json_data)
+        base_uri = json_obj["base_uri"]
+
+        for element in json_obj["guides"]:
+            if element["enable"]:
+                uri = base_uri + element["guide"]
+                try:
+                    extract.main(uri, options)
+                except Exception, e:
+                    print "Something went wrong with %s: \n %s" % (script, e)

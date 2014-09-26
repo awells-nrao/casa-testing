@@ -1,0 +1,6 @@
+# ignore all *.py, but..
+*.py
+# exclude them
+!merge.py
+!extract.py
+!__init__.py
