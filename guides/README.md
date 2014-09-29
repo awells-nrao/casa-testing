@@ -107,10 +107,13 @@ guide/
 
 ## keywords-phrases
 
+TBD
+
 ## How to
 
 ### Extraction
-tbd
+
+TBD
 
 ### Merge
 
@@ -142,7 +145,7 @@ from testc.regression.helper import RegressionRunner
 RegressionRunner.execute("regression_EVLA3BitTutorialG192", guide = True)
 ```
 
-Verbose:
+An example verbose:
 
 ```
 Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "initial data split" ... ok
