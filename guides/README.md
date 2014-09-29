@@ -1,112 +1,164 @@
 # Guides
 
-## Setup
+## Configuration file
 
-Source the profile to set the workspace:
-
-```
-. guides.profile
-```
-
-If your planning to execute this in a non CASA environment, add the libraries to the path, e.g.:
-
-```
-export PYTHONPATH=$PYTHONPATH:$PWD/..
-```
-
-Airspeed is needed for the template system and code generation, use ```easy_install``` to install the library:
-
-```
-easy_install airspeed
-```
-
-## Configuration
-
-### Profile
-
-### Directory structure
-
-### Guides and mapping
-
-Under ```config/``` directory, a ```guide.json``` file contains the guides to be extracted and tested, also maps the guide to his template:
+The guides to use must be specified in the [guides.conf](https://github.com/atejeda/casa-testing/blob/master/guides/guides.conf) configuration file.
 
 ```
 {
     "base_uri": "http://casaguides.nrao.edu/index.php?title=",
+
     "guides": [
-        { "enable": 1, "guide": "EVLA_3-bit_Tutorial_G192", "template": "EVLA3-bitTutorialG192.template" }
+        { "enable": 1, "uri": "EVLA_3-bit_Tutorial_G192", "guide": "EVLA3BitTutorialG192.py", "template": "guides.template" }
     ]
 }
 ```
 
-## The templates
+By using a configuration file, allows more flexibility to manage or group the tests.
 
-```Airspeed``` is used for the template and code generation, refer to this page for the airspeed syntax usage.
+### Fields
 
-   * ```#foreach ($entry in $map)```: is the keyword-phrase
-   * ```#foreach ($section in $map[$entry])```: the content of each instance of the keyword-phrase, due the keyword-phrase can be specified ```>= 1```.
+   * enable: ```1``` for enable and ```0``` for disable the extraction and code parse/generation for the guide.
+   * guide: Is the guide identifier, the extracted guide and the generated code will use this identifier.
+   * template: Which template to use.
 
-The ```$section``` is the content of the keyword-phrase ```initial data split```.
+## Template and code parsing/generation
 
-```
-#if($entry == "initial data split")
-$section
-#end
-```
+```Airspeed``` is used for the template and code generation, currently [guides.template](https://github.com/atejeda/casa-testing/blob/master/guides/guides.template) is used to generate ```RegressionBase > unittest.TestCase``` pyunit test classes, in which each ```keyword-phrase``` and his python code within the guide is a test case method of the generated class.
 
-## Extract
+An example of a generated class:
 
 ```
-Usage: guide_extract.py [options]
+#!/usr/bin/env python
 
-Options:
-  -h, --help            show this help message and exit
-  -b, --benchmark       produce benchmark test script
-  -n, --noninteractive  make script non-interactive (non-benchmark mode only)
-  -p, --plotmsoff       turn off all plotms commands
-  -c CONFIG, --config=CONFIG
-                        Get the guides specified in a json file
-  -o OUTPUT, --output=OUTPUT
-                        output dir for files
+# This is a generated module
+# all modified changes will be lost in the next code generation
+
+# Defined keyword-phrases 
+# keyword-phrase: "initial data split" 
+# keyword-phrase: "initial listobs run" 
+# keyword-phrase: "creating a plot of the already flagged data" 
+
+import sys
+
+assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+
+import os
+import unittest
+
+from testc.regression.helper import RegressionHelper
+from testc.regression.helper import RegressionBase
+
+__all__ = ["Test_EVLA3BitTutorialG192"]
+
+class Test_EVLA3BitTutorialG192(RegressionBase):
+  """ Testing guides from EVLA_3-bit_Tutorial_G192
+  """
+
+  @classmethod
+  def setUpClass(class_instance):
+    pass
+
+  def setUp(self):
+    pass
+
+  def tearDown(self):
+    pass
+
+  @classmethod
+  def tearDown(class_instance):
+    pass
+
+  def test_EVLA3BitTutorialG192_00_initial_data_split(self):
+    """Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "initial data split" 
+    """
+    self.execute("casapy_EVLA3BitTutorialG192_00_initial_data_split")
+
+  def test_EVLA3BitTutorialG192_01_initial_listobs_run(self):
+    """Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "initial listobs run" 
+    """
+    self.execute("casapy_EVLA3BitTutorialG192_01_initial_listobs_run")
+
+  def test_EVLA3BitTutorialG192_02_creating_a_plot_of_the_already_flagged_data(self):
+    """Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "creating a plot of the already flagged data"
+    """
+    self.execute("casapy_EVLA3BitTutorialG192_02_creating_a_plot_of_the_already_flagged_data")
 ```
 
-## Merge
+As one can see, the method is generated as ```test_<guide>_<auto-incremental-id>_<keyword-phrase>``` and executes the ```casapy_<guide>_<auto-incremental-id>_<keyword-phrase>.py``` is script by using inherited ```RegressionBase``` helper methods. 
 
-```[
-$ guide_merger.py --help
+The CASA guide keyword-phrase code is located in a code snippet named as ```casapy_<guide>_<auto-incremental-id>_<keyword-phrase>.py```, it only contains the code to be executed by casa, this script is generated in the same directory where the test class was generated.
 
-Usage: guide_merger.py [options]
+Using the same example, in summary, will be generated (according to the configuration file:
 
-Options:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config=CONFIG
-                        Get the guides specified in a json file
-  -o OUTPUT, --output=OUTPUT
-                        Where the file will be generated
-  -s SCRIPT, --script=SCRIPT
-                        Where the extracted scripts are
-  -t CSPEC, --cspec=CSPEC
-                        Where the cspecs are
-```
-
-## Example
-
-Setup the environment described above, create a symlink from workspace/example/EVLA3-bitTutorialG192.py to workspace/extracted/EVLA3-bitTutorialG192.py and execute:
+   * A test class for the casa guide, each test case method is a keyword-phrase.
+   * A python script with the keyword-phrase content to be executed within in a CASA environment.
 
 ```
-guide_merger.py
+guide/
+|-- regression_EVLA3BitTutorialG192.py
+|-- casapy_EVLA3BitTutorialG192_00_initial_data_split.py
+|-- casapy_EVLA3BitTutorialG192_01_initial_listobs_run.py
+|-- casapy_EVLA3BitTutorialG192_02_creating_a_plot_of_the_already_flagged_data.py
+|-- extract.py
+|-- merge.py
+|-- __init__.py
 ```
 
-By default it will:
+## keywords-phrases
 
-   * read the default guides.json file, this is specified in the profile
-   * read the extracted script from workspace/extracted
-   * parse the extracted script and by using the template generate the code into workspace/regression
+## How to
 
-Currently, these keywords are still not added to the guides. An example is already extracted with some keywords
+### Extraction
+tbd
 
-## Keyword-phrase convention/standard
+### Merge
 
+The merge script needs to know the configuration file to use and where the extracted scripts are, by default it will look for it the current working directory.
 
-## Data
-/home/casa/casaGuideData
+```
+parser.add_option('-c', "--config", dest="config", help="The configuration file to use", default="guides.conf")
+parser.add_option("-e", "--extracted", dest="extracted", help="Where the extracted scripts are", default="%s/ws/extracted" % os.getcwd())
+```
+
+A verbose example of a ```merge``` execution:
+
+```
+- EVLA_3-bit_Tutorial_G192 -----------------------------------------------------
+script   : /a/dir/guides/ws/extracted/EVLA3BitTutorialG192.py
+template : guides.template
+output   : /a/dir/testc/guide
+```
+
+By default, for ```convention over configuration``` purposes, the code generated will be located in the same directory where the ```merge``` module is: ```testc/guide```, this approach allows to separate the regression test from the guide tests (which also are regression tests).
+
+### Execute
+
+You have to be sure that the testc is installed in the lib directory in your CASA installation. The following code snippet can be executed within a CASA
+environment:
+
+```
+from testc.regression.helper import RegressionRunner
+RegressionRunner.execute("regression_EVLA3BitTutorialG192", guide = True)
+```
+
+Verbose:
+
+```
+Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "initial data split" ... ok
+Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "initial listobs run" ... ok
+Test EVLA_3-bit_Tutorial_G192 (EVLA3BitTutorialG192) "creating a plot of the already flagged data" ... ok
+
+----------------------------------------------------------------------
+XML: test_evla3bittutorialg192.xml
+----------------------------------------------------------------------
+Ran 3 tests in 0.019s
+
+OK
+True
+```
+
+The only difference with the regression tests, from a execution point of view, is that the ```guide = True``` should be specified for the ```RegressionRunner.execute``` in order to find the regression test class in the guide package, an automated way can be easily implemented to locate the module, but was done in this way in order to avoid collisions with the module file name.
+
+In order to know how to use ```RegressionRunner``` and ```RegressionBase``` helper metods, refer to the regression documentation.
+
