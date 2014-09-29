@@ -9,7 +9,6 @@ import importlib
 import inspect
 import string
 import shutil
-#from enum import Enum
 
 import unittest
 import nose
@@ -74,8 +73,7 @@ class RegressionBase(unittest.TestCase):
 		pass
 
 	def assert_regression(self):
-		"""A lazy method to assert the output if this method
-		is not implementd in the child class.
+		"""stub to be implemented later
 		"""
 		assert 1 > 2, "assertion failed..."
 
