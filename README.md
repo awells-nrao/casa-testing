@@ -29,6 +29,15 @@ from testc.regression.helper import RegressionRunner
 RegressionRunner.execute("regression_3c129_tutorial")
 ```
 
+The ```RegressionRunner.execute``` method allows to specifiy custom nose arguments. The guide ```argument``` should be specified if a CASA guide should be executed.
+
+```
+def execute(test, nose_argv = None, guide = False):
+	"""Execute the regression test by using nose with the nose arguments
+	and with -d -s -v and --with-xunit (xml generation)
+	"""
+```	
+
 ### Writing your own classes
 
 Few things are needed:
@@ -36,7 +45,7 @@ Few things are needed:
    * The class, there's a pre-stablished name convention, all regression classes should be prefixed with ```regresion_<id-of-the-test>```
       * import the needed helper classes
       * in your tests class, add ```__all__ = ["<name-of-your-class>"]``` for your class be visible for the testing framework (if you want)
-      * define your methods, ```test_<name=of-the-method>``` is a must for python xunit
+      * define your methods, ```test_<name-of-the-method>``` is a must for python xunit
    * The script to be executed by/within CASA, using the prefix ```casapy_<id-of-the-test-case>```, which contains only the code to be executed within CASA
 
 The inherited method ```execute``` is a helper to execute or import the ```casapy_``` module within CASA, is defined by:
@@ -57,6 +66,32 @@ Within the testing context, it is possible to define:
 
 Things sare much simpler by using an already implemented class as an example, see the [regression_3c129_tutorial.py](https://github.com/atejeda/casa-testing/blob/master/testc/regression/regression_3c129_tutorial.py).
 
+A few helper methods are implemented in the ```RegressionHelper``` class to deal with the setup, specially the data:
+
+```
+@staticmethod
+def data_copy(array_path):
+	"""Given an array of paths, it will iterate and copy all to the
+	current working directory, which is where casapy is executed
+	"""
+```	
+
+```
+@staticmethod
+def data_remove(array_path):
+	"""Given an array of paths, it will iterate and delete them
+	"""
+```
+
+```
+@staticmethod
+def assert_file(file):
+	"""Assert that the file exists
+	"""
+```
+
+Bear in mind that the working space is the current working directory.
+
 The Python xunit implementation provides several methods to deal with the test setup per class and per method, refer to the ```Python xunit hints``` section.
 
 ### Python xunit hints
@@ -65,7 +100,7 @@ Ignoring, works in a method nor class level, just append the decorator, e.g.:
 
 ```
 @unittest.skip("reason")
-```test_<name-of-the-method>```(self): ...
+test_<name-of-the-method>(self): ...
 ```
 
 Class level helpers, ```setUpClass```  and ```tearDownClass```, are executed just before and after a test class is executed, the ```@classmethod

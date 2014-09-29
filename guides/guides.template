@@ -40,7 +40,7 @@ class ${guide_class}(RegressionBase):
 		pass
 
 	@classmethod
-	def tearDown(class_instance):
+	def tearDownClass(class_instance):
 		pass
 
 	#set($counter = 0)

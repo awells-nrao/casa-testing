@@ -38,15 +38,6 @@ class Tutorial3c219(RegressionBase):
 	def setUp(self):
 		pass
 
-	# this is predifined but not mandatory, you can define
-	# your tests methods by adding the prefix ```test_```
-	# in order to skip the test execution, uncomment
-	#@unittest.skip("reason")
-	def test_execution(self):
-		"""Testing execution of exec_3c129_tutorial
-		"""
-		self.execute("casapy_3c129_tutorial")
-
 	# this method is excuted after every test_* method
 	# defined in this class
 	def tearDown(self):
@@ -55,5 +46,14 @@ class Tutorial3c219(RegressionBase):
 	# this method is executed just once and after for all tests
 	# rather than for every test like setUp
 	@classmethod
-	def tearDown(class_instance):
+	def tearDownClass(class_instance):
 		pass
+
+	# this is predifined but not mandatory, you can define
+	# your tests methods by adding the prefix ```test_```
+	# in order to skip the test execution, uncomment
+	#@unittest.skip("reason")
+	def test_execution(self):
+		"""Testing execution of exec_3c129_tutorial
+		"""
+		self.execute("casapy_3c129_tutorial")

@@ -43,9 +43,19 @@ class RegressionHelper():
 		assert os.access(file, os.F_OK), "%s not exists" % file
 
 	@staticmethod
+	def locate_data(file):
+		#module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
+		#index_file = file if file else 
+		pass
+		
+	@staticmethod
+	def base_path(self, file):
+		return "/".join(file.split("/")[:-1])
+
+	@staticmethod
 	def data_copy(array_path):
 		"""Given an array of paths, it will iterate and copy all to the
-		current workind directory, which is where casapy is executed
+		current working directory, which is where casapy is executed
 		"""
 		destination = os.getcwd()
 		
@@ -60,6 +70,8 @@ class RegressionHelper():
 
 	@staticmethod
 	def data_remove(array_path):
+		"""Given an array of paths, it will iterate and delete them
+		"""
 		pass
 
 class RegressionBase(unittest.TestCase):
@@ -77,9 +89,6 @@ class RegressionBase(unittest.TestCase):
 		"""
 		assert 1 > 2, "assertion failed..."
 
-	def base_path(self, file):
-		return "/".join(file.split("/")[:-1])
-
 	def __script_path(self, script_module_path, script):
 		"""Returnt the absolute path of the script
 		"""
@@ -93,7 +102,7 @@ class RegressionBase(unittest.TestCase):
 		is intended to be used by child classes to resolve where
 		the class extended is locate, will return the base path
 		"""
-		module_path =  self.base_path(importlib.import_module(self.__module__).__file__)
+		module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
 		RegressionHelper.assert_file(module_path)
 		return module_path
 
@@ -148,12 +157,10 @@ class RegressionRunner:
 	@staticmethod
 	def execute(test, nose_argv = None, guide = False):
 		"""Execute the regression test by using nose with the nose arguments
-		and with -d -s -v" and --with-xunit (xml generated)
+		and with -d -s -v and --with-xunit (xml generation)
 		"""
 		test_module_uri = "testc.regression" if not guide else "testc.guide"
 		test_module = importlib.import_module("%s.%s" % (test_module_uri, test))
-
-		
 
 		if test_module.__dict__.has_key("__all__"):
 
