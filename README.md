@@ -9,7 +9,8 @@ TBD
 ### Architecture
 
 <div align="center">
-<img src="http://s11.postimg.org/5n7t8a7gz/architecture.png" />
+    <img src="http://s18.postimg.org/kezwcw4l5/architecture.png" />
+</div>
 
 ### Design
 
