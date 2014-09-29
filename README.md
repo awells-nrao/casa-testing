@@ -14,13 +14,11 @@ TBD
 
 ### Design
 
-### Implementations
-
-#### Extending Nose
+### Implementation
 
 ## How to use
 
-## Writing your own classes
+### Writing your own classes
 
 ## Jenkins Integration
 
