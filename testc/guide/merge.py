@@ -14,6 +14,7 @@ from airspeed import *
 
 from testc import guide
 
+__test__ = False
 __all__ = ["GuideMerge"]
 
 class GuideMerge:

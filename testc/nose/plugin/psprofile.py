@@ -4,14 +4,77 @@ assert sys.version >= '2' # and sys.version_info.minor >= 7, "Python 2.7 or grea
 
 import os
 import time
-import psutil
 import threading
 import logging
 import json
+import traceback
 
+import psutil
+
+from nose.plugins import Plugin
+
+__test__ = False
 __all__ = ["PSProfile", "PSProfileThread"]
 
-logger = logging.getLogger('nose.plugins.psprofile')
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+class PSProfile(Plugin):
+	# http://nose.readthedocs.org/en/latest/plugins/interface.html
+	# http://nose.readthedocs.org/en/latest/plugins/writing.html
+	# http://nose.readthedocs.org/en/latest/plugins/testid.html
+	# http://community.activestate.com/impatient-developers-guide-writing-python-nose-plugins
+
+	name = 'psprofile'
+
+	def __init__(self):
+		logger.debug("__init__(self):...")
+		super(PSProfile, self).__init__()
+		self.testname = ""
+		
+	def options(self, parser, env = os.environ):
+		logger.debug("options(self, parser, env = os.environ):...")
+		Plugin.options(self, parser, env)
+
+		parser.add_option(
+			"--psprofile-file", 
+			action = "store", 
+			default = env.get("NOSE_PSP_FILE", "psprofile.xml"), 
+			dest = "psp_file", 
+			metavar="FILE",
+			help = "Default is the psprofile.json in the working directory")
+
+	def configure(self, options, conf):
+		logger.debug("configure(self, options, conf):...")
+		super(PSProfile, self).configure(options, conf)
+		if not self.enabled:
+			return
+
+	def prepareTestCase(self, test):
+		pid = os.getpid()
+		self.testname = self.testName(test)
+		self.profiler = PSProfileThread(pid)
+		logger.debug("prepareTestCase(self, test):... %s [%s]" % (self.testname, pid))
+
+	def startTest(self, test):
+		logger.debug("startTest(self, test):... %s" % self.testname)
+		#pass#self.__profiler.start_profiler()
+
+	def stopTest(self, test):
+		logger.debug("stopTest(self, test):... %s" % self.testname)
+		#pass#self.__profiler.stop_profiler()
+
+	def report(self, stream):
+		logger.debug("report(self, stream):...")
+		#profile_data = self.__profiler.profile_data()
+		#profile_data["test"] = self.testname
+		
+		# if self.conf.verbosity > 1:
+		# 	for e in self.__dict__:
+		# 		stream.writeln(str(e))
+
+	def finalize(self, result):
+		logger.debug("report(self, stream):... %s")
 
 class PSProfileThread(threading.Thread):
 
@@ -61,6 +124,9 @@ class PSProfileThread(threading.Thread):
 				self.stop_profiler()
 
 if __name__ == "__main__":
+	# Note to be deleted:
+	# /usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg
+	# e.g.: /usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg/psutil
     profiler = PSProfileThread(int(sys.argv[1]))
     profiler.start_profiler()
     profiler.join()

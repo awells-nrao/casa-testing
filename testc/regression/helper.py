@@ -13,8 +13,10 @@ import shutil
 import unittest
 import nose
 
+from testc.nose.plugin import psprofile
 from testc import regression
 
+__test__ = False
 __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner"]
 
 class RegressionHelper():
@@ -49,16 +51,14 @@ class RegressionHelper():
 		pass
 		
 	@staticmethod
-	def base_path(self, file):
+	def base_path(file):
 		return "/".join(file.split("/")[:-1])
 
 	@staticmethod
-	def data_copy(array_path):
+	def data_copy(array_path, destination = os.getcwd()):
 		"""Given an array of paths, it will iterate and copy all to the
 		current working directory, which is where casapy is executed
 		"""
-		destination = os.getcwd()
-		
 		for data_path in array_path:
 			
 			RegressionHelper.assert_file(data_path)
@@ -123,9 +123,7 @@ class RegressionBase(unittest.TestCase):
 		assert _stack_frame_globals, "No ipython console globals defined"
 		return _stack_frame_globals
 
-	def execute(self, casapy_script, sinner = "no-sinner@nrao.edu", test_assert = False, import_module = False):
-		"""
-		"""
+	def execute(self, casapy_script, test_assert = False, import_module = False):
 
 		if import_module:
 			importlib.import_module("%s" % casapy_script)
@@ -138,11 +136,11 @@ class RegressionBase(unittest.TestCase):
 			self.assert_regression()
 
 	@classmethod
-	def setUpClass(class_instance):
+	def setUpClass(cls):
 		pass
 
 	@classmethod
-	def tearDownClass(class_instance):
+	def tearDownClass(cls):
 		pass
 
 class RegressionRunner:
@@ -170,17 +168,21 @@ class RegressionRunner:
 				if nose_argv:
 					test_argv = nose_argv
 				else:
-					test_argv = [
+					test_argv = [ #"--processes=-1"
 						test_module.__name__.lower(), 
 						"-d",
 						"-s",
-						"-v",
-						#"--processes=-1"
+						#"-v",
+						"--verbosity=2",
 						"--with-xunit",
-						"--xunit-file=%s.xml" % test_object.__name__.lower()
+						"--xunit-file=%s.xml" % test_object.__name__.lower(),
+						"--with-psprofile",
+						"--nologcapture",
+						#"--log=INFO",
+						"--psprofile-file=%s.json" % test_object.__name__.lower()
 					]
 				
-				print nose.run(argv = test_argv, suite = test_suite)
+				nose.run(argv = test_argv, suite = test_suite, addplugins = [psprofile.PSProfile()])
 
 		del test_module
 

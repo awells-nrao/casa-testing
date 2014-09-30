@@ -30,7 +30,7 @@ class ${guide_class}(RegressionBase):
 	"""
 
 	@classmethod
-	def setUpClass(class_instance):
+	def setUpClass(cls):
 		pass
 
 	def setUp(self):
@@ -40,7 +40,7 @@ class ${guide_class}(RegressionBase):
 		pass
 
 	@classmethod
-	def tearDownClass(class_instance):
+	def tearDownClass(cls):
 		pass
 
 	#set($counter = 0)

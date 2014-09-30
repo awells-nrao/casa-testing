@@ -133,15 +133,15 @@ Class level helpers, ```setUpClass```  and ```tearDownClass```, are executed jus
 
 ```
 @classmethod
-def setUpClass(class_instance): ...
+def setUpClass(cls): ...
 ```
 
 ```
 @classmethod
-def tearDownClass(class_instance): ....
+def tearDownClass(cls): ....
 ````
 
-In both methods, the ```class_instance``` argument is an instance of your testing class object.
+In both methods, the ```cls``` argument is an instance of your testing class object.
 
 The first line of the pydoc added to the ```test_<name-of-the-method>``` will be printed instead of the test name when it is executed.
 

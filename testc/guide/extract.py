@@ -45,6 +45,8 @@ import json
 
 from optparse import OptionParser
 
+__test__ = False
+
 # =====================
 # DEFINITIONS
 # =====================
