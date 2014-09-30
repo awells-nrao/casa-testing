@@ -1,85 +1,67 @@
 import sys
 
-assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+assert sys.version >= '2' # and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
 
 import os
 import time
 import psutil
 import threading
 import logging
+import json
 
-from nose.plugins import Plugin
-
-__all__ = ["PSProfile"]
+__all__ = ["PSProfile", "PSProfileThread"]
 
 logger = logging.getLogger('nose.plugins.psprofile')
 
-
-class PSProfile(Plugin):
-	# http://nose.readthedocs.org/en/latest/plugins/interface.html
-	# http://nose.readthedocs.org/en/latest/plugins/writing.html
-
-	name = 'psprofile'
-
-	def __init__(self):
-		 super(PSProfile, self).__init__()
-		 self.__profile = {}
-
-	def options(self, parser, env = os.environ):
-
-		Plugin.options(self, parser, env)
-
-		parser.add_option(
-			"--psp-file", 
-			action = "store", 
-			default = env.get("NOSE_PSP_FILE", "psprofile.xml"), 
-			dest = psp_file, metavar="FILE"
-			help = "Default is the psprofile.json in the working directory"
-		super(PSProfile, self).options(parser, env = env)
-
-	def startTest(self, test):
-		if self.__profiler:
-			self.__profiler.stop_profiler()
-
-		self.__profiler = PSProfileThread(os.getpid());
-		pass
-		# start profiling
-
-	def stopTest(self, test):
-		self.__profiler.stop_profiler()
-
-	def finalize(self, result):
-		pass
-
-	def configure(self, options, conf):
-        super(PSProfile, self).configure(options, conf)
-
 class PSProfileThread(threading.Thread):
 
-	def __init__(self, pid):
+	def __init__(self, pid, interval = 1):
 		super(PSProfileThread, self).__init__()
 		self.__pid = pid
-		
+		self.__interval = interval
 		self.__stop = threading.Event()
-		self.__stop.clear()
-
-		self.__ps = psutil.Process(self._pid)
+		self.__cpu = []
+		self.__ioc = []
+		self.__fds = []
+		self.__mem = []
+		self.__time = []
 
 	def stop_profiler(self):
 		self.__stop.set()
 
 	def gather_data(self):
-		pass
+		try:
+			self.__cpu.append(self.__ps.cpu_percent(interval = self.__interval))
+			self.__ioc.append(self.__ps.io_counters())
+			self.__fds.append(self.__ps.num_fds())
+			self.__mem.append(self.__ps.memory_info())
+			self.__time.append(time.time())
+		except:
+			self.stop_profiler()
+
+	def start_profiler(self):
+		self.__ps = psutil.Process(self.__pid)
+		self.__stop.clear()
+		self.start()
+
+	def profile_data(self):
+		return { 
+			"cpu"  : self.__cpu,
+			"ioc"  : self.__ioc,
+			"fds"  : self.__fds,
+			"mem"  : self.__mem,
+			"time" : self.__time
+			}
 
 	def run(self):
 		while not self.__stop.is_set():
-	    	pass
-    	    #print self.__ps.cpu_percent(interval=1)
-	    	#print self.__ps.virtual_memory()
-	    	#print self.__ps.swap_memory()
-
+			if self.__ps.status():
+				self.gather_data()
+			else:
+				self.stop_profiler()
 
 if __name__ == "__main__":
-    test_monitor = PSProfile(sys.argv[1])
-    test_monitor.start()
-    test_monitor.join()
+    profiler = PSProfileThread(int(sys.argv[1]))
+    profiler.start_profiler()
+    profiler.join()
+    print json.dumps(profiler.profile_data())
