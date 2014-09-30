@@ -16,27 +16,52 @@ Python, that's it (to be done).
 
 ### Design
 
+The core of the design relies on the ```RegressionBase``` which is extended from ```unittest.TestCase``` python class, each regression test class inherits helper methods of the ```RegressionBase``` and at the same time provides the capabilities and methods from the ```unittest.TestCase```class for create testing fixtures and tests suites, executable by python testing or nose utilities.
+
+```
+a class diagram w/ an example.
+```
+
+```RegressionBase``` also use static defined methods from ```RegressionHelper``` to manage data, get environment variables and find data.
+
+
+```RegressionRunner``` is used to execute the test class by using nose utils, this class locate and create the test suite from the test class methods.
+
+
+```
+action diagram example.
+```
+
 ### Implementation
 
-Everything is packaged in a ```testc``` python package.
+The ```testc``` is the main package where all the testing framework lives, 
+
+   * testc
+      * guide: extract and merge/generate modules and test classes for casa-guides testing
+      * nose
+         * plugin: in-house and thirdparty nose plugins
+      * regression: regression tests modules, classes and helper classes
+      * unit: unit test and unit test classes implementations
 
 ## How to use
 
-A static method is provided to execute the regression test class, which is located at ```testc/regression```:
+A static helper method defined in ```RegressionRunner``` is provided to execute the regression test class, which is located at ```testc/regression```:
 
 ```
 from testc.regression.helper import RegressionRunner
 RegressionRunner.execute("regression_3c129_tutorial")
 ```
 
-The ```RegressionRunner.execute``` method allows to specifiy custom nose arguments. The guide ```argument``` should be specified if a CASA guide should be executed.
+The ```RegressionRunner.execute``` method allows to specifiy custom nose arguments. The ```guide``` argument should be specified for a casa-guide regression test.
 
 ```
 def execute(test, nose_argv = None, guide = False):
 	"""Execute the regression test by using nose with the nose arguments
 	and with -d -s -v and --with-xunit (xml generation)
 	"""
-```	
+```
+
+For automation, a ```casa_regression.py``` module is provided to enable, disable
 
 ### Writing your own classes
 

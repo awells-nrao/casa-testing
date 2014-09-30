@@ -123,9 +123,8 @@ class RegressionBase(unittest.TestCase):
 		assert _stack_frame_globals, "No ipython console globals defined"
 		return _stack_frame_globals
 
-	def execute(self, casapy_script, test_assert = False, import_module = False):
-		"""Documentation, to be done
-		2. will execute the casapy script (located in the same path where the test class module is)
+	def execute(self, casapy_script, sinner = "no-sinner@nrao.edu", test_assert = False, import_module = False):
+		"""
 		"""
 
 		if import_module:

@@ -8,15 +8,24 @@ import unittest
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
 
-# define which classes within the module should be visible for testing
 __all__ = ["Coordsystest"]
 
-# in order to skip the test execution
-# @unittest.skip("reason")
 class Coordsystest(RegressionBase):
+
+	@classmethod
+	def setUpClass(class_instance):
+		pass
+
+	def setUp(self):
+		pass
+
+	def tearDown(self):
+		pass
+
+	@classmethod
+	def tearDownClass(class_instance):
+		pass
 		
-	# in order to skip the test execution
-	#@unittest.skip("reason")
 	def test_execution(self):
 		#self.execute("exec_coordsystest")
 		self.execute("casapy_coordsystest")
