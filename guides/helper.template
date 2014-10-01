@@ -1,0 +1,39 @@
+## define template variables
+#set($guide_phrases = $template_helper["phrases"])
+#set($guide = $template_helper["guide"])
+#set($guide_class = "Test_" + $guide)
+#set($uri = $template_helper["uri"])
+##
+# This is a generated module
+# all modified changes will be lost in the next code generation
+
+# Defined keyword-phrases #foreach ($phrase in $guide_phrases)
+# keyword-phrase: "$phrase[0]" #end
+
+
+import sys
+
+assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+
+import os
+
+from testc.regression.helper import RegressionHelper
+
+class Helper_${guide_class}():
+
+	def exec_method(self, method_name):
+		"""Execute a method from this object instance
+		"""
+		getattr(self, method_name)()
+
+#set($counter = 0)
+#foreach ($phrase in $guide_phrases)
+	def casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}(): #foreach ($content in $phrase[1].split("\n")) 
+#set($tabbed_content = "\t\t" + $content)${tabbed_content}#end
+#set($counter = $counter + 1)#end
+
+if __name__ == "__main__":
+	method_name = globals()["exec_method"]
+	helper_instance = Helper_${guide_class}()
+	assert exec_method, "method name not defined"
+	helper_instance.exec_method(method_name)

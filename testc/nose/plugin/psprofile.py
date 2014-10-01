@@ -11,6 +11,7 @@ import traceback
 
 import psutil
 
+import nose
 from nose.plugins import Plugin
 
 __test__ = False
@@ -26,6 +27,7 @@ class PSProfile(Plugin):
 	# http://community.activestate.com/impatient-developers-guide-writing-python-nose-plugins
 
 	name = 'psprofile'
+	enabled = True
 
 	def __init__(self):
 		logger.debug("__init__(self):...")

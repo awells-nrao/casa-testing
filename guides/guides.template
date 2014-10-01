@@ -4,7 +4,6 @@
 #set($guide_class = "Test_" + $guide)
 #set($uri = $template_helper["uri"])
 ##
-#!/usr/bin/env python
 
 # This is a generated module
 # all modified changes will be lost in the next code generation
@@ -50,6 +49,19 @@ class ${guide_class}(RegressionBase):
 		testing keyword-phrase: $phrase[0]
 		it will execute the generated casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}.py script
 		"""
-		self.execute("casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
+		self.execute("${guide}/casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
+		# execute the post-testing
+		self.post_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}()
 	#set($counter = $counter + 1)
 	#end
+
+	# sample skelletons
+
+	#set($counter = 0)
+	#foreach ($phrase in $guide_phrases)
+	def post_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}(self):
+		self.execute("${guide}/post_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
+	#set($counter = $counter + 1)
+	#end
+
+	

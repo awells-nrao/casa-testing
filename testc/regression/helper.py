@@ -123,13 +123,14 @@ class RegressionBase(unittest.TestCase):
 		assert _stack_frame_globals, "No ipython console globals defined"
 		return _stack_frame_globals
 
-	def execute(self, casapy_script, test_assert = False, import_module = False):
+	def execute(self, casapy_script, test_assert = False, import_module = False, custom_globals = None):
 
 		if import_module:
 			importlib.import_module("%s" % casapy_script)
 		else:
 			console_frame_globals = self.__console_globals()
-			cexec_script = self.__script_path(self.__class_module_path(), casapy_script) # 
+			console_frame_globals = dict(console_frame_globals.items() + custom_globals.items()) if custom_globals else console_frame_globals
+			cexec_script = self.__script_path(self.__class_module_path(), casapy_script)
 			execfile(cexec_script, console_frame_globals)
 
 		if test_assert:
@@ -162,7 +163,7 @@ class RegressionRunner:
 		if test_module.__dict__.has_key("__all__"):
 
 			for test_class in test_module.__all__:
-				test_object = getattr(test_module, test_module.__all__[0])
+				test_object = getattr(test_module, test_class) #test_module.__all__[0])
 				test_suite = unittest.TestLoader().loadTestsFromTestCase(test_object)
 
 				if nose_argv:

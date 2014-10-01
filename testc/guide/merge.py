@@ -7,6 +7,7 @@ import sys
 import os
 import re
 import json
+import errno
 
 from optparse import OptionParser
 
@@ -21,9 +22,10 @@ class GuideMerge:
     # event that is a class, it will used the methods as they were static ones
     # based that is a proof of concept, this can be improved later
 
-    def __init__(self, script, template, output, uri):
+    def __init__(self, script, template, template_helper,  output, uri):
         self.__script = script
         self.__template = template
+        self.__template_helper = template_helper
         self.__output_path = output
         self.__guide_uri = uri
 
@@ -53,19 +55,23 @@ class GuideMerge:
 
         return phrases
 
-    def __merge(self, template_data, template_helper):
+    def __generate_code(self, template_data, template_helper):
         template = Template(template_data)
         return template.merge(locals())
         
     def __generate_snippets(self, output_path, guide_script_name, phrases):
         counter = 0
+        self.__mkdir("%s/%s" % (output_path, guide_script_name))
         for phrase in phrases:
-            snippet = "%s/casapy_%s_0%s_%s.py" % (output_path, guide_script_name, counter, self.__normalize_phrase(phrase[0]))
+            snippet = "%s/%s/casapy_%s_0%s_%s.py" % (output_path, guide_script_name, guide_script_name, counter, self.__normalize_phrase(phrase[0]))
             self.__write(snippet, phrase[1])
             counter += 1
 
     def __normalize_phrase(self, phrase):
-        return phrase.replace(" ", "_").lower()
+        replaces = [ "-", "+", "_", " "]
+        for replace in replaces:
+            phrase = phrase.replace(replace, "_")
+        return phrase.lower()
 
     def __beautifier(self, body):
         lines = body.splitlines()
@@ -103,12 +109,20 @@ class GuideMerge:
         """
         return guide.split("/")[-1:][0].split(".")[0]
 
-    def clean_generated(self):
-        pass
+    def __mkdir(self, path):
+        try:
+            os.makedirs(path)
+        #this is for python > 2.5
+        except OSError as e:
+            if e.errno == errno.EEXIST and os.path.isdir(path):
+                pass
+            else: raise e
 
     def merge(self):
-        phrases = self.__read_phrases(self.__script)
         template = self.__read(self.__template)
+        helper_template = self.__read(self.__template_helper)
+
+        phrases = self.__read_phrases(self.__script)
         guide_script_name = self.__get_guide_name(self.__script) # name already normilized
 
         template_helper = {}
@@ -116,14 +130,13 @@ class GuideMerge:
         template_helper["guide"] = guide_script_name
         template_helper["uri"] = self.__guide_uri
 
-        merged_raw = self.__merge(template, template_helper)
-
+        merged_raw = self.__generate_code(template, template_helper)
         merged_beautified = self.__beautifier(merged_raw)
-
         self.__write("%s/regression_%s.py" % (self.__output_path, guide_script_name), merged_beautified)
 
-        self.__generate_snippets(self.__output_path, guide_script_name, phrases)
-
+        helper_merged_raw = self.__generate_code(helper_template, template_helper)
+        helper_merged_beautified = self.__beautifier(helper_merged_raw)
+        self.__write("%s/casapy_helper_%s.py" % (self.__output_path, guide_script_name), helper_merged_beautified)
 
 if __name__ == '__main__':
 
@@ -142,6 +155,7 @@ if __name__ == '__main__':
                 guide_uri = element["uri"].strip()
                 extracted_script = "%s/%s" % (options.extracted, element["guide"].strip()) # absolute
                 template = element["template"].strip() # absolute
+                template_helper = element["template_helper"].strip() # absolute
                 output_path = "/".join(guide.__file__.split("/")[:-1]) # where this module is located
 
                 print "- %s %s" % ( guide_uri, "-"*(77 - len(guide_uri)))
@@ -150,7 +164,7 @@ if __name__ == '__main__':
                 print "output   : %s" % output_path
 
                 try:
-                    merger = GuideMerge(extracted_script, template, output_path, guide_uri)
+                    merger = GuideMerge(extracted_script, template, template_helper, output_path, guide_uri)
                     merger.merge()
                 except Exception, e:
                     print "Something went wrong with %s: \n %s" % (guide_uri, e)
