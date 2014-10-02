@@ -10,6 +10,7 @@ import importlib
 import inspect
 import shutil
 import logging
+import hashlib
 
 import unittest
 import nose
@@ -63,9 +64,7 @@ class RegressionHelper():
 		current working directory, which is where casapy is executed
 		"""
 		for data_path in array_path:
-			
 			RegressionHelper.assert_file(data_path)
-
 			if os.path.isdir(data_path):
 				shutil.copytree(data_path, destination)
 			else:
@@ -75,7 +74,25 @@ class RegressionHelper():
 	def data_remove(array_path):
 		"""Given an array of paths, it will iterate and delete them
 		"""
-		pass
+		for data_path in array_path:
+			RegressionHelper.assert_file(data_path)
+			regressionLogger.debug("data_remove %s" % data_path)
+			if os.path.isdir(data_path):
+				shutil.rmtree(data_path, True)
+			else:
+				os.remove(data_path)
+
+	@staticmethod
+	def md5sum(file):
+		"""Whatever fits in the current rss memory, bigger files
+		should be read in chunks of 129KB (to be implemented) if is
+		needed
+		"""
+		RegressionHelper.assert_file(file)
+		hashdigest = None
+		with open(file, 'r') as to_hash:
+			hashdigest = hashlib.md5(to_hash.read()).hexdigest()
+		return hashdigest
 
 class RegressionBase(unittest.TestCase):
 
