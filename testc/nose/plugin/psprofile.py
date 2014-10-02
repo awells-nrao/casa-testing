@@ -17,7 +17,7 @@ from nose.plugins import Plugin
 __test__ = False
 __all__ = ["PSProfile", "PSProfileThread"]
 
-logging.basicConfig(level=logging.DEBUG)
+#logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
 class PSProfile(Plugin):
@@ -76,7 +76,7 @@ class PSProfile(Plugin):
 		# 		stream.writeln(str(e))
 
 	def finalize(self, result):
-		logger.debug("report(self, stream):... %s")
+		logger.debug("report(self, stream):... %s" % None)
 
 class PSProfileThread(threading.Thread):
 

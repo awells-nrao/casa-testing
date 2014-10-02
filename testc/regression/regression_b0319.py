@@ -7,6 +7,7 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
+from testc.regression.helper import regressionLogger
 
 __all__ = ["B0319"]
 
@@ -27,5 +28,4 @@ class B0319(RegressionBase):
 		pass
 
 	def test_execution(self):
-		#self.execute("exec_coordsystest")
 		self.execute("casapy_b0319")

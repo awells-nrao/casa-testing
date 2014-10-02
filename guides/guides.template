@@ -21,7 +21,9 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
+from testc.regression.helper import regressionLogger
 
+__test__ = True
 __all__ = ["$guide_class"]
 
 class ${guide_class}(RegressionBase):
@@ -44,24 +46,22 @@ class ${guide_class}(RegressionBase):
 
 	#set($counter = 0)
 	#foreach ($phrase in $guide_phrases)
-	def test_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}(self):
-		"""$uri ($guide) 
-		testing keyword-phrase: $phrase[0]
-		it will execute the generated casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}.py script
+	@unittest.skip("still a stub, to be implemented")
+	def test_${guide}_0${counter}_${phrase[0].replace(" ", "_").replace("+", "_").lower()}(self):
+		"""$uri "$phrase[0]"
 		"""
-		self.execute("${guide}/casapy_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
-		# execute the post-testing
-		self.post_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}()
+		self.execute("guides_helper_${guide}", 
+			custom_globals = {"exec_method" : "helper_0${counter}_${phrase[0].replace(" ", "_").replace("+", "_").lower()}"})
+
+		#self.execute("guides_post_${guide}", 
+		#	custom_globals = {"exec_method" : "post_0${counter}_${phrase[0].replace(" ", "_").replace("+", "_").lower()}"})		
 	#set($counter = $counter + 1)
 	#end
 
-	# sample skelletons
+	# skelletons
 
 	#set($counter = 0)
 	#foreach ($phrase in $guide_phrases)
-	def post_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}(self):
-		self.execute("${guide}/post_${guide}_0${counter}_${phrase[0].replace(" ", "_").lower()}")
+	# def post_0${counter}_${phrase[0].replace(" ", "_").lower()}(): pass
 	#set($counter = $counter + 1)
 	#end
-
-	

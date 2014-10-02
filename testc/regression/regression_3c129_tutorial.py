@@ -7,6 +7,7 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
+from testc.regression.helper import regressionLogger
 
 # define which classes within the module should be visible for testing
 __all__ = ["Tutorial3c219"]

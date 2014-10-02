@@ -7,6 +7,7 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
+from testc.regression.helper import regressionLogger
 
 __all__ = ["Coordsystest"]
 

@@ -82,7 +82,7 @@ class GuideMerge:
             if len(lines[i].strip()) and not len(lines[i - 1].strip()) and i:
                 beautified += ("\n%s\n") % lines[i]
             elif len(lines[i].strip()):
-                beautified += ("%s\n") % lines[i]
+                beautified += ("%s\n") % lines[i].rstrip()
 
         return beautified
 
@@ -136,7 +136,7 @@ class GuideMerge:
 
         helper_merged_raw = self.__generate_code(helper_template, template_helper)
         helper_merged_beautified = self.__beautifier(helper_merged_raw)
-        self.__write("%s/casapy_helper_%s.py" % (self.__output_path, guide_script_name), helper_merged_beautified)
+        self.__write("%s/guides_helper_%s.py" % (self.__output_path, guide_script_name), helper_merged_beautified)
 
 if __name__ == '__main__':
 

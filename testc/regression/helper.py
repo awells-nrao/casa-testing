@@ -5,10 +5,11 @@ import sys
 assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
 
 import os
+import string
 import importlib
 import inspect
-import string
 import shutil
+import logging
 
 import unittest
 import nose
@@ -17,7 +18,9 @@ from testc.nose.plugin import psprofile
 from testc import regression
 
 __test__ = False
-__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner"]
+__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regressionLogger"]
+
+regressionLogger = logging.getLogger("RegressionLogger")
 
 class RegressionHelper():
 
