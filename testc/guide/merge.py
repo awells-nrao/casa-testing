@@ -31,6 +31,7 @@ class GuideMerge:
 
     def __read_phrases(self, to_parse):
         phrases = []
+        counter = 0
 
         self.__assert_file(to_parse)
 
@@ -51,14 +52,17 @@ class GuideMerge:
 
                 if is_incasa and is_phrase:
                     phrase = re.split(base_re, line)[-1:][0].strip()
-                    phrases.append([phrase, ""])
+                    counter_str = "0%s" % counter if counter < 10 else str(counter)
+                    phrases.append([phrase, "", counter_str, self.__normalize_phrase(phrase).lower()])
+                    counter += 1
 
         return phrases
 
     def __generate_code(self, template_data, template_helper):
         template = Template(template_data)
         return template.merge(locals())
-        
+    
+    # deprecated    
     def __generate_snippets(self, output_path, guide_script_name, phrases):
         counter = 0
         self.__mkdir("%s/%s" % (output_path, guide_script_name))
@@ -67,10 +71,10 @@ class GuideMerge:
             self.__write(snippet, phrase[1])
             counter += 1
 
-    def __normalize_phrase(self, phrase):
+    def __normalize_phrase(self, phrase, char_replacement = "_"):
         replaces = [ "-", "+", "_", " "]
         for replace in replaces:
-            phrase = phrase.replace(replace, "_")
+            phrase = phrase.replace(replace, char_replacement)
         return phrase.lower()
 
     def __beautifier(self, body):
