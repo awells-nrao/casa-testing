@@ -56,7 +56,7 @@ class RegressionHelper():
 		
 	@staticmethod
 	def base_path(file):
-		return "/".join(file.split("/")[:-1])
+		return os.path.dirname(file)
 
 	@staticmethod
 	def data_copy(array_path, destination = os.getcwd()):
@@ -173,44 +173,36 @@ class RegressionRunner:
 		raise NotImplementedError("This class only implements static methods")
 
 	@staticmethod
-	def execute(test, nose_argv = None, guide = False):
+	def execute(test, custom_argv = None, guide = False, verbosity = 2):
 		"""Execute the regression test by using nose with the nose arguments
 		and with -d -s -v and --with-xunit (xml generation)
 		"""
-		test_module_uri = "testc.regression" if not guide else "testc.guide"
-		test_module = importlib.import_module("%s.%s" % (test_module_uri, test))
+		test_package = "testc.regression" if not guide else "testc.guide"
+		test_module_uri = "%s.%s" % (test_package, test)
+		test_module = importlib.import_module(test_module_uri)
+		test_module_path = os.path.dirname(test_module.__file__)
 
-		if test_module.__dict__.has_key("__all__"):
+		default_argv = [	test_module_path,
+							test_module_uri,
+							"-d",
+							"-s",
+							"--verbosity=%s" % verbosity,
+							"--with-xunit",
+							"--xunit-file=%s.xml" % "the_file",
+							"--with-psprofile",
+							#"--nologcapture",
+							#"--log=INFO",
+							"--psprofile-file=%s.json" % "the_file"
+						]
 
-			for test_class in test_module.__all__:
-				test_object = getattr(test_module, test_class) #test_module.__all__[0])
-				test_suite = unittest.TestLoader().loadTestsFromTestCase(test_object)
+		test_argv = custom_argv if custom_argv else default_argv
 
-				if nose_argv:
-					test_argv = nose_argv
-				else:
-					test_argv = [ #"--processes=-1"
-						test_module.__name__.lower(), 
-						"-d",
-						"-s",
-						#"-v",
-						"--verbosity=2",
-						"--with-xunit",
-						"--xunit-file=%s.xml" % test_object.__name__.lower(),
-						"--with-psprofile",
-						"--nologcapture",
-						#"--log=INFO",
-						"--psprofile-file=%s.json" % test_object.__name__.lower()
-					]
-				
-				nose.run(argv = test_argv, suite = test_suite, addplugins = [psprofile.PSProfile()])
+		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])		
 
 		del test_module
 
-#
 # Within casa:
-# from regression_utils import RegressionRunner
-# RegressionRunner.execute_regression("regression_b0319")
-#
+# > from regression_utils import RegressionRunner
+# > RegressionRunner.execute_regression("regression_b0319")
 if __name__ == "__main__":
 	RegressionRunner.execute("regression_3c129_tutorial")
