@@ -11,6 +11,7 @@ import inspect
 import shutil
 import logging
 import hashlib
+import threading
 
 import unittest
 import nose
@@ -104,11 +105,6 @@ class RegressionBase(unittest.TestCase):
 	def tearDown(self):
 		pass
 
-	def assert_regression(self):
-		"""stub to be implemented later
-		"""
-		assert 1 > 2, "assertion failed..."
-
 	def __script_path(self, script_module_path, script):
 		"""Returnt the absolute path of the script
 		"""
@@ -143,7 +139,7 @@ class RegressionBase(unittest.TestCase):
 		assert _stack_frame_globals, "No ipython console globals defined"
 		return _stack_frame_globals
 
-	def execute(self, casapy_script, test_assert = False, import_module = False, custom_globals = None):
+	def execute(self, casapy_script, import_module = False, custom_globals = None):
 
 		if import_module:
 			importlib.import_module("%s" % casapy_script)
@@ -152,9 +148,6 @@ class RegressionBase(unittest.TestCase):
 			console_frame_globals = dict(console_frame_globals.items() + custom_globals.items()) if custom_globals else console_frame_globals
 			cexec_script = self.__script_path(self.__class_module_path(), casapy_script)
 			execfile(cexec_script, console_frame_globals)
-
-		if test_assert:
-			self.assert_regression()
 
 	@classmethod
 	def setUpClass(cls):
@@ -188,11 +181,9 @@ class RegressionRunner:
 							"-s",
 							"--verbosity=%s" % verbosity,
 							"--with-xunit",
-							"--xunit-file=%s.xml" % "the_file",
+							"--xunit-file=%s.xml" % test,
 							"--with-psprofile",
-							#"--nologcapture",
-							#"--log=INFO",
-							"--psprofile-file=%s.json" % "the_file"
+							"--psprofile-file=%s.json" % test
 						]
 
 		test_argv = custom_argv if custom_argv else default_argv
