@@ -33,7 +33,8 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		"""Execute a method from this object instance
 		"""
 		regressionLogger.debug("exec_method(self, %s):... sleeping 2 seconds" % method_name)
-		# add a sleep of 2 seconds, for the ploting profile (separation)
+		# add a sleep of 2 seconds, for a visible separation for the ploting profile, this
+		# should be improved
 		time.sleep(2)
 		getattr(self, method_name)()
 
@@ -97,7 +98,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
 		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
 		# FLAG_VERSION_LIST includes a timestamp written at runtime
-		#flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = "cf5bc4b3362f1c209ef81c01a5115c83"
+		flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = None
 
 		# assert that all output files exist
 		for output_file in flagcmd_files.keys():
@@ -105,9 +106,10 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 
 		# the approach is to compare the md5check sum, different content, different checksum
 		for items in flagcmd_files.items():
-			item_file = "%s/%s" % (os.getcwd(), items[0])
-			item_md5sum = RegressionHelper.md5sum(item_file)
-			assert items[1] == item_md5sum, "%s doesn't have the same content" % (item_file)
+			if items[1]:
+				item_file = "%s/%s" % (os.getcwd(), items[0])
+				item_md5sum = RegressionHelper.md5sum(item_file)
+				assert items[1] == item_md5sum, "%s doesn't have the same content" % (item_file)
 
 		# this should be done by the test class at @tearDownClass
 		remove = []
@@ -117,7 +119,18 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_04(self):
 		"""post method for "RFI phase calibrator flagging"
 		"""
-		assert True, "dummy assert"
+		# file list and the content of the md5hash 
+		flagcmd_files = {}
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.info"] = "59a97223a30348c9f24282ec64cd9579"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.dat"] = "f3c62d5a3b5336d417fe5d95ff7e6831"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0_TSM1"] = "3544a1521b82ce73ab6c42426b8e143d"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
+		# FLAG_VERSION_LIST includes a timestamp written at runtime
+		flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = None
+
+		
 
 	def post_05(self):
 		"""post method for "splitting good and bad data"
