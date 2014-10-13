@@ -62,8 +62,8 @@ class ${guide_class}(RegressionBase):
 ## class methods stubs for the actual testing
 
 ##foreach ($phrase in $guide_phrases)
-## def post_${phrase[2]}(self):
-## 	"""post method for "$phrase[0]"
-##	"""
-## 	assert True, "dummy assert"
+##	def post_${phrase[2]}(self):
+##		"""post method for "$phrase[0]"
+##		"""
+##		assert True, "dummy assert"
 ##end

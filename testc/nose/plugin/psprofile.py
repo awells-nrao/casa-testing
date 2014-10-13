@@ -1,11 +1,32 @@
 """
-See: http://code.google.com/p/python-nose/issues/detail?id=105
+PsProfile / GLPv3 / github.com/atejeda
 
-*ALSO NOTE* that if you pass a unittest.TestSuite
-      instance as the suite, context fixtures at the class, module and
-      package level will not be used, and many plugin hooks will not
-      be called. If you want normal nose behavior, either pass a list
-      of tests, or a fully-configured `nose.suite.ContextSuite`_.
+This module is a nose plugin to profile a given pid and generate json data with
+the profile data.
+
+In order to integrate it to your test cases see the following code snippet:
+
+	default_argv = [	test_module_path,
+						test_module_uri,
+						"-d",
+						"-s",
+						"--verbosity=%s" % verbosity,
+						"--with-psprofile",
+						"--psprofile-file=%s.json" % test
+					]
+
+	nose.run(argv = default_argv, addplugins = [psprofile.PSProfile()])
+
+Within a script should be execute same as above, for more info why
+see: http://code.google.com/p/python-nose/issues/detail?id=105
+
+	"*ALSO NOTE* that if you pass a unittest.TestSuite
+	instance as the suite, context fixtures at the class, module and
+	package level will not be used, and many plugin hooks will not
+	be called. If you want normal nose behavior, either pass a list
+	of tests, or a fully-configured `nose.suite.ContextSuite`_."
+
+The module relies on the psutil module, for more info about it, take a look to the pip site.
 """
 
 import sys
@@ -18,6 +39,7 @@ import threading
 import logging
 import json
 import traceback
+
 from multiprocessing import Process
 from multiprocessing import Queue
 from multiprocessing import Manager
@@ -54,10 +76,18 @@ class PSProfile(Plugin):
 		parser.add_option(
 			"--psprofile-margin", 
 			action = "store", 
-			default = env.get("NOSE_PSP_MARGIN", 2), 
+			default = env.get("NOSE_PSP_MARGIN", 0), 
 			dest = "psp_margin", 
 			metavar="FILE",
 			help = "A marging of time after execute the test")
+
+		parser.add_option(
+			"--psprofile-pid", 
+			action = "store", 
+			default = env.get("NOSE_PSP_PID", None), 
+			dest = "psp_id", 
+			metavar="FILE",
+			help = "The pid to profile")
 
 		Plugin.options(self, parser, env)
 
@@ -72,27 +102,28 @@ class PSProfile(Plugin):
 		self.__profile_data = {}
 		self.__psp_report = options.psp_file
 		self.__psp_margin = options.psp_margin
+		self.__psp_pid = options.psp_id
 
 	def prepareTestCase(self, test):
-		pid = os.getpid()
+		
+		pid = self.__psp_pid if self.__psp_pid else os.getpid()
+
 		self.testname = test.test._testMethodName
-		self.__profiler = PSProfileThread(pid)
-		self.__profiler.setDaemon(True)
 		logger.debug("prepareTestCase(self, test):... %s [%s]" % (self.testname, pid))
 		
-		# setup the multiprocessing stuff
-
+		# setup the multiprocessing proxy objects
 		self.__process_manager = Manager()
 		self.__process_event = self.__process_manager.Event()
 		self.__process_data = self.__process_manager.dict()
 
+		# LBYP approach here
 		self.__process_data['ioc'] = []
 		self.__process_data['fds'] = []
 		self.__process_data['mem'] = []
 		self.__process_data['time'] = []
 		self.__process_data['cpu'] = []
 
-		self.__process = Process(target=PSProfile.profile, args=(pid, self.__process_data, self.__process_event))
+		self.__process = Process(target = PSProfile.profile, args = (pid, self.__process_data, self.__process_event))
 
 	def startTest(self, test):
 		self.__process_event.clear()
@@ -104,12 +135,10 @@ class PSProfile(Plugin):
 		time.sleep(int(self.__psp_margin))
 		self.__process_event.set()
 		self.__process.join()
+		# DictProxy object is not JSON serializable (self.__process_data)
 		self.__profile_data[self.testname] = dict(self.__process_data)
 
 	def report(self, stream):
-		"""
-		self.__profile_data DictProxy object is not JSON serializable
-		"""
 		logger.debug("report(self, stream):...")
 		json_report = json.dumps(self.__profile_data)
 		
@@ -119,7 +148,8 @@ class PSProfile(Plugin):
 			stream.writeln(str(json_report))
 
 	def write_report(self, json_report):
-		# nice validator http://jsonformatter.curiousconcept.com/
+		""" write a report, a .json file with json data
+		"""
 		report_file_path = "%s/%s" % (os.getcwd(), self.__psp_report)
 		with open(report_file_path, 'w') as report_file:
 			report_file.write(json_report)
@@ -128,16 +158,22 @@ class PSProfile(Plugin):
 	def finalize(self, result):
 		logger.debug("finalize(self, result):...")
 
-	# multiprocessing stuff
-
 	@staticmethod
 	def profile(pid, data, event, interval = 1):
 		"""
-		data is a DictProxy
+		PSProfile.profile is executed in a multiprocessing context, the method
+		can be executed or not within a nose environment.
+		
+		data -- is a DictProxy type object instance
+		event -- is a flag to stop or not the process
+		
+		The data is written by proxy using objects once the process is about
+		to finish.
+
+		If the process to profile isn't alive, it will finish the process
 		"""
 
-		# this method is awfully coded, DictProxy isn't
-		# very flexible
+		# the method code can be improved, but DictProxy isn't very flexible
 
 		ps = psutil.Process(pid)
 
@@ -148,20 +184,27 @@ class PSProfile(Plugin):
 		cpu = []
 
 		while not event.is_set():
-			ioc.append(ps.io_counters())
-			fds.append(ps.num_fds())
-			mem.append(ps.memory_info())
-			stamp.append(time.time())
-			cpu.append(ps.cpu_percent(interval = interval))
+			if ps.status():
+				ioc.append(ps.io_counters())
+				fds.append(ps.num_fds())
+				mem.append(ps.memory_info())
+				stamp.append(time.time())
+				cpu.append(ps.cpu_percent(interval = interval))
+			else:
+				event.set()
+				logger.debug("process to profile is not alive, about to finish this process [%s]" % os.getpid())
 
 		data['ioc'] = ioc
 		data['fds'] = fds
 		data['mem'] = mem
 		data['time'] = stamp
 		data['cpu'] = cpu
-			
 
 class PSProfileThread(threading.Thread):
+	"""
+	This class does the same as PSProfile intented
+	to be used in non GIL blocker python modules/classes.
+	"""
 
 	def __init__(self, pid, interval = 1):
 		super(PSProfileThread, self).__init__()
@@ -176,23 +219,31 @@ class PSProfileThread(threading.Thread):
 		self.__ps = psutil.Process(self.__pid)
 		self.__stop_profiler = threading.Event()
 				
-	def join(self, timeout=None):
+	def join(self, timeout = None):
+		"""When join is triggered, also stop the thread, a timeout
+		can be specified
+		"""
 		self.stop_profiler.set()
 		super(PSProfileThread, self).join(timeout)
 
 	def __gather_data(self):
+		"""Gather IO counters, file descriptors, ress and virt memory, time
+		as ctime and cpu
+		"""
+		logger.debug("getting data...")
+		self.__time.append(time.time())
 		try:
-			logger.debug("getting data...")
 			self.__ioc.append(self.__ps.io_counters())
 			self.__fds.append(self.__ps.num_fds())
 			self.__mem.append(self.__ps.memory_info())
-			self.__time.append(time.time())
 			self.__cpu.append(self.__ps.cpu_percent(interval = self.__interval))
 		except:
-			logger.debug("problem gathering data...")
-			self.__stop_profiler.set()
+			logger.debug("problem gathering data for ts: %s" % self.__time[-1:])
 
 	def profile_data(self):
+		"""Retrieve the profile data gathered during the
+		living-thread nor process
+		"""
 		return { 
 			"cpu"  : self.__cpu,
 			"ioc"  : self.__ioc,
@@ -207,13 +258,13 @@ class PSProfileThread(threading.Thread):
 				self.__gather_data()
 			else:
 				logger.debug("process [%s] is not alive" % self.__pid)
-				self.__stop_profiler.set()
+				self.join()
 
 if __name__ == "__main__":
-	# Note to be deleted:
-	# /usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg
-	# e.g.: /usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg/psutil
-    profiler = PSProfileThread(int(sys.argv[1]))
-    profiler.start_profiler()
-    profiler.join()
-    print json.dumps(profiler.profile_data())
+	assert sys.argv[1], "An argument is needed, the pid of the process"
+
+	profiler = PSProfileThread(int(sys.argv[1]))
+	profiler.start_profiler()
+	profiler.join()
+
+	print json.dumps(profiler.profile_data())

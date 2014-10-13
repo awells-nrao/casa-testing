@@ -1,4 +1,21 @@
 #!/usr/bin/env python
+"""
+This module is the core module of the testing 'framework'.
+
+Exported classes:
+
+RegressionBase -- Inherits from unittest.TestCase, this class is the base testing class for the regression test classes,
+the class defines helper methods to be used within the class, e.g.: the execute method will execute a casapy executable
+python script.
+
+RegressionHelper -- Defines static helper methods to be used, e.g.: data management.
+
+regressionLogger -- A python logger
+
+RegressionRunner -- Class to locate and execute the testing classes by using nose, within casa:
+> from regression_utils import RegressionRunner
+> RegressionRunner.execute_regression("regression_b0319")
+"""
 
 import sys
 
@@ -106,7 +123,7 @@ class RegressionBase(unittest.TestCase):
 		pass
 
 	def __script_path(self, script_module_path, script):
-		"""Returnt the absolute path of the script
+		"""Return the absolute path of the script
 		"""
 		RegressionHelper.assert_file(script_module_path)
 		path_script = "%s/%s.py" % (script_module_path, script)
@@ -192,8 +209,6 @@ class RegressionRunner:
 
 		del test_module
 
-# Within casa:
-# > from regression_utils import RegressionRunner
-# > RegressionRunner.execute_regression("regression_b0319")
 if __name__ == "__main__":
-	RegressionRunner.execute("regression_3c129_tutorial")
+	assert sys.argv[1], "an argument is needed, e.g.: regression_3c129_tutorial"
+	RegressionRunner.execute(sys.argv[1])
