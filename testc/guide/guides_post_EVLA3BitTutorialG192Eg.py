@@ -130,7 +130,21 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		# FLAG_VERSION_LIST includes a timestamp written at runtime
 		flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = None
 
-		
+		# assert that all output files exist
+		for output_file in flagcmd_files.keys():
+			RegressionHelper.assert_file("%s/%s" % (os.getcwd(), output_file))
+
+		# the approach is to compare the md5check sum, different content, different checksum
+		for items in flagcmd_files.items():
+			if items[1]:
+				item_file = "%s/%s" % (os.getcwd(), items[0])
+				item_md5sum = RegressionHelper.md5sum(item_file)
+				assert items[1] == item_md5sum, "%s doesn't have the same content" % (item_file)
+
+		# this should be done by the test class at @tearDownClass
+		remove = []
+		remove.append("%s/G192_6s.ms.flagversions" % os.getcwd())
+		RegressionHelper.data_remove(remove)
 
 	def post_05(self):
 		"""post method for "splitting good and bad data"
