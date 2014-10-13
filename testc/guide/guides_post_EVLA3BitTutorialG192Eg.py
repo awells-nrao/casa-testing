@@ -1,6 +1,6 @@
 """
 This is NOT a generated module
-all modified changes will be keept
+all modified changes will be kept.
 
 The module provide to execute a method of the helper class by using the value
 of "exec_method" key inserted at runtime in the globals map
@@ -17,6 +17,8 @@ import os
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import regressionLogger
 
+import time
+
 __test__ = False
 __all__ = ["Post_Test_EVLA3BitTutorialG192Eg"]
 
@@ -30,13 +32,15 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def exec_method(self, method_name):
 		"""Execute a method from this object instance
 		"""
-		regressionLogger.debug("exec_method(self, %s):..." % method_name)
+		regressionLogger.debug("exec_method(self, %s):... sleeping 2 seconds" % method_name)
+		# add a sleep of 2 seconds, for the ploting profile (separation)
+		time.sleep(2)
 		getattr(self, method_name)()
 
 	def post_00(self):
 		"""post method for "splitting fields for analysis"
 		"""
-		assert True, "dummy assert"
+		RegressionHelper.assert_file("%s/G192_6s.ms" % os.getcwd())
 
 	def post_01(self):
 		"""post method for "listobs on the initial data set"
@@ -44,6 +48,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		listobs_md5sum0 = "8a17e860a4938774a652cbe6900c26c5"
 		listobs_md5sum1 = RegressionHelper.md5sum("%s/G192_listobs.txt" % os.getcwd())
 
+		# this should be done by the test class at @tearDownClass
 		remove = []
 		remove.append("%s/G192_listobs.txt" % os.getcwd())
 		remove.append("%s/listobs.last" % os.getcwd())
@@ -54,12 +59,60 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_02(self):
 		"""post method for "flag table plot"
 		"""
-		assert True, "dummy assert"
+		RegressionHelper.assert_file("%s/PlotG192_flagcmd_4.1.png" % os.getcwd())
 
 	def post_03(self):
 		"""post method for "bandpass calibrator analysis flagging"
 		"""
-		assert True, "dummy assert"
+		# file list and the content of the md5hash 
+		flagcmd_files = {}
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.info"] = "59a97223a30348c9f24282ec64cd9579"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.dat"] = "63109749c5ae002ba20f0759d99408e7"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.info"] = "59a97223a30348c9f24282ec64cd9579"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.dat"] = "ee65b3885258c03e4bc76a81da77b8e0"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.info"] = "59a97223a30348c9f24282ec64cd9579"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.dat"] = "d06ca8cde7edbfa688e1484de0b1d8b5"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f1"] = "ffe1a7c00314babd5372f64100098a4b"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.info"] = "59a97223a30348c9f24282ec64cd9579"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.dat"] = "f3c62d5a3b5336d417fe5d95ff7e6831"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0_TSM1"] = "358d71f5dd5ae6692617cecd0f56b865"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.info"] = "59a97223a30348c9f24282ec64cd9579"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.dat"] = "a59e31add290ddfea0a75727a892792c"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
+		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
+		# FLAG_VERSION_LIST includes a timestamp written at runtime
+		#flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = "cf5bc4b3362f1c209ef81c01a5115c83"
+
+		# assert that all output files exist
+		for output_file in flagcmd_files.keys():
+			RegressionHelper.assert_file("%s/%s" % (os.getcwd(), output_file))
+
+		# the approach is to compare the md5check sum, different content, different checksum
+		for items in flagcmd_files.items():
+			item_file = "%s/%s" % (os.getcwd(), items[0])
+			item_md5sum = RegressionHelper.md5sum(item_file)
+			assert items[1] == item_md5sum, "%s doesn't have the same content" % (item_file)
+
+		# this should be done by the test class at @tearDownClass
+		remove = []
+		remove.append("%s/G192_6s.ms.flagversions" % os.getcwd())
+		RegressionHelper.data_remove(remove)
 
 	def post_04(self):
 		"""post method for "RFI phase calibrator flagging"

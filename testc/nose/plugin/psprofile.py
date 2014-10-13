@@ -73,22 +73,6 @@ class PSProfile(Plugin):
 			metavar="FILE",
 			help = "By Default a psprofile.json is generated in the current working directory")
 
-		parser.add_option(
-			"--psprofile-margin", 
-			action = "store", 
-			default = env.get("NOSE_PSP_MARGIN", 0), 
-			dest = "psp_margin", 
-			metavar="FILE",
-			help = "A marging of time after execute the test")
-
-		parser.add_option(
-			"--psprofile-pid", 
-			action = "store", 
-			default = env.get("NOSE_PSP_PID", None), 
-			dest = "psp_id", 
-			metavar="FILE",
-			help = "The pid to profile")
-
 		Plugin.options(self, parser, env)
 
 	def configure(self, options, conf):
@@ -101,12 +85,10 @@ class PSProfile(Plugin):
 		
 		self.__profile_data = {}
 		self.__psp_report = options.psp_file
-		self.__psp_margin = options.psp_margin
-		self.__psp_pid = options.psp_id
 
 	def prepareTestCase(self, test):
 		
-		pid = self.__psp_pid if self.__psp_pid else os.getpid()
+		pid = os.getpid()
 
 		self.testname = test.test._testMethodName
 		logger.debug("prepareTestCase(self, test):... %s [%s]" % (self.testname, pid))
@@ -132,10 +114,8 @@ class PSProfile(Plugin):
 		
 	def stopTest(self, test):
 		logger.debug("stopTest(self, test):... %s" % self.testname)
-		time.sleep(int(self.__psp_margin))
 		self.__process_event.set()
 		self.__process.join()
-		# DictProxy object is not JSON serializable (self.__process_data)
 		self.__profile_data[self.testname] = dict(self.__process_data)
 
 	def report(self, stream):
