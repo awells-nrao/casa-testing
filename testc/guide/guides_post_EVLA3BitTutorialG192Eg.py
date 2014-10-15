@@ -149,12 +149,25 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_05(self):
 		"""post method for "splitting good and bad data"
 		"""
-		assert True, "dummy assert"
+		# dont delete G192_flagged_6s.ms
+		outputvis = "G192_flagged_6s.ms"
+		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outputvis))
 
 	def post_06(self):
 		"""post method for "split and flagged listobs"
 		"""
-		assert True, "dummy assert"
+		# dont delete G192_flagged_6s.ms
+		outputvis = "G192_flagged_6s.ms"
+		listobs_file = "%s/%s_listobs.txt" % (os.getcwd(), outputvis)
+
+		RegressionHelper.assert_file(listobs_file)
+
+		outvis_md5sum0 = "cd32eac2174ca214b35682eadcbfe24c"
+		outvis_md5sum1 = RegressionHelper.md5sum(listobs_file)
+
+		assert outvis_md5sum0 == outvis_md5sum1, "%s doesn't have the same content" % (listobs_file)
+
+		RegressionHelper.data_remove([listobs_file])
 
 	def post_07(self):
 		"""post method for "model for the flux calibrator"
