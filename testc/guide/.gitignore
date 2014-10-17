@@ -1,7 +1,8 @@
 # ignore all *.py, but..
-*.py
+#*.py
+
 # exclude them
-!merge.py
-!extract.py
-!__init__.py
-!guides_post_*
+#!merge.py
+#!extract.py
+#!__init__.py
+#!guides_post_*
