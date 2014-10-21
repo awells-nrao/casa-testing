@@ -496,28 +496,28 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 		self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_55"})
 		self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_55"})
 
-	#@unittest.skip("still a stub, to be implemented")
+	@unittest.skip("still a stub, to be implemented")
 	def test_56_single_spectral_window_cleaning(self):
 		"""test 56 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
 		"""
 		self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_56"})
 		self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_56"})
 
-	#@unittest.skip("still a stub, to be implemented")
+	@unittest.skip("still a stub, to be implemented")
 	def test_57_lower_frequency_baseband_cleaning(self):
 		"""test 57 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
 		"""
 		self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_57"})
 		self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_57"})
 
-	#@unittest.skip("still a stub, to be implemented")
+	@unittest.skip("still a stub, to be implemented")
 	def test_58_upper_frequency_baseband_cleaning(self):
 		"""test 58 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
 		"""
 		self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_58"})
 		self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_58"})
 
-	#@unittest.skip("still a stub, to be implemented")
+	@unittest.skip("still a stub, to be implemented")
 	def test_59_basebands_mfs_taylor_cleaning(self):
 		"""test 59 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"
 		"""
