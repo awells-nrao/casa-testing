@@ -156,7 +156,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		"""post method for "split and flagged listobs"
 		"""
 		# dont delete G192_flagged_6s.ms
-		listobs_file = "%s/G192_flagged_listobs.txt" % os.getcwd())
+		listobs_file = "%s/G192_flagged_listobs.txt" % os.getcwd()
 
 		RegressionHelper.assert_file(listobs_file)
 
