@@ -54,7 +54,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		# #assert listobs_md5sum0 == listobs_md5sum1, "%s/G192_listobs.txt doesn't have the same content" % os.getcwd()
 
 		remove = []
-		remove.append("%s/G192_listobs.txt" % os.getcwd())
+		remove.append(listobs_file)
 		remove.append("%s/listobs.last" % os.getcwd())
 		#RegressionHelper.data_remove(remove)
 
