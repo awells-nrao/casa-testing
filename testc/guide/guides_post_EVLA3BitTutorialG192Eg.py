@@ -46,7 +46,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_01(self):
 		"""post method for "listobs on the initial data set"
 		"""
-		listobs_file = "%s/G192_listobs.txt" % os.getcwd())
+		listobs_file = "%s/G192_listobs.txt" % os.getcwd()
 		RegressionHelper.assert_file(listobs_file)
 
 		# listobs_md5sum0 = "8a17e860a4938774a652cbe6900c26c5"
