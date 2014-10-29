@@ -49,10 +49,6 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		listobs_file = "%s/G192_listobs.txt" % os.getcwd()
 		RegressionHelper.assert_file(listobs_file)
 
-		# listobs_md5sum0 = "8a17e860a4938774a652cbe6900c26c5"
-		# listobs_md5sum1 = RegressionHelper.md5sum("%s/G192_listobs.txt" % os.getcwd())
-		# #assert listobs_md5sum0 == listobs_md5sum1, "%s/G192_listobs.txt doesn't have the same content" % os.getcwd()
-
 		remove = []
 		remove.append(listobs_file)
 		remove.append("%s/listobs.last" % os.getcwd())
@@ -66,333 +62,1440 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_03(self):
 		"""post method for "bandpass calibrator analysis flagging"
 		"""
-		# file list and the content of the md5hash 
-		flagcmd_files = {}
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.info"] = "59a97223a30348c9f24282ec64cd9579"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.dat"] = "63109749c5ae002ba20f0759d99408e7"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_3/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.info"] = "59a97223a30348c9f24282ec64cd9579"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.dat"] = "ee65b3885258c03e4bc76a81da77b8e0"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_2/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.info"] = "59a97223a30348c9f24282ec64cd9579"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.dat"] = "d06ca8cde7edbfa688e1484de0b1d8b5"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_5/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f1"] = "ffe1a7c00314babd5372f64100098a4b"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.info"] = "59a97223a30348c9f24282ec64cd9579"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.dat"] = "f3c62d5a3b5336d417fe5d95ff7e6831"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0_TSM1"] = "358d71f5dd5ae6692617cecd0f56b865"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.info"] = "59a97223a30348c9f24282ec64cd9579"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.dat"] = "a59e31add290ddfea0a75727a892792c"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f0_TSM1"] = "7135e97ebfbf7cdf7f561be2e0823e84"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_4/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
-		# FLAG_VERSION_LIST includes a timestamp written at runtime
-		flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = None
-
-		# assert that all output files exist
-		for output_file in flagcmd_files.keys():
-			RegressionHelper.assert_file("%s/%s" % (os.getcwd(), output_file))
-
-		# the approach is to compare the md5check sum, different content, different checksum
-		# for items in flagcmd_files.items():
-		# 	if items[1]:
-		# 		item_file = "%s/%s" % (os.getcwd(), items[0])
-		# 		item_md5sum = RegressionHelper.md5sum(item_file)
-		# 		assert items[1] == item_md5sum, "%s doesn't have the same content" % (item_file)
-
-		remove = []
-		remove.append("%s/G192_6s.ms.flagversions" % os.getcwd())
-		RegressionHelper.data_remove(remove)
+		raise NotImplementedError("post test method not implemented")
 
 	def post_04(self):
 		"""post method for "RFI phase calibrator flagging"
 		"""
-		# file list and the content of the md5hash 
-		flagcmd_files = {}
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f1"] = "6eb9c409ecb931d6b84bab2c979219d8"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.info"] = "59a97223a30348c9f24282ec64cd9579"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.lock"] = "273a9ed34e8383bbc1d0405057bd6148"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.dat"] = "f3c62d5a3b5336d417fe5d95ff7e6831"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0_TSM1"] = "3544a1521b82ce73ab6c42426b8e143d"
-		flagcmd_files["G192_6s.ms.flagversions/flags.flagcmd_1/table.f0"] = "600e8ee15675fbb651222b61526c4e3a"
-		# FLAG_VERSION_LIST includes a timestamp written at runtime
-		flagcmd_files["G192_6s.ms.flagversions/FLAG_VERSION_LIST"] = None
-
-		# assert that all output files exist
-		for output_file in flagcmd_files.keys():
-			RegressionHelper.assert_file("%s/%s" % (os.getcwd(), output_file))
-
-		# the approach is to compare the md5check sum, different content, different checksum
-		# for items in flagcmd_files.items():
-		# 	if items[1]:
-		# 		item_file = "%s/%s" % (os.getcwd(), items[0])
-		# 		item_md5sum = RegressionHelper.md5sum(item_file)
-		# 		assert items[1] == item_md5sum, "%s doesn't have the same content" % (item_file)
-
-		remove = []
-		remove.append("%s/G192_6s.ms.flagversions" % os.getcwd())
-		RegressionHelper.data_remove(remove)
+		raise NotImplementedError("post test method not implemented")
 
 	def post_05(self):
 		"""post method for "splitting good and bad data"
 		"""
-		# dont delete G192_flagged_6s.ms
+		# dont delete G192_flagged_6s.ms all the tests relies on the
+		# the dataset with the the flagged data
 		outputvis = "G192_flagged_6s.ms"
 		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outputvis))
 
 	def post_06(self):
 		"""post method for "split and flagged listobs"
 		"""
-		# dont delete G192_flagged_6s.ms
 		listobs_file = "%s/G192_flagged_listobs.txt" % os.getcwd()
-
 		RegressionHelper.assert_file(listobs_file)
-
-		# outvis_md5sum0 = "cd32eac2174ca214b35682eadcbfe24c"
-		# outvis_md5sum1 = RegressionHelper.md5sum(listobs_file)
-		# assert outvis_md5sum0 == outvis_md5sum1, "%s doesn't have the same content" % (listobs_file)
-		# RegressionHelper.data_remove([listobs_file])
 
 	def post_07(self):
 		"""post method for "model for the flux calibrator"
 		"""
+		# check that the MODEL column in the MS exists for field 0
 		assert True, "dummy assert"
 
 	def post_08(self):
 		"""post method for "determining antenna position corrections"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.antpos")
+		produced_files.append("calG192.antpos/table.dat")
+		produced_files.append("calG192.antpos/table.lock")
+		produced_files.append("calG192.antpos/ANTENNA")
+		produced_files.append("calG192.antpos/ANTENNA/table.dat")
+		produced_files.append("calG192.antpos/ANTENNA/table.lock")
+		produced_files.append("calG192.antpos/ANTENNA/table.info")
+		produced_files.append("calG192.antpos/ANTENNA/table.f0")
+		produced_files.append("calG192.antpos/SPECTRAL_WINDOW")
+		produced_files.append("calG192.antpos/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.antpos/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.antpos/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.antpos/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.antpos/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.antpos/HISTORY")
+		produced_files.append("calG192.antpos/HISTORY/table.dat")
+		produced_files.append("calG192.antpos/HISTORY/table.lock")
+		produced_files.append("calG192.antpos/HISTORY/table.info")
+		produced_files.append("calG192.antpos/HISTORY/table.f0")
+		produced_files.append("calG192.antpos/FIELD")
+		produced_files.append("calG192.antpos/FIELD/table.dat")
+		produced_files.append("calG192.antpos/FIELD/table.lock")
+		produced_files.append("calG192.antpos/FIELD/table.f0i")
+		produced_files.append("calG192.antpos/FIELD/table.info")
+		produced_files.append("calG192.antpos/FIELD/table.f0")
+		produced_files.append("calG192.antpos/table.f0i")
+		produced_files.append("calG192.antpos/table.info")
+		produced_files.append("calG192.antpos/OBSERVATION")
+		produced_files.append("calG192.antpos/OBSERVATION/table.dat")
+		produced_files.append("calG192.antpos/OBSERVATION/table.lock")
+		produced_files.append("calG192.antpos/OBSERVATION/table.info")
+		produced_files.append("calG192.antpos/OBSERVATION/table.f0")
+		produced_files.append("calG192.antpos/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_09(self):
 		"""post method for "generating gaincurve calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.gaincurve")
+		produced_files.append("calG192.gaincurve/table.dat")
+		produced_files.append("calG192.gaincurve/table.lock")
+		produced_files.append("calG192.gaincurve/ANTENNA")
+		produced_files.append("calG192.gaincurve/ANTENNA/table.dat")
+		produced_files.append("calG192.gaincurve/ANTENNA/table.lock")
+		produced_files.append("calG192.gaincurve/ANTENNA/table.info")
+		produced_files.append("calG192.gaincurve/ANTENNA/table.f0")
+		produced_files.append("calG192.gaincurve/SPECTRAL_WINDOW")
+		produced_files.append("calG192.gaincurve/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.gaincurve/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.gaincurve/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.gaincurve/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.gaincurve/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.gaincurve/HISTORY")
+		produced_files.append("calG192.gaincurve/HISTORY/table.dat")
+		produced_files.append("calG192.gaincurve/HISTORY/table.lock")
+		produced_files.append("calG192.gaincurve/HISTORY/table.info")
+		produced_files.append("calG192.gaincurve/HISTORY/table.f0")
+		produced_files.append("calG192.gaincurve/FIELD")
+		produced_files.append("calG192.gaincurve/FIELD/table.dat")
+		produced_files.append("calG192.gaincurve/FIELD/table.lock")
+		produced_files.append("calG192.gaincurve/FIELD/table.f0i")
+		produced_files.append("calG192.gaincurve/FIELD/table.info")
+		produced_files.append("calG192.gaincurve/FIELD/table.f0")
+		produced_files.append("calG192.gaincurve/table.f0i")
+		produced_files.append("calG192.gaincurve/table.info")
+		produced_files.append("calG192.gaincurve/OBSERVATION")
+		produced_files.append("calG192.gaincurve/OBSERVATION/table.dat")
+		produced_files.append("calG192.gaincurve/OBSERVATION/table.lock")
+		produced_files.append("calG192.gaincurve/OBSERVATION/table.info")
+		produced_files.append("calG192.gaincurve/OBSERVATION/table.f0")
+		produced_files.append("calG192.gaincurve/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_10(self):
 		"""post method for "generate atmospheric opacity calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.opacity")
+		produced_files.append("calG192.opacity/table.dat")
+		produced_files.append("calG192.opacity/table.lock")
+		produced_files.append("calG192.opacity/ANTENNA")
+		produced_files.append("calG192.opacity/ANTENNA/table.dat")
+		produced_files.append("calG192.opacity/ANTENNA/table.lock")
+		produced_files.append("calG192.opacity/ANTENNA/table.info")
+		produced_files.append("calG192.opacity/ANTENNA/table.f0")
+		produced_files.append("calG192.opacity/SPECTRAL_WINDOW")
+		produced_files.append("calG192.opacity/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.opacity/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.opacity/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.opacity/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.opacity/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.opacity/HISTORY")
+		produced_files.append("calG192.opacity/HISTORY/table.dat")
+		produced_files.append("calG192.opacity/HISTORY/table.lock")
+		produced_files.append("calG192.opacity/HISTORY/table.info")
+		produced_files.append("calG192.opacity/HISTORY/table.f0")
+		produced_files.append("calG192.opacity/FIELD")
+		produced_files.append("calG192.opacity/FIELD/table.dat")
+		produced_files.append("calG192.opacity/FIELD/table.lock")
+		produced_files.append("calG192.opacity/FIELD/table.f0i")
+		produced_files.append("calG192.opacity/FIELD/table.info")
+		produced_files.append("calG192.opacity/FIELD/table.f0")
+		produced_files.append("calG192.opacity/table.f0i")
+		produced_files.append("calG192.opacity/table.info")
+		produced_files.append("calG192.opacity/OBSERVATION")
+		produced_files.append("calG192.opacity/OBSERVATION/table.dat")
+		produced_files.append("calG192.opacity/OBSERVATION/table.lock")
+		produced_files.append("calG192.opacity/OBSERVATION/table.info")
+		produced_files.append("calG192.opacity/OBSERVATION/table.f0")
+		produced_files.append("calG192.opacity/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_11(self):
 		"""post method for "generate requantizer gains corrections"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.requantizer")
+		produced_files.append("calG192.requantizer/table.dat")
+		produced_files.append("calG192.requantizer/table.lock")
+		produced_files.append("calG192.requantizer/ANTENNA")
+		produced_files.append("calG192.requantizer/ANTENNA/table.dat")
+		produced_files.append("calG192.requantizer/ANTENNA/table.lock")
+		produced_files.append("calG192.requantizer/ANTENNA/table.info")
+		produced_files.append("calG192.requantizer/ANTENNA/table.f0")
+		produced_files.append("calG192.requantizer/SPECTRAL_WINDOW")
+		produced_files.append("calG192.requantizer/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.requantizer/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.requantizer/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.requantizer/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.requantizer/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.requantizer/HISTORY")
+		produced_files.append("calG192.requantizer/HISTORY/table.dat")
+		produced_files.append("calG192.requantizer/HISTORY/table.lock")
+		produced_files.append("calG192.requantizer/HISTORY/table.info")
+		produced_files.append("calG192.requantizer/HISTORY/table.f0")
+		produced_files.append("calG192.requantizer/FIELD")
+		produced_files.append("calG192.requantizer/FIELD/table.dat")
+		produced_files.append("calG192.requantizer/FIELD/table.lock")
+		produced_files.append("calG192.requantizer/FIELD/table.f0i")
+		produced_files.append("calG192.requantizer/FIELD/table.info")
+		produced_files.append("calG192.requantizer/FIELD/table.f0")
+		produced_files.append("calG192.requantizer/table.f0i")
+		produced_files.append("calG192.requantizer/table.info")
+		produced_files.append("calG192.requantizer/OBSERVATION")
+		produced_files.append("calG192.requantizer/OBSERVATION/table.dat")
+		produced_files.append("calG192.requantizer/OBSERVATION/table.lock")
+		produced_files.append("calG192.requantizer/OBSERVATION/table.info")
+		produced_files.append("calG192.requantizer/OBSERVATION/table.f0")
+		produced_files.append("calG192.requantizer/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_12(self):
 		"""post method for "phase only calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G0")
+		produced_files.append("calG192.G0/table.dat")
+		produced_files.append("calG192.G0/table.lock")
+		produced_files.append("calG192.G0/ANTENNA")
+		produced_files.append("calG192.G0/ANTENNA/table.dat")
+		produced_files.append("calG192.G0/ANTENNA/table.lock")
+		produced_files.append("calG192.G0/ANTENNA/table.info")
+		produced_files.append("calG192.G0/ANTENNA/table.f0")
+		produced_files.append("calG192.G0/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G0/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G0/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G0/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G0/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G0/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G0/HISTORY")
+		produced_files.append("calG192.G0/HISTORY/table.dat")
+		produced_files.append("calG192.G0/HISTORY/table.lock")
+		produced_files.append("calG192.G0/HISTORY/table.info")
+		produced_files.append("calG192.G0/HISTORY/table.f0")
+		produced_files.append("calG192.G0/FIELD")
+		produced_files.append("calG192.G0/FIELD/table.dat")
+		produced_files.append("calG192.G0/FIELD/table.lock")
+		produced_files.append("calG192.G0/FIELD/table.f0i")
+		produced_files.append("calG192.G0/FIELD/table.info")
+		produced_files.append("calG192.G0/FIELD/table.f0")
+		produced_files.append("calG192.G0/table.f0i")
+		produced_files.append("calG192.G0/table.info")
+		produced_files.append("calG192.G0/OBSERVATION")
+		produced_files.append("calG192.G0/OBSERVATION/table.dat")
+		produced_files.append("calG192.G0/OBSERVATION/table.lock")
+		produced_files.append("calG192.G0/OBSERVATION/table.info")
+		produced_files.append("calG192.G0/OBSERVATION/table.f0")
+		produced_files.append("calG192.G0/table.f0")
+		
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_13(self):
 		"""post method for "residual delays"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.K0")
+		produced_files.append("calG192.K0/table.dat")
+		produced_files.append("calG192.K0/table.lock")
+		produced_files.append("calG192.K0/ANTENNA")
+		produced_files.append("calG192.K0/ANTENNA/table.dat")
+		produced_files.append("calG192.K0/ANTENNA/table.lock")
+		produced_files.append("calG192.K0/ANTENNA/table.info")
+		produced_files.append("calG192.K0/ANTENNA/table.f0")
+		produced_files.append("calG192.K0/SPECTRAL_WINDOW")
+		produced_files.append("calG192.K0/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.K0/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.K0/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.K0/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.K0/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.K0/HISTORY")
+		produced_files.append("calG192.K0/HISTORY/table.dat")
+		produced_files.append("calG192.K0/HISTORY/table.lock")
+		produced_files.append("calG192.K0/HISTORY/table.info")
+		produced_files.append("calG192.K0/HISTORY/table.f0")
+		produced_files.append("calG192.K0/FIELD")
+		produced_files.append("calG192.K0/FIELD/table.dat")
+		produced_files.append("calG192.K0/FIELD/table.lock")
+		produced_files.append("calG192.K0/FIELD/table.f0i")
+		produced_files.append("calG192.K0/FIELD/table.info")
+		produced_files.append("calG192.K0/FIELD/table.f0")
+		produced_files.append("calG192.K0/table.f0i")
+		produced_files.append("calG192.K0/table.info")
+		produced_files.append("calG192.K0/OBSERVATION")
+		produced_files.append("calG192.K0/OBSERVATION/table.dat")
+		produced_files.append("calG192.K0/OBSERVATION/table.lock")
+		produced_files.append("calG192.K0/OBSERVATION/table.info")
+		produced_files.append("calG192.K0/OBSERVATION/table.f0")
+		produced_files.append("calG192.K0/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_14(self):
 		"""post method for "antenna bandpasses"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.B0")
+		produced_files.append("calG192.B0/table.dat")
+		produced_files.append("calG192.B0/table.lock")
+		produced_files.append("calG192.B0/ANTENNA")
+		produced_files.append("calG192.B0/ANTENNA/table.dat")
+		produced_files.append("calG192.B0/ANTENNA/table.lock")
+		produced_files.append("calG192.B0/ANTENNA/table.info")
+		produced_files.append("calG192.B0/ANTENNA/table.f0")
+		produced_files.append("calG192.B0/SPECTRAL_WINDOW")
+		produced_files.append("calG192.B0/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.B0/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.B0/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.B0/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.B0/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.B0/HISTORY")
+		produced_files.append("calG192.B0/HISTORY/table.dat")
+		produced_files.append("calG192.B0/HISTORY/table.lock")
+		produced_files.append("calG192.B0/HISTORY/table.info")
+		produced_files.append("calG192.B0/HISTORY/table.f0")
+		produced_files.append("calG192.B0/FIELD")
+		produced_files.append("calG192.B0/FIELD/table.dat")
+		produced_files.append("calG192.B0/FIELD/table.lock")
+		produced_files.append("calG192.B0/FIELD/table.f0i")
+		produced_files.append("calG192.B0/FIELD/table.info")
+		produced_files.append("calG192.B0/FIELD/table.f0")
+		produced_files.append("calG192.B0/table.f0i")
+		produced_files.append("calG192.B0/table.info")
+		produced_files.append("calG192.B0/OBSERVATION")
+		produced_files.append("calG192.B0/OBSERVATION/table.dat")
+		produced_files.append("calG192.B0/OBSERVATION/table.lock")
+		produced_files.append("calG192.B0/OBSERVATION/table.info")
+		produced_files.append("calG192.B0/OBSERVATION/table.f0")
+		produced_files.append("calG192.B0/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_15(self):
 		"""post method for "flux and bandpass calibrators gain"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1")
+		produced_files.append("calG192.G1/table.dat")
+		produced_files.append("calG192.G1/table.lock")
+		produced_files.append("calG192.G1/ANTENNA")
+		produced_files.append("calG192.G1/ANTENNA/table.dat")
+		produced_files.append("calG192.G1/ANTENNA/table.lock")
+		produced_files.append("calG192.G1/ANTENNA/table.info")
+		produced_files.append("calG192.G1/ANTENNA/table.f0")
+		produced_files.append("calG192.G1/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1/HISTORY")
+		produced_files.append("calG192.G1/HISTORY/table.dat")
+		produced_files.append("calG192.G1/HISTORY/table.lock")
+		produced_files.append("calG192.G1/HISTORY/table.info")
+		produced_files.append("calG192.G1/HISTORY/table.f0")
+		produced_files.append("calG192.G1/FIELD")
+		produced_files.append("calG192.G1/FIELD/table.dat")
+		produced_files.append("calG192.G1/FIELD/table.lock")
+		produced_files.append("calG192.G1/FIELD/table.f0i")
+		produced_files.append("calG192.G1/FIELD/table.info")
+		produced_files.append("calG192.G1/FIELD/table.f0")
+		produced_files.append("calG192.G1/table.f0i")
+		produced_files.append("calG192.G1/table.info")
+		produced_files.append("calG192.G1/OBSERVATION")
+		produced_files.append("calG192.G1/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1/OBSERVATION/table.info")
+		produced_files.append("calG192.G1/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_16(self):
 		"""post method for "bandpass calibrator gain amplitudes scaling"
 		"""
-		assert True, "dummy assert"
+		RegressionHelper.assert_file("%s/3C84.fluxinfo" % os.getcwd())
 
 	def post_17(self):
 		"""post method for "spectral information"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_18(self):
 		"""post method for "phase only recalibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G0.b")
+		produced_files.append("calG192.G0.b/table.dat")
+		produced_files.append("calG192.G0.b/table.lock")
+		produced_files.append("calG192.G0.b/ANTENNA")
+		produced_files.append("calG192.G0.b/ANTENNA/table.dat")
+		produced_files.append("calG192.G0.b/ANTENNA/table.lock")
+		produced_files.append("calG192.G0.b/ANTENNA/table.info")
+		produced_files.append("calG192.G0.b/ANTENNA/table.f0")
+		produced_files.append("calG192.G0.b/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G0.b/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G0.b/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G0.b/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G0.b/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G0.b/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G0.b/HISTORY")
+		produced_files.append("calG192.G0.b/HISTORY/table.dat")
+		produced_files.append("calG192.G0.b/HISTORY/table.lock")
+		produced_files.append("calG192.G0.b/HISTORY/table.info")
+		produced_files.append("calG192.G0.b/HISTORY/table.f0")
+		produced_files.append("calG192.G0.b/FIELD")
+		produced_files.append("calG192.G0.b/FIELD/table.dat")
+		produced_files.append("calG192.G0.b/FIELD/table.lock")
+		produced_files.append("calG192.G0.b/FIELD/table.f0i")
+		produced_files.append("calG192.G0.b/FIELD/table.info")
+		produced_files.append("calG192.G0.b/FIELD/table.f0")
+		produced_files.append("calG192.G0.b/table.f0i")
+		produced_files.append("calG192.G0.b/table.info")
+		produced_files.append("calG192.G0.b/OBSERVATION")
+		produced_files.append("calG192.G0.b/OBSERVATION/table.dat")
+		produced_files.append("calG192.G0.b/OBSERVATION/table.lock")
+		produced_files.append("calG192.G0.b/OBSERVATION/table.info")
+		produced_files.append("calG192.G0.b/OBSERVATION/table.f0")
+		produced_files.append("calG192.G0.b/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_19(self):
 		"""post method for "residual delays recalibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.K0.b")
+		produced_files.append("calG192.K0.b/table.dat")
+		produced_files.append("calG192.K0.b/table.lock")
+		produced_files.append("calG192.K0.b/ANTENNA")
+		produced_files.append("calG192.K0.b/ANTENNA/table.dat")
+		produced_files.append("calG192.K0.b/ANTENNA/table.lock")
+		produced_files.append("calG192.K0.b/ANTENNA/table.info")
+		produced_files.append("calG192.K0.b/ANTENNA/table.f0")
+		produced_files.append("calG192.K0.b/SPECTRAL_WINDOW")
+		produced_files.append("calG192.K0.b/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.K0.b/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.K0.b/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.K0.b/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.K0.b/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.K0.b/HISTORY")
+		produced_files.append("calG192.K0.b/HISTORY/table.dat")
+		produced_files.append("calG192.K0.b/HISTORY/table.lock")
+		produced_files.append("calG192.K0.b/HISTORY/table.info")
+		produced_files.append("calG192.K0.b/HISTORY/table.f0")
+		produced_files.append("calG192.K0.b/FIELD")
+		produced_files.append("calG192.K0.b/FIELD/table.dat")
+		produced_files.append("calG192.K0.b/FIELD/table.lock")
+		produced_files.append("calG192.K0.b/FIELD/table.f0i")
+		produced_files.append("calG192.K0.b/FIELD/table.info")
+		produced_files.append("calG192.K0.b/FIELD/table.f0")
+		produced_files.append("calG192.K0.b/table.f0i")
+		produced_files.append("calG192.K0.b/table.info")
+		produced_files.append("calG192.K0.b/OBSERVATION")
+		produced_files.append("calG192.K0.b/OBSERVATION/table.dat")
+		produced_files.append("calG192.K0.b/OBSERVATION/table.lock")
+		produced_files.append("calG192.K0.b/OBSERVATION/table.info")
+		produced_files.append("calG192.K0.b/OBSERVATION/table.f0")
+		produced_files.append("calG192.K0.b/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_20(self):
 		"""post method for "antenna bandpasses recalibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.B0.b")
+		produced_files.append("calG192.B0.b/table.dat")
+		produced_files.append("calG192.B0.b/table.lock")
+		produced_files.append("calG192.B0.b/ANTENNA")
+		produced_files.append("calG192.B0.b/ANTENNA/table.dat")
+		produced_files.append("calG192.B0.b/ANTENNA/table.lock")
+		produced_files.append("calG192.B0.b/ANTENNA/table.info")
+		produced_files.append("calG192.B0.b/ANTENNA/table.f0")
+		produced_files.append("calG192.B0.b/SPECTRAL_WINDOW")
+		produced_files.append("calG192.B0.b/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.B0.b/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.B0.b/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.B0.b/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.B0.b/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.B0.b/HISTORY")
+		produced_files.append("calG192.B0.b/HISTORY/table.dat")
+		produced_files.append("calG192.B0.b/HISTORY/table.lock")
+		produced_files.append("calG192.B0.b/HISTORY/table.info")
+		produced_files.append("calG192.B0.b/HISTORY/table.f0")
+		produced_files.append("calG192.B0.b/FIELD")
+		produced_files.append("calG192.B0.b/FIELD/table.dat")
+		produced_files.append("calG192.B0.b/FIELD/table.lock")
+		produced_files.append("calG192.B0.b/FIELD/table.f0i")
+		produced_files.append("calG192.B0.b/FIELD/table.info")
+		produced_files.append("calG192.B0.b/FIELD/table.f0")
+		produced_files.append("calG192.B0.b/table.f0i")
+		produced_files.append("calG192.B0.b/table.info")
+		produced_files.append("calG192.B0.b/OBSERVATION")
+		produced_files.append("calG192.B0.b/OBSERVATION/table.dat")
+		produced_files.append("calG192.B0.b/OBSERVATION/table.lock")
+		produced_files.append("calG192.B0.b/OBSERVATION/table.info")
+		produced_files.append("calG192.B0.b/OBSERVATION/table.f0")
+		produced_files.append("calG192.B0.b/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_21(self):
 		"""post method for "compute gain phases using 3C147"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.int")
+		produced_files.append("calG192.G1.int/table.dat")
+		produced_files.append("calG192.G1.int/table.lock")
+		produced_files.append("calG192.G1.int/ANTENNA")
+		produced_files.append("calG192.G1.int/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.int/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.int/ANTENNA/table.info")
+		produced_files.append("calG192.G1.int/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.int/HISTORY")
+		produced_files.append("calG192.G1.int/HISTORY/table.dat")
+		produced_files.append("calG192.G1.int/HISTORY/table.lock")
+		produced_files.append("calG192.G1.int/HISTORY/table.info")
+		produced_files.append("calG192.G1.int/HISTORY/table.f0")
+		produced_files.append("calG192.G1.int/FIELD")
+		produced_files.append("calG192.G1.int/FIELD/table.dat")
+		produced_files.append("calG192.G1.int/FIELD/table.lock")
+		produced_files.append("calG192.G1.int/FIELD/table.f0i")
+		produced_files.append("calG192.G1.int/FIELD/table.info")
+		produced_files.append("calG192.G1.int/FIELD/table.f0")
+		produced_files.append("calG192.G1.int/table.f0i")
+		produced_files.append("calG192.G1.int/table.info")
+		produced_files.append("calG192.G1.int/OBSERVATION")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.int/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_22(self):
 		"""post method for "compute gain phases using J0603+174"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.int")
+		produced_files.append("calG192.G1.int/table.dat")
+		produced_files.append("calG192.G1.int/table.lock")
+		produced_files.append("calG192.G1.int/ANTENNA")
+		produced_files.append("calG192.G1.int/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.int/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.int/ANTENNA/table.info")
+		produced_files.append("calG192.G1.int/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.int/HISTORY")
+		produced_files.append("calG192.G1.int/HISTORY/table.dat")
+		produced_files.append("calG192.G1.int/HISTORY/table.lock")
+		produced_files.append("calG192.G1.int/HISTORY/table.info")
+		produced_files.append("calG192.G1.int/HISTORY/table.f0")
+		produced_files.append("calG192.G1.int/FIELD")
+		produced_files.append("calG192.G1.int/FIELD/table.dat")
+		produced_files.append("calG192.G1.int/FIELD/table.lock")
+		produced_files.append("calG192.G1.int/FIELD/table.f0i")
+		produced_files.append("calG192.G1.int/FIELD/table.info")
+		produced_files.append("calG192.G1.int/FIELD/table.f0")
+		produced_files.append("calG192.G1.int/table.f0i")
+		produced_files.append("calG192.G1.int/table.info")
+		produced_files.append("calG192.G1.int/OBSERVATION")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.int/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_23(self):
 		"""post method for "compute gain phases using 3C84"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.int")
+		produced_files.append("calG192.G1.int/table.dat")
+		produced_files.append("calG192.G1.int/table.lock")
+		produced_files.append("calG192.G1.int/ANTENNA")
+		produced_files.append("calG192.G1.int/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.int/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.int/ANTENNA/table.info")
+		produced_files.append("calG192.G1.int/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.int/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.int/HISTORY")
+		produced_files.append("calG192.G1.int/HISTORY/table.dat")
+		produced_files.append("calG192.G1.int/HISTORY/table.lock")
+		produced_files.append("calG192.G1.int/HISTORY/table.info")
+		produced_files.append("calG192.G1.int/HISTORY/table.f0")
+		produced_files.append("calG192.G1.int/FIELD")
+		produced_files.append("calG192.G1.int/FIELD/table.dat")
+		produced_files.append("calG192.G1.int/FIELD/table.lock")
+		produced_files.append("calG192.G1.int/FIELD/table.f0i")
+		produced_files.append("calG192.G1.int/FIELD/table.info")
+		produced_files.append("calG192.G1.int/FIELD/table.f0")
+		produced_files.append("calG192.G1.int/table.f0i")
+		produced_files.append("calG192.G1.int/table.info")
+		produced_files.append("calG192.G1.int/OBSERVATION")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.int/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.int/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_24(self):
 		"""post method for "applying phase calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.inf")
+		produced_files.append("calG192.G1.inf/table.dat")
+		produced_files.append("calG192.G1.inf/table.lock")
+		produced_files.append("calG192.G1.inf/ANTENNA")
+		produced_files.append("calG192.G1.inf/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.inf/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.inf/ANTENNA/table.info")
+		produced_files.append("calG192.G1.inf/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.inf/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.inf/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.inf/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.inf/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.inf/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.inf/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.inf/HISTORY")
+		produced_files.append("calG192.G1.inf/HISTORY/table.dat")
+		produced_files.append("calG192.G1.inf/HISTORY/table.lock")
+		produced_files.append("calG192.G1.inf/HISTORY/table.info")
+		produced_files.append("calG192.G1.inf/HISTORY/table.f0")
+		produced_files.append("calG192.G1.inf/FIELD")
+		produced_files.append("calG192.G1.inf/FIELD/table.dat")
+		produced_files.append("calG192.G1.inf/FIELD/table.lock")
+		produced_files.append("calG192.G1.inf/FIELD/table.f0i")
+		produced_files.append("calG192.G1.inf/FIELD/table.info")
+		produced_files.append("calG192.G1.inf/FIELD/table.f0")
+		produced_files.append("calG192.G1.inf/table.f0i")
+		produced_files.append("calG192.G1.inf/table.info")
+		produced_files.append("calG192.G1.inf/OBSERVATION")
+		produced_files.append("calG192.G1.inf/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.inf/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.inf/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.inf/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.inf/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_25(self):
 		"""post method for "3C147 scan solving amplitudes"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G2")
+		produced_files.append("calG192.G2/table.dat")
+		produced_files.append("calG192.G2/table.lock")
+		produced_files.append("calG192.G2/ANTENNA")
+		produced_files.append("calG192.G2/ANTENNA/table.dat")
+		produced_files.append("calG192.G2/ANTENNA/table.lock")
+		produced_files.append("calG192.G2/ANTENNA/table.info")
+		produced_files.append("calG192.G2/ANTENNA/table.f0")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G2/HISTORY")
+		produced_files.append("calG192.G2/HISTORY/table.dat")
+		produced_files.append("calG192.G2/HISTORY/table.lock")
+		produced_files.append("calG192.G2/HISTORY/table.info")
+		produced_files.append("calG192.G2/HISTORY/table.f0")
+		produced_files.append("calG192.G2/FIELD")
+		produced_files.append("calG192.G2/FIELD/table.dat")
+		produced_files.append("calG192.G2/FIELD/table.lock")
+		produced_files.append("calG192.G2/FIELD/table.f0i")
+		produced_files.append("calG192.G2/FIELD/table.info")
+		produced_files.append("calG192.G2/FIELD/table.f0")
+		produced_files.append("calG192.G2/table.f0i")
+		produced_files.append("calG192.G2/table.info")
+		produced_files.append("calG192.G2/OBSERVATION")
+		produced_files.append("calG192.G2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G2/OBSERVATION/table.info")
+		produced_files.append("calG192.G2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_26(self):
 		"""post method for "J0603+174  scan solving amplitudes"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G2")
+		produced_files.append("calG192.G2/table.dat")
+		produced_files.append("calG192.G2/table.lock")
+		produced_files.append("calG192.G2/ANTENNA")
+		produced_files.append("calG192.G2/ANTENNA/table.dat")
+		produced_files.append("calG192.G2/ANTENNA/table.lock")
+		produced_files.append("calG192.G2/ANTENNA/table.info")
+		produced_files.append("calG192.G2/ANTENNA/table.f0")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G2/HISTORY")
+		produced_files.append("calG192.G2/HISTORY/table.dat")
+		produced_files.append("calG192.G2/HISTORY/table.lock")
+		produced_files.append("calG192.G2/HISTORY/table.info")
+		produced_files.append("calG192.G2/HISTORY/table.f0")
+		produced_files.append("calG192.G2/FIELD")
+		produced_files.append("calG192.G2/FIELD/table.dat")
+		produced_files.append("calG192.G2/FIELD/table.lock")
+		produced_files.append("calG192.G2/FIELD/table.f0i")
+		produced_files.append("calG192.G2/FIELD/table.info")
+		produced_files.append("calG192.G2/FIELD/table.f0")
+		produced_files.append("calG192.G2/table.f0i")
+		produced_files.append("calG192.G2/table.info")
+		produced_files.append("calG192.G2/OBSERVATION")
+		produced_files.append("calG192.G2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G2/OBSERVATION/table.info")
+		produced_files.append("calG192.G2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_27(self):
 		"""post method for "3C84 scan solving amplitudes"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G2")
+		produced_files.append("calG192.G2/table.dat")
+		produced_files.append("calG192.G2/table.lock")
+		produced_files.append("calG192.G2/ANTENNA")
+		produced_files.append("calG192.G2/ANTENNA/table.dat")
+		produced_files.append("calG192.G2/ANTENNA/table.lock")
+		produced_files.append("calG192.G2/ANTENNA/table.info")
+		produced_files.append("calG192.G2/ANTENNA/table.f0")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G2/HISTORY")
+		produced_files.append("calG192.G2/HISTORY/table.dat")
+		produced_files.append("calG192.G2/HISTORY/table.lock")
+		produced_files.append("calG192.G2/HISTORY/table.info")
+		produced_files.append("calG192.G2/HISTORY/table.f0")
+		produced_files.append("calG192.G2/FIELD")
+		produced_files.append("calG192.G2/FIELD/table.dat")
+		produced_files.append("calG192.G2/FIELD/table.lock")
+		produced_files.append("calG192.G2/FIELD/table.f0i")
+		produced_files.append("calG192.G2/FIELD/table.info")
+		produced_files.append("calG192.G2/FIELD/table.f0")
+		produced_files.append("calG192.G2/table.f0i")
+		produced_files.append("calG192.G2/table.info")
+		produced_files.append("calG192.G2/OBSERVATION")
+		produced_files.append("calG192.G2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G2/OBSERVATION/table.info")
+		produced_files.append("calG192.G2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_28(self):
 		"""post method for "using fluxscale to transfer the amplitude solutions"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.F2")
+		produced_files.append("calG192.F2/table.dat")
+		produced_files.append("calG192.F2/table.lock")
+		produced_files.append("calG192.F2/ANTENNA")
+		produced_files.append("calG192.F2/ANTENNA/table.dat")
+		produced_files.append("calG192.F2/ANTENNA/table.lock")
+		produced_files.append("calG192.F2/ANTENNA/table.info")
+		produced_files.append("calG192.F2/ANTENNA/table.f0")
+		produced_files.append("calG192.F2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.F2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.F2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.F2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.F2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.F2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.F2/HISTORY")
+		produced_files.append("calG192.F2/HISTORY/table.dat")
+		produced_files.append("calG192.F2/HISTORY/table.lock")
+		produced_files.append("calG192.F2/HISTORY/table.info")
+		produced_files.append("calG192.F2/HISTORY/table.f0")
+		produced_files.append("calG192.F2/FIELD")
+		produced_files.append("calG192.F2/FIELD/table.dat")
+		produced_files.append("calG192.F2/FIELD/table.lock")
+		produced_files.append("calG192.F2/FIELD/table.f0i")
+		produced_files.append("calG192.F2/FIELD/table.info")
+		produced_files.append("calG192.F2/FIELD/table.f0")
+		produced_files.append("calG192.F2/table.f0i")
+		produced_files.append("calG192.F2/table.info")
+		produced_files.append("calG192.F2/OBSERVATION")
+		produced_files.append("calG192.F2/OBSERVATION/table.dat")
+		produced_files.append("calG192.F2/OBSERVATION/table.lock")
+		produced_files.append("calG192.F2/OBSERVATION/table.info")
+		produced_files.append("calG192.F2/OBSERVATION/table.f0")
+		produced_files.append("calG192.F2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_29(self):
 		"""post method for "3C147 accumulated calibration"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_30(self):
 		"""post method for "gain accumulated calibration"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_31(self):
 		"""post method for "G192 accumulated calibration"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_32(self):
 		"""post method for "3C84 accumulated calibration"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_33(self):
 		"""post method for "flagging isolated RFI"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_34(self):
 		"""post method for "baseline flagging"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_35(self):
 		"""post method for "3C147 density model"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_36(self):
 		"""post method for "3C84 spectral information column"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_37(self):
 		"""post method for "initial phase calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G0.b.2")
+		produced_files.append("calG192.G0.b.2/table.dat")
+		produced_files.append("calG192.G0.b.2/table.lock")
+		produced_files.append("calG192.G0.b.2/ANTENNA")
+		produced_files.append("calG192.G0.b.2/ANTENNA/table.dat")
+		produced_files.append("calG192.G0.b.2/ANTENNA/table.lock")
+		produced_files.append("calG192.G0.b.2/ANTENNA/table.info")
+		produced_files.append("calG192.G0.b.2/ANTENNA/table.f0")
+		produced_files.append("calG192.G0.b.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G0.b.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G0.b.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G0.b.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G0.b.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G0.b.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G0.b.2/HISTORY")
+		produced_files.append("calG192.G0.b.2/HISTORY/table.dat")
+		produced_files.append("calG192.G0.b.2/HISTORY/table.lock")
+		produced_files.append("calG192.G0.b.2/HISTORY/table.info")
+		produced_files.append("calG192.G0.b.2/HISTORY/table.f0")
+		produced_files.append("calG192.G0.b.2/FIELD")
+		produced_files.append("calG192.G0.b.2/FIELD/table.dat")
+		produced_files.append("calG192.G0.b.2/FIELD/table.lock")
+		produced_files.append("calG192.G0.b.2/FIELD/table.f0i")
+		produced_files.append("calG192.G0.b.2/FIELD/table.info")
+		produced_files.append("calG192.G0.b.2/FIELD/table.f0")
+		produced_files.append("calG192.G0.b.2/table.f0i")
+		produced_files.append("calG192.G0.b.2/table.info")
+		produced_files.append("calG192.G0.b.2/OBSERVATION")
+		produced_files.append("calG192.G0.b.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G0.b.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G0.b.2/OBSERVATION/table.info")
+		produced_files.append("calG192.G0.b.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G0.b.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_38(self):
 		"""post method for "delay calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.K0.b.2")
+		produced_files.append("calG192.K0.b.2/table.dat")
+		produced_files.append("calG192.K0.b.2/table.lock")
+		produced_files.append("calG192.K0.b.2/ANTENNA")
+		produced_files.append("calG192.K0.b.2/ANTENNA/table.dat")
+		produced_files.append("calG192.K0.b.2/ANTENNA/table.lock")
+		produced_files.append("calG192.K0.b.2/ANTENNA/table.info")
+		produced_files.append("calG192.K0.b.2/ANTENNA/table.f0")
+		produced_files.append("calG192.K0.b.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.K0.b.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.K0.b.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.K0.b.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.K0.b.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.K0.b.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.K0.b.2/HISTORY")
+		produced_files.append("calG192.K0.b.2/HISTORY/table.dat")
+		produced_files.append("calG192.K0.b.2/HISTORY/table.lock")
+		produced_files.append("calG192.K0.b.2/HISTORY/table.info")
+		produced_files.append("calG192.K0.b.2/HISTORY/table.f0")
+		produced_files.append("calG192.K0.b.2/FIELD")
+		produced_files.append("calG192.K0.b.2/FIELD/table.dat")
+		produced_files.append("calG192.K0.b.2/FIELD/table.lock")
+		produced_files.append("calG192.K0.b.2/FIELD/table.f0i")
+		produced_files.append("calG192.K0.b.2/FIELD/table.info")
+		produced_files.append("calG192.K0.b.2/FIELD/table.f0")
+		produced_files.append("calG192.K0.b.2/table.f0i")
+		produced_files.append("calG192.K0.b.2/table.info")
+		produced_files.append("calG192.K0.b.2/OBSERVATION")
+		produced_files.append("calG192.K0.b.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.K0.b.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.K0.b.2/OBSERVATION/table.info")
+		produced_files.append("calG192.K0.b.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.K0.b.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_39(self):
 		"""post method for "bandpass calibration"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.B0.b.2")
+		produced_files.append("calG192.B0.b.2/table.dat")
+		produced_files.append("calG192.B0.b.2/table.lock")
+		produced_files.append("calG192.B0.b.2/ANTENNA")
+		produced_files.append("calG192.B0.b.2/ANTENNA/table.dat")
+		produced_files.append("calG192.B0.b.2/ANTENNA/table.lock")
+		produced_files.append("calG192.B0.b.2/ANTENNA/table.info")
+		produced_files.append("calG192.B0.b.2/ANTENNA/table.f0")
+		produced_files.append("calG192.B0.b.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.B0.b.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.B0.b.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.B0.b.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.B0.b.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.B0.b.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.B0.b.2/HISTORY")
+		produced_files.append("calG192.B0.b.2/HISTORY/table.dat")
+		produced_files.append("calG192.B0.b.2/HISTORY/table.lock")
+		produced_files.append("calG192.B0.b.2/HISTORY/table.info")
+		produced_files.append("calG192.B0.b.2/HISTORY/table.f0")
+		produced_files.append("calG192.B0.b.2/FIELD")
+		produced_files.append("calG192.B0.b.2/FIELD/table.dat")
+		produced_files.append("calG192.B0.b.2/FIELD/table.lock")
+		produced_files.append("calG192.B0.b.2/FIELD/table.f0i")
+		produced_files.append("calG192.B0.b.2/FIELD/table.info")
+		produced_files.append("calG192.B0.b.2/FIELD/table.f0")
+		produced_files.append("calG192.B0.b.2/table.f0i")
+		produced_files.append("calG192.B0.b.2/table.info")
+		produced_files.append("calG192.B0.b.2/OBSERVATION")
+		produced_files.append("calG192.B0.b.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.B0.b.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.B0.b.2/OBSERVATION/table.info")
+		produced_files.append("calG192.B0.b.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.B0.b.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_40(self):
 		"""post method for "phase gain calibration field 0"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.int.2")
+		produced_files.append("calG192.G1.int.2/table.dat")
+		produced_files.append("calG192.G1.int.2/table.lock")
+		produced_files.append("calG192.G1.int.2/ANTENNA")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.info")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.int.2/HISTORY")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.dat")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.lock")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.info")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.f0")
+		produced_files.append("calG192.G1.int.2/FIELD")
+		produced_files.append("calG192.G1.int.2/FIELD/table.dat")
+		produced_files.append("calG192.G1.int.2/FIELD/table.lock")
+		produced_files.append("calG192.G1.int.2/FIELD/table.f0i")
+		produced_files.append("calG192.G1.int.2/FIELD/table.info")
+		produced_files.append("calG192.G1.int.2/FIELD/table.f0")
+		produced_files.append("calG192.G1.int.2/table.f0i")
+		produced_files.append("calG192.G1.int.2/table.info")
+		produced_files.append("calG192.G1.int.2/OBSERVATION")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.int.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_41(self):
 		"""post method for "phase gain calibration field 1"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.int.2")
+		produced_files.append("calG192.G1.int.2/table.dat")
+		produced_files.append("calG192.G1.int.2/table.lock")
+		produced_files.append("calG192.G1.int.2/ANTENNA")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.info")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.int.2/HISTORY")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.dat")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.lock")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.info")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.f0")
+		produced_files.append("calG192.G1.int.2/FIELD")
+		produced_files.append("calG192.G1.int.2/FIELD/table.dat")
+		produced_files.append("calG192.G1.int.2/FIELD/table.lock")
+		produced_files.append("calG192.G1.int.2/FIELD/table.f0i")
+		produced_files.append("calG192.G1.int.2/FIELD/table.info")
+		produced_files.append("calG192.G1.int.2/FIELD/table.f0")
+		produced_files.append("calG192.G1.int.2/table.f0i")
+		produced_files.append("calG192.G1.int.2/table.info")
+		produced_files.append("calG192.G1.int.2/OBSERVATION")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.int.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_42(self):
 		"""post method for "phase gain calibration field 3"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.int.2")
+		produced_files.append("calG192.G1.int.2/table.dat")
+		produced_files.append("calG192.G1.int.2/table.lock")
+		produced_files.append("calG192.G1.int.2/ANTENNA")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.info")
+		produced_files.append("calG192.G1.int.2/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.int.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.int.2/HISTORY")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.dat")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.lock")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.info")
+		produced_files.append("calG192.G1.int.2/HISTORY/table.f0")
+		produced_files.append("calG192.G1.int.2/FIELD")
+		produced_files.append("calG192.G1.int.2/FIELD/table.dat")
+		produced_files.append("calG192.G1.int.2/FIELD/table.lock")
+		produced_files.append("calG192.G1.int.2/FIELD/table.f0i")
+		produced_files.append("calG192.G1.int.2/FIELD/table.info")
+		produced_files.append("calG192.G1.int.2/FIELD/table.f0")
+		produced_files.append("calG192.G1.int.2/table.f0i")
+		produced_files.append("calG192.G1.int.2/table.info")
+		produced_files.append("calG192.G1.int.2/OBSERVATION")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.int.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.int.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_43(self):
 		"""post method for "phase gain calibration infinite solution interval"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G1.inf.2")
+		produced_files.append("calG192.G1.inf.2/table.dat")
+		produced_files.append("calG192.G1.inf.2/table.lock")
+		produced_files.append("calG192.G1.inf.2/ANTENNA")
+		produced_files.append("calG192.G1.inf.2/ANTENNA/table.dat")
+		produced_files.append("calG192.G1.inf.2/ANTENNA/table.lock")
+		produced_files.append("calG192.G1.inf.2/ANTENNA/table.info")
+		produced_files.append("calG192.G1.inf.2/ANTENNA/table.f0")
+		produced_files.append("calG192.G1.inf.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G1.inf.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G1.inf.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G1.inf.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G1.inf.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G1.inf.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G1.inf.2/HISTORY")
+		produced_files.append("calG192.G1.inf.2/HISTORY/table.dat")
+		produced_files.append("calG192.G1.inf.2/HISTORY/table.lock")
+		produced_files.append("calG192.G1.inf.2/HISTORY/table.info")
+		produced_files.append("calG192.G1.inf.2/HISTORY/table.f0")
+		produced_files.append("calG192.G1.inf.2/FIELD")
+		produced_files.append("calG192.G1.inf.2/FIELD/table.dat")
+		produced_files.append("calG192.G1.inf.2/FIELD/table.lock")
+		produced_files.append("calG192.G1.inf.2/FIELD/table.f0i")
+		produced_files.append("calG192.G1.inf.2/FIELD/table.info")
+		produced_files.append("calG192.G1.inf.2/FIELD/table.f0")
+		produced_files.append("calG192.G1.inf.2/table.f0i")
+		produced_files.append("calG192.G1.inf.2/table.info")
+		produced_files.append("calG192.G1.inf.2/OBSERVATION")
+		produced_files.append("calG192.G1.inf.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G1.inf.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G1.inf.2/OBSERVATION/table.info")
+		produced_files.append("calG192.G1.inf.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G1.inf.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_44(self):
 		"""post method for "amplitude calibration solutions field 0"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G2")
+		produced_files.append("calG192.G2/table.dat")
+		produced_files.append("calG192.G2/table.lock")
+		produced_files.append("calG192.G2/ANTENNA")
+		produced_files.append("calG192.G2/ANTENNA/table.dat")
+		produced_files.append("calG192.G2/ANTENNA/table.lock")
+		produced_files.append("calG192.G2/ANTENNA/table.info")
+		produced_files.append("calG192.G2/ANTENNA/table.f0")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G2/HISTORY")
+		produced_files.append("calG192.G2/HISTORY/table.dat")
+		produced_files.append("calG192.G2/HISTORY/table.lock")
+		produced_files.append("calG192.G2/HISTORY/table.info")
+		produced_files.append("calG192.G2/HISTORY/table.f0")
+		produced_files.append("calG192.G2/FIELD")
+		produced_files.append("calG192.G2/FIELD/table.dat")
+		produced_files.append("calG192.G2/FIELD/table.lock")
+		produced_files.append("calG192.G2/FIELD/table.f0i")
+		produced_files.append("calG192.G2/FIELD/table.info")
+		produced_files.append("calG192.G2/FIELD/table.f0")
+		produced_files.append("calG192.G2/table.f0i")
+		produced_files.append("calG192.G2/table.info")
+		produced_files.append("calG192.G2/OBSERVATION")
+		produced_files.append("calG192.G2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G2/OBSERVATION/table.info")
+		produced_files.append("calG192.G2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_45(self):
 		"""post method for "amplitude calibration solutions field 1"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G2")
+		produced_files.append("calG192.G2/table.dat")
+		produced_files.append("calG192.G2/table.lock")
+		produced_files.append("calG192.G2/ANTENNA")
+		produced_files.append("calG192.G2/ANTENNA/table.dat")
+		produced_files.append("calG192.G2/ANTENNA/table.lock")
+		produced_files.append("calG192.G2/ANTENNA/table.info")
+		produced_files.append("calG192.G2/ANTENNA/table.f0")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G2/HISTORY")
+		produced_files.append("calG192.G2/HISTORY/table.dat")
+		produced_files.append("calG192.G2/HISTORY/table.lock")
+		produced_files.append("calG192.G2/HISTORY/table.info")
+		produced_files.append("calG192.G2/HISTORY/table.f0")
+		produced_files.append("calG192.G2/FIELD")
+		produced_files.append("calG192.G2/FIELD/table.dat")
+		produced_files.append("calG192.G2/FIELD/table.lock")
+		produced_files.append("calG192.G2/FIELD/table.f0i")
+		produced_files.append("calG192.G2/FIELD/table.info")
+		produced_files.append("calG192.G2/FIELD/table.f0")
+		produced_files.append("calG192.G2/table.f0i")
+		produced_files.append("calG192.G2/table.info")
+		produced_files.append("calG192.G2/OBSERVATION")
+		produced_files.append("calG192.G2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G2/OBSERVATION/table.info")
+		produced_files.append("calG192.G2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_46(self):
 		"""post method for "amplitude calibration solutions field 3"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.G2")
+		produced_files.append("calG192.G2/table.dat")
+		produced_files.append("calG192.G2/table.lock")
+		produced_files.append("calG192.G2/ANTENNA")
+		produced_files.append("calG192.G2/ANTENNA/table.dat")
+		produced_files.append("calG192.G2/ANTENNA/table.lock")
+		produced_files.append("calG192.G2/ANTENNA/table.info")
+		produced_files.append("calG192.G2/ANTENNA/table.f0")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.G2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.G2/HISTORY")
+		produced_files.append("calG192.G2/HISTORY/table.dat")
+		produced_files.append("calG192.G2/HISTORY/table.lock")
+		produced_files.append("calG192.G2/HISTORY/table.info")
+		produced_files.append("calG192.G2/HISTORY/table.f0")
+		produced_files.append("calG192.G2/FIELD")
+		produced_files.append("calG192.G2/FIELD/table.dat")
+		produced_files.append("calG192.G2/FIELD/table.lock")
+		produced_files.append("calG192.G2/FIELD/table.f0i")
+		produced_files.append("calG192.G2/FIELD/table.info")
+		produced_files.append("calG192.G2/FIELD/table.f0")
+		produced_files.append("calG192.G2/table.f0i")
+		produced_files.append("calG192.G2/table.info")
+		produced_files.append("calG192.G2/OBSERVATION")
+		produced_files.append("calG192.G2/OBSERVATION/table.dat")
+		produced_files.append("calG192.G2/OBSERVATION/table.lock")
+		produced_files.append("calG192.G2/OBSERVATION/table.info")
+		produced_files.append("calG192.G2/OBSERVATION/table.f0")
+		produced_files.append("calG192.G2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_47(self):
 		"""post method for "flux calibration solutions"
 		"""
-		assert True, "dummy assert"
+		produced_files = []
+		produced_files.append("calG192.F2.2")
+		produced_files.append("calG192.F2.2/table.dat")
+		produced_files.append("calG192.F2.2/table.lock")
+		produced_files.append("calG192.F2.2/ANTENNA")
+		produced_files.append("calG192.F2.2/ANTENNA/table.dat")
+		produced_files.append("calG192.F2.2/ANTENNA/table.lock")
+		produced_files.append("calG192.F2.2/ANTENNA/table.info")
+		produced_files.append("calG192.F2.2/ANTENNA/table.f0")
+		produced_files.append("calG192.F2.2/SPECTRAL_WINDOW")
+		produced_files.append("calG192.F2.2/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("calG192.F2.2/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("calG192.F2.2/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("calG192.F2.2/SPECTRAL_WINDOW/table.info")
+		produced_files.append("calG192.F2.2/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("calG192.F2.2/HISTORY")
+		produced_files.append("calG192.F2.2/HISTORY/table.dat")
+		produced_files.append("calG192.F2.2/HISTORY/table.lock")
+		produced_files.append("calG192.F2.2/HISTORY/table.info")
+		produced_files.append("calG192.F2.2/HISTORY/table.f0")
+		produced_files.append("calG192.F2.2/FIELD")
+		produced_files.append("calG192.F2.2/FIELD/table.dat")
+		produced_files.append("calG192.F2.2/FIELD/table.lock")
+		produced_files.append("calG192.F2.2/FIELD/table.f0i")
+		produced_files.append("calG192.F2.2/FIELD/table.info")
+		produced_files.append("calG192.F2.2/FIELD/table.f0")
+		produced_files.append("calG192.F2.2/table.f0i")
+		produced_files.append("calG192.F2.2/table.info")
+		produced_files.append("calG192.F2.2/OBSERVATION")
+		produced_files.append("calG192.F2.2/OBSERVATION/table.dat")
+		produced_files.append("calG192.F2.2/OBSERVATION/table.lock")
+		produced_files.append("calG192.F2.2/OBSERVATION/table.info")
+		produced_files.append("calG192.F2.2/OBSERVATION/table.f0")
+		produced_files.append("calG192.F2.2/table.f0")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_48(self):
 		"""post method for "apply calibration tables field 0"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_49(self):
 		"""post method for "apply calibration tables field 1"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_50(self):
 		"""post method for "apply calibration tables field 2"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_51(self):
 		"""post method for "apply calibration tables field 3"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_52(self):
 		"""post method for "splitting calibrated data 3C147"
 		"""
+		produced_files = []
+		produced_files.append("3C147_split_6s.ms")
+		produced_files.append("3C147_split_6s.ms/table.f19")
+		produced_files.append("3C147_split_6s.ms/table.f2")
+		produced_files.append("3C147_split_6s.ms/table.dat")
+		produced_files.append("3C147_split_6s.ms/table.lock")
+		produced_files.append("3C147_split_6s.ms/FLAG_CMD")
+		produced_files.append("3C147_split_6s.ms/FLAG_CMD/table.dat")
+		produced_files.append("3C147_split_6s.ms/FLAG_CMD/table.lock")
+		produced_files.append("3C147_split_6s.ms/FLAG_CMD/table.info")
+		produced_files.append("3C147_split_6s.ms/FLAG_CMD/table.f0")
+		produced_files.append("3C147_split_6s.ms/SYSPOWER")
+		produced_files.append("3C147_split_6s.ms/SYSPOWER/table.dat")
+		produced_files.append("3C147_split_6s.ms/SYSPOWER/table.lock")
+		produced_files.append("3C147_split_6s.ms/SYSPOWER/table.f0i")
+		produced_files.append("3C147_split_6s.ms/SYSPOWER/table.info")
+		produced_files.append("3C147_split_6s.ms/SYSPOWER/table.f0")
+		produced_files.append("3C147_split_6s.ms/STATE")
+		produced_files.append("3C147_split_6s.ms/STATE/table.dat")
+		produced_files.append("3C147_split_6s.ms/STATE/table.lock")
+		produced_files.append("3C147_split_6s.ms/STATE/table.info")
+		produced_files.append("3C147_split_6s.ms/STATE/table.f0")
+		produced_files.append("3C147_split_6s.ms/FEED")
+		produced_files.append("3C147_split_6s.ms/FEED/table.dat")
+		produced_files.append("3C147_split_6s.ms/FEED/table.lock")
+		produced_files.append("3C147_split_6s.ms/FEED/table.f0i")
+		produced_files.append("3C147_split_6s.ms/FEED/table.info")
+		produced_files.append("3C147_split_6s.ms/FEED/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f10")
+		produced_files.append("3C147_split_6s.ms/ANTENNA")
+		produced_files.append("3C147_split_6s.ms/ANTENNA/table.dat")
+		produced_files.append("3C147_split_6s.ms/ANTENNA/table.lock")
+		produced_files.append("3C147_split_6s.ms/ANTENNA/table.info")
+		produced_files.append("3C147_split_6s.ms/ANTENNA/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f18")
+		produced_files.append("3C147_split_6s.ms/table.f20")
+		produced_files.append("3C147_split_6s.ms/table.f12")
+		produced_files.append("3C147_split_6s.ms/table.f11")
+		produced_files.append("3C147_split_6s.ms/SPECTRAL_WINDOW")
+		produced_files.append("3C147_split_6s.ms/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("3C147_split_6s.ms/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("3C147_split_6s.ms/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("3C147_split_6s.ms/SPECTRAL_WINDOW/table.info")
+		produced_files.append("3C147_split_6s.ms/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("3C147_split_6s.ms/HISTORY")
+		produced_files.append("3C147_split_6s.ms/HISTORY/table.dat")
+		produced_files.append("3C147_split_6s.ms/HISTORY/table.lock")
+		produced_files.append("3C147_split_6s.ms/HISTORY/table.info")
+		produced_files.append("3C147_split_6s.ms/HISTORY/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f23")
+		produced_files.append("3C147_split_6s.ms/table.f20_TSM0")
+		produced_files.append("3C147_split_6s.ms/table.f16")
+		produced_files.append("3C147_split_6s.ms/table.f1")
+		produced_files.append("3C147_split_6s.ms/FIELD")
+		produced_files.append("3C147_split_6s.ms/FIELD/table.dat")
+		produced_files.append("3C147_split_6s.ms/FIELD/table.lock")
+		produced_files.append("3C147_split_6s.ms/FIELD/table.f0i")
+		produced_files.append("3C147_split_6s.ms/FIELD/table.info")
+		produced_files.append("3C147_split_6s.ms/FIELD/table.f0")
+		produced_files.append("3C147_split_6s.ms/DATA_DESCRIPTION")
+		produced_files.append("3C147_split_6s.ms/DATA_DESCRIPTION/table.dat")
+		produced_files.append("3C147_split_6s.ms/DATA_DESCRIPTION/table.lock")
+		produced_files.append("3C147_split_6s.ms/DATA_DESCRIPTION/table.info")
+		produced_files.append("3C147_split_6s.ms/DATA_DESCRIPTION/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f14")
+		produced_files.append("3C147_split_6s.ms/table.f6")
+		produced_files.append("3C147_split_6s.ms/SORTED_TABLE")
+		produced_files.append("3C147_split_6s.ms/SORTED_TABLE/table.dat")
+		produced_files.append("3C147_split_6s.ms/SORTED_TABLE/table.info")
+		produced_files.append("3C147_split_6s.ms/POINTING")
+		produced_files.append("3C147_split_6s.ms/POINTING/table.dat")
+		produced_files.append("3C147_split_6s.ms/POINTING/table.lock")
+		produced_files.append("3C147_split_6s.ms/POINTING/table.f0i")
+		produced_files.append("3C147_split_6s.ms/POINTING/table.info")
+		produced_files.append("3C147_split_6s.ms/POINTING/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f3")
+		produced_files.append("3C147_split_6s.ms/table.f15")
+		produced_files.append("3C147_split_6s.ms/table.f22")
+		produced_files.append("3C147_split_6s.ms/table.f4")
+		produced_files.append("3C147_split_6s.ms/table.f22_TSM1")
+		produced_files.append("3C147_split_6s.ms/table.f5")
+		produced_files.append("3C147_split_6s.ms/table.info")
+		produced_files.append("3C147_split_6s.ms/PROCESSOR")
+		produced_files.append("3C147_split_6s.ms/PROCESSOR/table.dat")
+		produced_files.append("3C147_split_6s.ms/PROCESSOR/table.lock")
+		produced_files.append("3C147_split_6s.ms/PROCESSOR/table.info")
+		produced_files.append("3C147_split_6s.ms/PROCESSOR/table.f0")
+		produced_files.append("3C147_split_6s.ms/POLARIZATION")
+		produced_files.append("3C147_split_6s.ms/POLARIZATION/table.dat")
+		produced_files.append("3C147_split_6s.ms/POLARIZATION/table.lock")
+		produced_files.append("3C147_split_6s.ms/POLARIZATION/table.f0i")
+		produced_files.append("3C147_split_6s.ms/POLARIZATION/table.info")
+		produced_files.append("3C147_split_6s.ms/POLARIZATION/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f21_TSM1")
+		produced_files.append("3C147_split_6s.ms/table.f21")
+		produced_files.append("3C147_split_6s.ms/table.f8")
+		produced_files.append("3C147_split_6s.ms/table.f23_TSM1")
+		produced_files.append("3C147_split_6s.ms/SYSCAL")
+		produced_files.append("3C147_split_6s.ms/SYSCAL/table.dat")
+		produced_files.append("3C147_split_6s.ms/SYSCAL/table.lock")
+		produced_files.append("3C147_split_6s.ms/SYSCAL/table.f0i")
+		produced_files.append("3C147_split_6s.ms/SYSCAL/table.info")
+		produced_files.append("3C147_split_6s.ms/SYSCAL/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f17")
+		produced_files.append("3C147_split_6s.ms/SOURCE")
+		produced_files.append("3C147_split_6s.ms/SOURCE/table.dat")
+		produced_files.append("3C147_split_6s.ms/SOURCE/table.lock")
+		produced_files.append("3C147_split_6s.ms/SOURCE/table.f0i")
+		produced_files.append("3C147_split_6s.ms/SOURCE/table.info")
+		produced_files.append("3C147_split_6s.ms/SOURCE/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f9")
+		produced_files.append("3C147_split_6s.ms/CALDEVICE")
+		produced_files.append("3C147_split_6s.ms/CALDEVICE/table.dat")
+		produced_files.append("3C147_split_6s.ms/CALDEVICE/table.lock")
+		produced_files.append("3C147_split_6s.ms/CALDEVICE/table.f0i")
+		produced_files.append("3C147_split_6s.ms/CALDEVICE/table.info")
+		produced_files.append("3C147_split_6s.ms/CALDEVICE/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f17_TSM1")
+		produced_files.append("3C147_split_6s.ms/table.f13")
+		produced_files.append("3C147_split_6s.ms/OBSERVATION")
+		produced_files.append("3C147_split_6s.ms/OBSERVATION/table.dat")
+		produced_files.append("3C147_split_6s.ms/OBSERVATION/table.lock")
+		produced_files.append("3C147_split_6s.ms/OBSERVATION/table.info")
+		produced_files.append("3C147_split_6s.ms/OBSERVATION/table.f0")
+		produced_files.append("3C147_split_6s.ms/WEATHER")
+		produced_files.append("3C147_split_6s.ms/WEATHER/table.dat")
+		produced_files.append("3C147_split_6s.ms/WEATHER/table.lock")
+		produced_files.append("3C147_split_6s.ms/WEATHER/table.info")
+		produced_files.append("3C147_split_6s.ms/WEATHER/table.f0")
+		produced_files.append("3C147_split_6s.ms/table.f7")
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
+
+
 		outputvis = "3C147_split_6s.ms"
 		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outputvis))
 
@@ -403,52 +1506,430 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_53(self):
 		"""post method for "splitting calibrated data J0603+174"
 		"""
-		outputvis = "J0603_split_6s.ms"
-		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outputvis))
+		produced_files = []
+		produced_files.append("J0603_split_6s.ms")
+		produced_files.append("J0603_split_6s.ms/table.f19")
+		produced_files.append("J0603_split_6s.ms/table.f2")
+		produced_files.append("J0603_split_6s.ms/table.dat")
+		produced_files.append("J0603_split_6s.ms/table.lock")
+		produced_files.append("J0603_split_6s.ms/FLAG_CMD")
+		produced_files.append("J0603_split_6s.ms/FLAG_CMD/table.dat")
+		produced_files.append("J0603_split_6s.ms/FLAG_CMD/table.lock")
+		produced_files.append("J0603_split_6s.ms/FLAG_CMD/table.info")
+		produced_files.append("J0603_split_6s.ms/FLAG_CMD/table.f0")
+		produced_files.append("J0603_split_6s.ms/SYSPOWER")
+		produced_files.append("J0603_split_6s.ms/SYSPOWER/table.dat")
+		produced_files.append("J0603_split_6s.ms/SYSPOWER/table.lock")
+		produced_files.append("J0603_split_6s.ms/SYSPOWER/table.f0i")
+		produced_files.append("J0603_split_6s.ms/SYSPOWER/table.info")
+		produced_files.append("J0603_split_6s.ms/SYSPOWER/table.f0")
+		produced_files.append("J0603_split_6s.ms/STATE")
+		produced_files.append("J0603_split_6s.ms/STATE/table.dat")
+		produced_files.append("J0603_split_6s.ms/STATE/table.lock")
+		produced_files.append("J0603_split_6s.ms/STATE/table.info")
+		produced_files.append("J0603_split_6s.ms/STATE/table.f0")
+		produced_files.append("J0603_split_6s.ms/FEED")
+		produced_files.append("J0603_split_6s.ms/FEED/table.dat")
+		produced_files.append("J0603_split_6s.ms/FEED/table.lock")
+		produced_files.append("J0603_split_6s.ms/FEED/table.f0i")
+		produced_files.append("J0603_split_6s.ms/FEED/table.info")
+		produced_files.append("J0603_split_6s.ms/FEED/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f10")
+		produced_files.append("J0603_split_6s.ms/ANTENNA")
+		produced_files.append("J0603_split_6s.ms/ANTENNA/table.dat")
+		produced_files.append("J0603_split_6s.ms/ANTENNA/table.lock")
+		produced_files.append("J0603_split_6s.ms/ANTENNA/table.info")
+		produced_files.append("J0603_split_6s.ms/ANTENNA/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f18")
+		produced_files.append("J0603_split_6s.ms/table.f20")
+		produced_files.append("J0603_split_6s.ms/table.f12")
+		produced_files.append("J0603_split_6s.ms/table.f11")
+		produced_files.append("J0603_split_6s.ms/SPECTRAL_WINDOW")
+		produced_files.append("J0603_split_6s.ms/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("J0603_split_6s.ms/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("J0603_split_6s.ms/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("J0603_split_6s.ms/SPECTRAL_WINDOW/table.info")
+		produced_files.append("J0603_split_6s.ms/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("J0603_split_6s.ms/HISTORY")
+		produced_files.append("J0603_split_6s.ms/HISTORY/table.dat")
+		produced_files.append("J0603_split_6s.ms/HISTORY/table.lock")
+		produced_files.append("J0603_split_6s.ms/HISTORY/table.info")
+		produced_files.append("J0603_split_6s.ms/HISTORY/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f23")
+		produced_files.append("J0603_split_6s.ms/table.f20_TSM0")
+		produced_files.append("J0603_split_6s.ms/table.f16")
+		produced_files.append("J0603_split_6s.ms/table.f1")
+		produced_files.append("J0603_split_6s.ms/FIELD")
+		produced_files.append("J0603_split_6s.ms/FIELD/table.dat")
+		produced_files.append("J0603_split_6s.ms/FIELD/table.lock")
+		produced_files.append("J0603_split_6s.ms/FIELD/table.f0i")
+		produced_files.append("J0603_split_6s.ms/FIELD/table.info")
+		produced_files.append("J0603_split_6s.ms/FIELD/table.f0")
+		produced_files.append("J0603_split_6s.ms/DATA_DESCRIPTION")
+		produced_files.append("J0603_split_6s.ms/DATA_DESCRIPTION/table.dat")
+		produced_files.append("J0603_split_6s.ms/DATA_DESCRIPTION/table.lock")
+		produced_files.append("J0603_split_6s.ms/DATA_DESCRIPTION/table.info")
+		produced_files.append("J0603_split_6s.ms/DATA_DESCRIPTION/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f14")
+		produced_files.append("J0603_split_6s.ms/table.f6")
+		produced_files.append("J0603_split_6s.ms/SORTED_TABLE")
+		produced_files.append("J0603_split_6s.ms/SORTED_TABLE/table.dat")
+		produced_files.append("J0603_split_6s.ms/SORTED_TABLE/table.info")
+		produced_files.append("J0603_split_6s.ms/POINTING")
+		produced_files.append("J0603_split_6s.ms/POINTING/table.dat")
+		produced_files.append("J0603_split_6s.ms/POINTING/table.lock")
+		produced_files.append("J0603_split_6s.ms/POINTING/table.f0i")
+		produced_files.append("J0603_split_6s.ms/POINTING/table.info")
+		produced_files.append("J0603_split_6s.ms/POINTING/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f3")
+		produced_files.append("J0603_split_6s.ms/table.f15")
+		produced_files.append("J0603_split_6s.ms/table.f22")
+		produced_files.append("J0603_split_6s.ms/table.f4")
+		produced_files.append("J0603_split_6s.ms/table.f22_TSM1")
+		produced_files.append("J0603_split_6s.ms/table.f5")
+		produced_files.append("J0603_split_6s.ms/table.info")
+		produced_files.append("J0603_split_6s.ms/PROCESSOR")
+		produced_files.append("J0603_split_6s.ms/PROCESSOR/table.dat")
+		produced_files.append("J0603_split_6s.ms/PROCESSOR/table.lock")
+		produced_files.append("J0603_split_6s.ms/PROCESSOR/table.info")
+		produced_files.append("J0603_split_6s.ms/PROCESSOR/table.f0")
+		produced_files.append("J0603_split_6s.ms/POLARIZATION")
+		produced_files.append("J0603_split_6s.ms/POLARIZATION/table.dat")
+		produced_files.append("J0603_split_6s.ms/POLARIZATION/table.lock")
+		produced_files.append("J0603_split_6s.ms/POLARIZATION/table.f0i")
+		produced_files.append("J0603_split_6s.ms/POLARIZATION/table.info")
+		produced_files.append("J0603_split_6s.ms/POLARIZATION/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f21_TSM1")
+		produced_files.append("J0603_split_6s.ms/table.f21")
+		produced_files.append("J0603_split_6s.ms/table.f8")
+		produced_files.append("J0603_split_6s.ms/table.f23_TSM1")
+		produced_files.append("J0603_split_6s.ms/SYSCAL")
+		produced_files.append("J0603_split_6s.ms/SYSCAL/table.dat")
+		produced_files.append("J0603_split_6s.ms/SYSCAL/table.lock")
+		produced_files.append("J0603_split_6s.ms/SYSCAL/table.f0i")
+		produced_files.append("J0603_split_6s.ms/SYSCAL/table.info")
+		produced_files.append("J0603_split_6s.ms/SYSCAL/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f17")
+		produced_files.append("J0603_split_6s.ms/SOURCE")
+		produced_files.append("J0603_split_6s.ms/SOURCE/table.dat")
+		produced_files.append("J0603_split_6s.ms/SOURCE/table.lock")
+		produced_files.append("J0603_split_6s.ms/SOURCE/table.f0i")
+		produced_files.append("J0603_split_6s.ms/SOURCE/table.info")
+		produced_files.append("J0603_split_6s.ms/SOURCE/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f9")
+		produced_files.append("J0603_split_6s.ms/CALDEVICE")
+		produced_files.append("J0603_split_6s.ms/CALDEVICE/table.dat")
+		produced_files.append("J0603_split_6s.ms/CALDEVICE/table.lock")
+		produced_files.append("J0603_split_6s.ms/CALDEVICE/table.f0i")
+		produced_files.append("J0603_split_6s.ms/CALDEVICE/table.info")
+		produced_files.append("J0603_split_6s.ms/CALDEVICE/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f17_TSM1")
+		produced_files.append("J0603_split_6s.ms/table.f13")
+		produced_files.append("J0603_split_6s.ms/OBSERVATION")
+		produced_files.append("J0603_split_6s.ms/OBSERVATION/table.dat")
+		produced_files.append("J0603_split_6s.ms/OBSERVATION/table.lock")
+		produced_files.append("J0603_split_6s.ms/OBSERVATION/table.info")
+		produced_files.append("J0603_split_6s.ms/OBSERVATION/table.f0")
+		produced_files.append("J0603_split_6s.ms/WEATHER")
+		produced_files.append("J0603_split_6s.ms/WEATHER/table.dat")
+		produced_files.append("J0603_split_6s.ms/WEATHER/table.lock")
+		produced_files.append("J0603_split_6s.ms/WEATHER/table.info")
+		produced_files.append("J0603_split_6s.ms/WEATHER/table.f0")
+		produced_files.append("J0603_split_6s.ms/table.f7")
 
-		remove = []
-		remove.append("%s/%s" % (os.getcwd(), outputvis))
-		#RegressionHelper.data_remove(remove)
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_54(self):
 		"""post method for "splitting calibrated data G192"
 		"""
-		outputvis = "G192_split_6s.ms"
-		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outputvis))
+		produced_files = []
+		produced_files.append("G192_split_6s.ms")
+		produced_files.append("G192_split_6s.ms/table.f19")
+		produced_files.append("G192_split_6s.ms/table.f2")
+		produced_files.append("G192_split_6s.ms/table.dat")
+		produced_files.append("G192_split_6s.ms/table.lock")
+		produced_files.append("G192_split_6s.ms/FLAG_CMD")
+		produced_files.append("G192_split_6s.ms/FLAG_CMD/table.dat")
+		produced_files.append("G192_split_6s.ms/FLAG_CMD/table.lock")
+		produced_files.append("G192_split_6s.ms/FLAG_CMD/table.info")
+		produced_files.append("G192_split_6s.ms/FLAG_CMD/table.f0")
+		produced_files.append("G192_split_6s.ms/SYSPOWER")
+		produced_files.append("G192_split_6s.ms/SYSPOWER/table.dat")
+		produced_files.append("G192_split_6s.ms/SYSPOWER/table.lock")
+		produced_files.append("G192_split_6s.ms/SYSPOWER/table.f0i")
+		produced_files.append("G192_split_6s.ms/SYSPOWER/table.info")
+		produced_files.append("G192_split_6s.ms/SYSPOWER/table.f0")
+		produced_files.append("G192_split_6s.ms/STATE")
+		produced_files.append("G192_split_6s.ms/STATE/table.dat")
+		produced_files.append("G192_split_6s.ms/STATE/table.lock")
+		produced_files.append("G192_split_6s.ms/STATE/table.info")
+		produced_files.append("G192_split_6s.ms/STATE/table.f0")
+		produced_files.append("G192_split_6s.ms/FEED")
+		produced_files.append("G192_split_6s.ms/FEED/table.dat")
+		produced_files.append("G192_split_6s.ms/FEED/table.lock")
+		produced_files.append("G192_split_6s.ms/FEED/table.f0i")
+		produced_files.append("G192_split_6s.ms/FEED/table.info")
+		produced_files.append("G192_split_6s.ms/FEED/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f10")
+		produced_files.append("G192_split_6s.ms/ANTENNA")
+		produced_files.append("G192_split_6s.ms/ANTENNA/table.dat")
+		produced_files.append("G192_split_6s.ms/ANTENNA/table.lock")
+		produced_files.append("G192_split_6s.ms/ANTENNA/table.info")
+		produced_files.append("G192_split_6s.ms/ANTENNA/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f18")
+		produced_files.append("G192_split_6s.ms/table.f20")
+		produced_files.append("G192_split_6s.ms/table.f12")
+		produced_files.append("G192_split_6s.ms/table.f11")
+		produced_files.append("G192_split_6s.ms/SPECTRAL_WINDOW")
+		produced_files.append("G192_split_6s.ms/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("G192_split_6s.ms/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("G192_split_6s.ms/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("G192_split_6s.ms/SPECTRAL_WINDOW/table.info")
+		produced_files.append("G192_split_6s.ms/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("G192_split_6s.ms/HISTORY")
+		produced_files.append("G192_split_6s.ms/HISTORY/table.dat")
+		produced_files.append("G192_split_6s.ms/HISTORY/table.lock")
+		produced_files.append("G192_split_6s.ms/HISTORY/table.info")
+		produced_files.append("G192_split_6s.ms/HISTORY/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f23")
+		produced_files.append("G192_split_6s.ms/table.f20_TSM0")
+		produced_files.append("G192_split_6s.ms/table.f16")
+		produced_files.append("G192_split_6s.ms/table.f1")
+		produced_files.append("G192_split_6s.ms/FIELD")
+		produced_files.append("G192_split_6s.ms/FIELD/table.dat")
+		produced_files.append("G192_split_6s.ms/FIELD/table.lock")
+		produced_files.append("G192_split_6s.ms/FIELD/table.f0i")
+		produced_files.append("G192_split_6s.ms/FIELD/table.info")
+		produced_files.append("G192_split_6s.ms/FIELD/table.f0")
+		produced_files.append("G192_split_6s.ms/DATA_DESCRIPTION")
+		produced_files.append("G192_split_6s.ms/DATA_DESCRIPTION/table.dat")
+		produced_files.append("G192_split_6s.ms/DATA_DESCRIPTION/table.lock")
+		produced_files.append("G192_split_6s.ms/DATA_DESCRIPTION/table.info")
+		produced_files.append("G192_split_6s.ms/DATA_DESCRIPTION/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f14")
+		produced_files.append("G192_split_6s.ms/table.f6")
+		produced_files.append("G192_split_6s.ms/SORTED_TABLE")
+		produced_files.append("G192_split_6s.ms/SORTED_TABLE/table.dat")
+		produced_files.append("G192_split_6s.ms/SORTED_TABLE/table.info")
+		produced_files.append("G192_split_6s.ms/POINTING")
+		produced_files.append("G192_split_6s.ms/POINTING/table.dat")
+		produced_files.append("G192_split_6s.ms/POINTING/table.lock")
+		produced_files.append("G192_split_6s.ms/POINTING/table.f0i")
+		produced_files.append("G192_split_6s.ms/POINTING/table.info")
+		produced_files.append("G192_split_6s.ms/POINTING/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f3")
+		produced_files.append("G192_split_6s.ms/table.f15")
+		produced_files.append("G192_split_6s.ms/table.f22")
+		produced_files.append("G192_split_6s.ms/table.f4")
+		produced_files.append("G192_split_6s.ms/table.f22_TSM1")
+		produced_files.append("G192_split_6s.ms/table.f5")
+		produced_files.append("G192_split_6s.ms/table.info")
+		produced_files.append("G192_split_6s.ms/PROCESSOR")
+		produced_files.append("G192_split_6s.ms/PROCESSOR/table.dat")
+		produced_files.append("G192_split_6s.ms/PROCESSOR/table.lock")
+		produced_files.append("G192_split_6s.ms/PROCESSOR/table.info")
+		produced_files.append("G192_split_6s.ms/PROCESSOR/table.f0")
+		produced_files.append("G192_split_6s.ms/POLARIZATION")
+		produced_files.append("G192_split_6s.ms/POLARIZATION/table.dat")
+		produced_files.append("G192_split_6s.ms/POLARIZATION/table.lock")
+		produced_files.append("G192_split_6s.ms/POLARIZATION/table.f0i")
+		produced_files.append("G192_split_6s.ms/POLARIZATION/table.info")
+		produced_files.append("G192_split_6s.ms/POLARIZATION/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f21_TSM1")
+		produced_files.append("G192_split_6s.ms/table.f21")
+		produced_files.append("G192_split_6s.ms/table.f8")
+		produced_files.append("G192_split_6s.ms/table.f23_TSM1")
+		produced_files.append("G192_split_6s.ms/SYSCAL")
+		produced_files.append("G192_split_6s.ms/SYSCAL/table.dat")
+		produced_files.append("G192_split_6s.ms/SYSCAL/table.lock")
+		produced_files.append("G192_split_6s.ms/SYSCAL/table.f0i")
+		produced_files.append("G192_split_6s.ms/SYSCAL/table.info")
+		produced_files.append("G192_split_6s.ms/SYSCAL/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f17")
+		produced_files.append("G192_split_6s.ms/SOURCE")
+		produced_files.append("G192_split_6s.ms/SOURCE/table.dat")
+		produced_files.append("G192_split_6s.ms/SOURCE/table.lock")
+		produced_files.append("G192_split_6s.ms/SOURCE/table.f0i")
+		produced_files.append("G192_split_6s.ms/SOURCE/table.info")
+		produced_files.append("G192_split_6s.ms/SOURCE/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f9")
+		produced_files.append("G192_split_6s.ms/CALDEVICE")
+		produced_files.append("G192_split_6s.ms/CALDEVICE/table.dat")
+		produced_files.append("G192_split_6s.ms/CALDEVICE/table.lock")
+		produced_files.append("G192_split_6s.ms/CALDEVICE/table.f0i")
+		produced_files.append("G192_split_6s.ms/CALDEVICE/table.info")
+		produced_files.append("G192_split_6s.ms/CALDEVICE/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f17_TSM1")
+		produced_files.append("G192_split_6s.ms/table.f13")
+		produced_files.append("G192_split_6s.ms/OBSERVATION")
+		produced_files.append("G192_split_6s.ms/OBSERVATION/table.dat")
+		produced_files.append("G192_split_6s.ms/OBSERVATION/table.lock")
+		produced_files.append("G192_split_6s.ms/OBSERVATION/table.info")
+		produced_files.append("G192_split_6s.ms/OBSERVATION/table.f0")
+		produced_files.append("G192_split_6s.ms/WEATHER")
+		produced_files.append("G192_split_6s.ms/WEATHER/table.dat")
+		produced_files.append("G192_split_6s.ms/WEATHER/table.lock")
+		produced_files.append("G192_split_6s.ms/WEATHER/table.info")
+		produced_files.append("G192_split_6s.ms/WEATHER/table.f0")
+		produced_files.append("G192_split_6s.ms/table.f7")
 
-		remove = []
-		remove.append("%s/%s" % (os.getcwd(), outputvis))
-		#RegressionHelper.data_remove(remove)
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_55(self):
 		"""post method for "splitting calibrated data 3C84"
 		"""
-		outputvis = "3C84_split_6s.ms"
-		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outputvis))
+		produced_files = []
+		produced_files.append("3C84_split_6s.ms")
+		produced_files.append("3C84_split_6s.ms/table.f19")
+		produced_files.append("3C84_split_6s.ms/table.f2")
+		produced_files.append("3C84_split_6s.ms/table.dat")
+		produced_files.append("3C84_split_6s.ms/table.lock")
+		produced_files.append("3C84_split_6s.ms/FLAG_CMD")
+		produced_files.append("3C84_split_6s.ms/FLAG_CMD/table.dat")
+		produced_files.append("3C84_split_6s.ms/FLAG_CMD/table.lock")
+		produced_files.append("3C84_split_6s.ms/FLAG_CMD/table.info")
+		produced_files.append("3C84_split_6s.ms/FLAG_CMD/table.f0")
+		produced_files.append("3C84_split_6s.ms/SYSPOWER")
+		produced_files.append("3C84_split_6s.ms/SYSPOWER/table.dat")
+		produced_files.append("3C84_split_6s.ms/SYSPOWER/table.lock")
+		produced_files.append("3C84_split_6s.ms/SYSPOWER/table.f0i")
+		produced_files.append("3C84_split_6s.ms/SYSPOWER/table.info")
+		produced_files.append("3C84_split_6s.ms/SYSPOWER/table.f0")
+		produced_files.append("3C84_split_6s.ms/STATE")
+		produced_files.append("3C84_split_6s.ms/STATE/table.dat")
+		produced_files.append("3C84_split_6s.ms/STATE/table.lock")
+		produced_files.append("3C84_split_6s.ms/STATE/table.info")
+		produced_files.append("3C84_split_6s.ms/STATE/table.f0")
+		produced_files.append("3C84_split_6s.ms/FEED")
+		produced_files.append("3C84_split_6s.ms/FEED/table.dat")
+		produced_files.append("3C84_split_6s.ms/FEED/table.lock")
+		produced_files.append("3C84_split_6s.ms/FEED/table.f0i")
+		produced_files.append("3C84_split_6s.ms/FEED/table.info")
+		produced_files.append("3C84_split_6s.ms/FEED/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f10")
+		produced_files.append("3C84_split_6s.ms/ANTENNA")
+		produced_files.append("3C84_split_6s.ms/ANTENNA/table.dat")
+		produced_files.append("3C84_split_6s.ms/ANTENNA/table.lock")
+		produced_files.append("3C84_split_6s.ms/ANTENNA/table.info")
+		produced_files.append("3C84_split_6s.ms/ANTENNA/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f18")
+		produced_files.append("3C84_split_6s.ms/table.f20")
+		produced_files.append("3C84_split_6s.ms/table.f12")
+		produced_files.append("3C84_split_6s.ms/table.f11")
+		produced_files.append("3C84_split_6s.ms/SPECTRAL_WINDOW")
+		produced_files.append("3C84_split_6s.ms/SPECTRAL_WINDOW/table.dat")
+		produced_files.append("3C84_split_6s.ms/SPECTRAL_WINDOW/table.lock")
+		produced_files.append("3C84_split_6s.ms/SPECTRAL_WINDOW/table.f0i")
+		produced_files.append("3C84_split_6s.ms/SPECTRAL_WINDOW/table.info")
+		produced_files.append("3C84_split_6s.ms/SPECTRAL_WINDOW/table.f0")
+		produced_files.append("3C84_split_6s.ms/HISTORY")
+		produced_files.append("3C84_split_6s.ms/HISTORY/table.dat")
+		produced_files.append("3C84_split_6s.ms/HISTORY/table.lock")
+		produced_files.append("3C84_split_6s.ms/HISTORY/table.info")
+		produced_files.append("3C84_split_6s.ms/HISTORY/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f23")
+		produced_files.append("3C84_split_6s.ms/table.f20_TSM0")
+		produced_files.append("3C84_split_6s.ms/table.f16")
+		produced_files.append("3C84_split_6s.ms/table.f1")
+		produced_files.append("3C84_split_6s.ms/FIELD")
+		produced_files.append("3C84_split_6s.ms/FIELD/table.dat")
+		produced_files.append("3C84_split_6s.ms/FIELD/table.lock")
+		produced_files.append("3C84_split_6s.ms/FIELD/table.f0i")
+		produced_files.append("3C84_split_6s.ms/FIELD/table.info")
+		produced_files.append("3C84_split_6s.ms/FIELD/table.f0")
+		produced_files.append("3C84_split_6s.ms/DATA_DESCRIPTION")
+		produced_files.append("3C84_split_6s.ms/DATA_DESCRIPTION/table.dat")
+		produced_files.append("3C84_split_6s.ms/DATA_DESCRIPTION/table.lock")
+		produced_files.append("3C84_split_6s.ms/DATA_DESCRIPTION/table.info")
+		produced_files.append("3C84_split_6s.ms/DATA_DESCRIPTION/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f14")
+		produced_files.append("3C84_split_6s.ms/table.f6")
+		produced_files.append("3C84_split_6s.ms/SORTED_TABLE")
+		produced_files.append("3C84_split_6s.ms/SORTED_TABLE/table.dat")
+		produced_files.append("3C84_split_6s.ms/SORTED_TABLE/table.info")
+		produced_files.append("3C84_split_6s.ms/POINTING")
+		produced_files.append("3C84_split_6s.ms/POINTING/table.dat")
+		produced_files.append("3C84_split_6s.ms/POINTING/table.lock")
+		produced_files.append("3C84_split_6s.ms/POINTING/table.f0i")
+		produced_files.append("3C84_split_6s.ms/POINTING/table.info")
+		produced_files.append("3C84_split_6s.ms/POINTING/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f3")
+		produced_files.append("3C84_split_6s.ms/table.f15")
+		produced_files.append("3C84_split_6s.ms/table.f22")
+		produced_files.append("3C84_split_6s.ms/table.f4")
+		produced_files.append("3C84_split_6s.ms/table.f22_TSM1")
+		produced_files.append("3C84_split_6s.ms/table.f5")
+		produced_files.append("3C84_split_6s.ms/table.info")
+		produced_files.append("3C84_split_6s.ms/PROCESSOR")
+		produced_files.append("3C84_split_6s.ms/PROCESSOR/table.dat")
+		produced_files.append("3C84_split_6s.ms/PROCESSOR/table.lock")
+		produced_files.append("3C84_split_6s.ms/PROCESSOR/table.info")
+		produced_files.append("3C84_split_6s.ms/PROCESSOR/table.f0")
+		produced_files.append("3C84_split_6s.ms/POLARIZATION")
+		produced_files.append("3C84_split_6s.ms/POLARIZATION/table.dat")
+		produced_files.append("3C84_split_6s.ms/POLARIZATION/table.lock")
+		produced_files.append("3C84_split_6s.ms/POLARIZATION/table.f0i")
+		produced_files.append("3C84_split_6s.ms/POLARIZATION/table.info")
+		produced_files.append("3C84_split_6s.ms/POLARIZATION/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f21_TSM1")
+		produced_files.append("3C84_split_6s.ms/table.f21")
+		produced_files.append("3C84_split_6s.ms/table.f8")
+		produced_files.append("3C84_split_6s.ms/table.f23_TSM1")
+		produced_files.append("3C84_split_6s.ms/SYSCAL")
+		produced_files.append("3C84_split_6s.ms/SYSCAL/table.dat")
+		produced_files.append("3C84_split_6s.ms/SYSCAL/table.lock")
+		produced_files.append("3C84_split_6s.ms/SYSCAL/table.f0i")
+		produced_files.append("3C84_split_6s.ms/SYSCAL/table.info")
+		produced_files.append("3C84_split_6s.ms/SYSCAL/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f17")
+		produced_files.append("3C84_split_6s.ms/SOURCE")
+		produced_files.append("3C84_split_6s.ms/SOURCE/table.dat")
+		produced_files.append("3C84_split_6s.ms/SOURCE/table.lock")
+		produced_files.append("3C84_split_6s.ms/SOURCE/table.f0i")
+		produced_files.append("3C84_split_6s.ms/SOURCE/table.info")
+		produced_files.append("3C84_split_6s.ms/SOURCE/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f9")
+		produced_files.append("3C84_split_6s.ms/CALDEVICE")
+		produced_files.append("3C84_split_6s.ms/CALDEVICE/table.dat")
+		produced_files.append("3C84_split_6s.ms/CALDEVICE/table.lock")
+		produced_files.append("3C84_split_6s.ms/CALDEVICE/table.f0i")
+		produced_files.append("3C84_split_6s.ms/CALDEVICE/table.info")
+		produced_files.append("3C84_split_6s.ms/CALDEVICE/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f17_TSM1")
+		produced_files.append("3C84_split_6s.ms/table.f13")
+		produced_files.append("3C84_split_6s.ms/OBSERVATION")
+		produced_files.append("3C84_split_6s.ms/OBSERVATION/table.dat")
+		produced_files.append("3C84_split_6s.ms/OBSERVATION/table.lock")
+		produced_files.append("3C84_split_6s.ms/OBSERVATION/table.info")
+		produced_files.append("3C84_split_6s.ms/OBSERVATION/table.f0")
+		produced_files.append("3C84_split_6s.ms/WEATHER")
+		produced_files.append("3C84_split_6s.ms/WEATHER/table.dat")
+		produced_files.append("3C84_split_6s.ms/WEATHER/table.lock")
+		produced_files.append("3C84_split_6s.ms/WEATHER/table.info")
+		produced_files.append("3C84_split_6s.ms/WEATHER/table.f0")
+		produced_files.append("3C84_split_6s.ms/table.f7")
 
-		remove = []
-		remove.append("%s/%s" % (os.getcwd(), outputvis))
-		#RegressionHelper.data_remove(remove)
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	def post_56(self):
 		"""post method for "single spectral window cleaning"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_57(self):
 		"""post method for "lower frequency baseband cleaning"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_58(self):
 		"""post method for "upper frequency baseband cleaning"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_59(self):
 		"""post method for "basebands mfs taylor cleaning"
 		"""
-		assert True, "dummy assert"
+		raise NotImplementedError("post test method not implemented")
 
 	def post_60(self):
 		"""post method for "spectral index image filtering"
@@ -456,19 +1937,11 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		outfile = "imgG192_6s_spw0-63_mfs2.image.alpha.filtered"
 		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile))
 
-		remove = []
-		remove.append("%s/%s" % (os.getcwd(), outfile))
-		#RegressionHelper.data_remove(remove)
-
 	def post_61(self):
 		"""post method for "spectral index probable errors filtering"
 		"""
 		outfile = "imgG192_6s_spw0-63_mfs2.image.alpha.error.filtered"
 		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile))
-
-		remove = []
-		remove.append("%s/%s" % (os.getcwd(), outfile))
-		#RegressionHelper.data_remove(remove)
 
 	def post_62(self):
 		"""post method for "intensity weighted mean spectral analysis"
@@ -478,11 +1951,6 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		
 		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile_tt1))
 		RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile_tt0))
-
-		remove = []
-		remove.append("%s/%s" % (os.getcwd(), outfile_tt1))
-		remove.append("%s/%s" % (os.getcwd(), outfile_tt0))
-		#RegressionHelper.data_remove(remove)
 
 if __name__ == "__main__":
 	method_name = globals()["exec_method"]

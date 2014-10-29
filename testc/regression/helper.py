@@ -65,6 +65,50 @@ class RegressionHelper():
 	@staticmethod
 	def assert_file(file):
 		assert os.access(file, os.F_OK), "%s not exists" % file
+		
+	@staticmethod
+	def assert_files(basepath = "", files):
+		for file in files:
+			RegressionHelper.assert_file("%s/%s" % (basepath, file))
+			
+	@staticmethod
+	def assert_produced_files(directory):
+		produced_files = []
+		produced_files.append("%s/", directory)
+		produced_files.append("%s/table.dat", directory)
+		produced_files.append("%s/table.lock", directory)
+		produced_files.append("%s/ANTENNA", directory)
+		produced_files.append("%s/ANTENNA/table.dat", directory)
+		produced_files.append("%s/ANTENNA/table.lock", directory)
+		produced_files.append("%s/ANTENNA/table.info", directory)
+		produced_files.append("%s/ANTENNA/table.f0", directory)
+		produced_files.append("%s/SPECTRAL_WINDOW", directory)
+		produced_files.append("%s/SPECTRAL_WINDOW/table.dat", directory)
+		produced_files.append("%s/SPECTRAL_WINDOW/table.lock", directory)
+		produced_files.append("%s/SPECTRAL_WINDOW/table.f0i", directory)
+		produced_files.append("%s/SPECTRAL_WINDOW/table.info", directory)
+		produced_files.append("%s/SPECTRAL_WINDOW/table.f0", directory)
+		produced_files.append("%s/HISTORY", directory)
+		produced_files.append("%s/HISTORY/table.dat", directory)
+		produced_files.append("%s/HISTORY/table.lock", directory)
+		produced_files.append("%s/HISTORY/table.info", directory)
+		produced_files.append("%s/HISTORY/table.f0", directory)
+		produced_files.append("%s/FIELD", directory)
+		produced_files.append("%s/FIELD/table.dat", directory)
+		produced_files.append("%s/FIELD/table.lock", directory)
+		produced_files.append("%s/FIELD/table.f0i", directory)
+		produced_files.append("%s/FIELD/table.info", directory)
+		produced_files.append("%s/FIELD/table.f0", directory)
+		produced_files.append("%s/table.f0i", directory)
+		produced_files.append("%s/table.info", directory)
+		produced_files.append("%s/OBSERVATION", directory)
+		produced_files.append("%s/OBSERVATION/table.dat", directory)
+		produced_files.append("%s/OBSERVATION/table.lock", directory)
+		produced_files.append("%s/OBSERVATION/table.info", directory)
+		produced_files.append("%s/OBSERVATION/table.f0", directory)
+		produced_files.append("%s/table.f0", directory)
+
+		RegressionHelper.assert_files(os.getcwd(), produced_files)
 
 	@staticmethod
 	def locate_data(file):
