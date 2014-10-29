@@ -67,7 +67,7 @@ class RegressionHelper():
 		assert os.access(file, os.F_OK), "%s not exists" % file
 		
 	@staticmethod
-	def assert_files(basepath = "", files):
+	def assert_files(files, basepath = ""):
 		for file in files:
 			RegressionHelper.assert_file("%s/%s" % (basepath, file))
 			
