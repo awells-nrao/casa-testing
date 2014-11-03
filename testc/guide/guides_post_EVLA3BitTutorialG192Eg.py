@@ -13,14 +13,24 @@ assert globals().has_key("IPython"), "IPython environment is needed for this mod
 assert globals().has_key("casa"), "CASA environment is needed for this module (%s)" % __file__
 
 import os
+import time
+from contextlib import contextmanager
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import regressionLogger
 
-import time
+from numpy import count_nonzero
 
 __test__ = False
 __all__ = ["Post_Test_EVLA3BitTutorialG192Eg"]
+
+@contextmanager
+def msfile(file):
+	table_instance = tbtool()
+	table_instance.open(file)
+	yield table_instance
+	table_instance.close()
+	del table_instance
 
 class Post_Test_EVLA3BitTutorialG192Eg():
 	"""Post class for EVLA_3-bit_Tutorial_G192 casa guide
@@ -62,12 +72,26 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_03(self):
 		"""post method for "bandpass calibrator analysis flagging"
 		"""
-		raise NotImplementedError("post test method not implemented")
+		mset = "%s/G192_6s.ms" % os.getcwd()
+		nflag_rows = 0
+		
+		with msfile(mset) as table:
+			nflag_rows = count_nonzero(table.getcol("FLAG_ROW"))
+		
+		assert nflag_rows > 0, "No FLAG_ROWS in %s" % mset
+		assert nflag_rows == 2909568, "The number of FLAG_ROWS (%s) doesn't match to the expected one" % nflag_rows
 
 	def post_04(self):
 		"""post method for "RFI phase calibrator flagging"
 		"""
-		raise NotImplementedError("post test method not implemented")
+		mset = "%s/G192_6s.ms" % os.getcwd()
+		nflag_rows = 0
+		
+		with msfile(mset) as table:
+			nflag_rows = count_nonzero(table.getcol("FLAG_ROW"))
+		
+		assert nflag_rows > 0, "No FLAG_ROWS in %s" % mset
+		assert nflag_rows == 2909568, "The number of FLAG_ROWS (%s) doesn't match to the expected one" % nflag_rows
 
 	def post_05(self):
 		"""post method for "splitting good and bad data"
