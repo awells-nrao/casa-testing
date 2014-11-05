@@ -70,50 +70,11 @@ class RegressionHelper():
 	def assert_files(files, basepath = ""):
 		for file in files:
 			RegressionHelper.assert_file("%s/%s" % (basepath, file))
-			
-	@staticmethod
-	def assert_produced_files(directory):
-		produced_files = []
-		produced_files.append("%s/", directory)
-		produced_files.append("%s/table.dat", directory)
-		produced_files.append("%s/table.lock", directory)
-		produced_files.append("%s/ANTENNA", directory)
-		produced_files.append("%s/ANTENNA/table.dat", directory)
-		produced_files.append("%s/ANTENNA/table.lock", directory)
-		produced_files.append("%s/ANTENNA/table.info", directory)
-		produced_files.append("%s/ANTENNA/table.f0", directory)
-		produced_files.append("%s/SPECTRAL_WINDOW", directory)
-		produced_files.append("%s/SPECTRAL_WINDOW/table.dat", directory)
-		produced_files.append("%s/SPECTRAL_WINDOW/table.lock", directory)
-		produced_files.append("%s/SPECTRAL_WINDOW/table.f0i", directory)
-		produced_files.append("%s/SPECTRAL_WINDOW/table.info", directory)
-		produced_files.append("%s/SPECTRAL_WINDOW/table.f0", directory)
-		produced_files.append("%s/HISTORY", directory)
-		produced_files.append("%s/HISTORY/table.dat", directory)
-		produced_files.append("%s/HISTORY/table.lock", directory)
-		produced_files.append("%s/HISTORY/table.info", directory)
-		produced_files.append("%s/HISTORY/table.f0", directory)
-		produced_files.append("%s/FIELD", directory)
-		produced_files.append("%s/FIELD/table.dat", directory)
-		produced_files.append("%s/FIELD/table.lock", directory)
-		produced_files.append("%s/FIELD/table.f0i", directory)
-		produced_files.append("%s/FIELD/table.info", directory)
-		produced_files.append("%s/FIELD/table.f0", directory)
-		produced_files.append("%s/table.f0i", directory)
-		produced_files.append("%s/table.info", directory)
-		produced_files.append("%s/OBSERVATION", directory)
-		produced_files.append("%s/OBSERVATION/table.dat", directory)
-		produced_files.append("%s/OBSERVATION/table.lock", directory)
-		produced_files.append("%s/OBSERVATION/table.info", directory)
-		produced_files.append("%s/OBSERVATION/table.f0", directory)
-		produced_files.append("%s/table.f0", directory)
-
-		RegressionHelper.assert_files(os.getcwd(), produced_files)
-
+		
 	@staticmethod
 	def locate_data(file):
-		#module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
-		#index_file = file if file else 
+		# module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
+		# index_file = file if file else 
 		pass
 		
 	@staticmethod
@@ -145,16 +106,21 @@ class RegressionHelper():
 				os.remove(data_path)
 
 	@staticmethod
-	def md5sum(file):
+	def md5sum(objinst, on_memory = False):
 		"""Whatever fits in the current rss memory, bigger files
 		should be read in chunks of 129KB (to be implemented) if is
 		needed
 		"""
-		RegressionHelper.assert_file(file)
-		hashdigest = None
-		with open(file, 'r') as to_hash:
-			hashdigest = hashlib.md5(to_hash.read()).hexdigest()
-		return hashdigest
+		digest = None
+
+		if not on_memory:
+			RegressionHelper.assert_file(objinst)
+			with open(objinst, 'r') as to_hash:
+				digest = hashlib.md5(to_hash.read()).hexdigest()
+		else:
+			digest = hashlib.md5(objinst).hexdigest()
+
+		return digest
 
 class RegressionBase(unittest.TestCase):
 
