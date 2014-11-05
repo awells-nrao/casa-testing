@@ -77,7 +77,9 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		
 		with msfile(mset) as table:
 			nflag_rows = count_nonzero(table.getcol("FLAG_ROW"))
-		
+
+		print "#FLAG_ROWS is %s" % nflag_rows
+
 		assert nflag_rows > 0, "No FLAG_ROWS in %s" % mset
 		assert nflag_rows == 2909568, "The number of FLAG_ROWS (%s) doesn't match to the expected one" % nflag_rows
 
@@ -90,6 +92,8 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		with msfile(mset) as table:
 			nflag_rows = count_nonzero(table.getcol("FLAG_ROW"))
 		
+		print "#FLAG_ROWS is %s" % nflag_rows
+
 		assert nflag_rows > 0, "No FLAG_ROWS in %s" % mset
 		assert nflag_rows == 2909568, "The number of FLAG_ROWS (%s) doesn't match to the expected one" % nflag_rows
 
@@ -110,8 +114,13 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_07(self):
 		"""post method for "model for the flux calibrator"
 		"""
-		# check that the MODEL column in the MS exists for field 0
-		assert True, "dummy assert"
+		mset = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
+		source_model = None
+
+		with msfile(mset) as table:
+			source_model = table.getcell('SOURCE_MODEL', 0)
+
+		assert source_model, "No model at SOURCE_MODEL[0]"
 
 	def post_08(self):
 		"""post method for "determining antenna position corrections"
@@ -441,7 +450,13 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_17(self):
 		"""post method for "spectral information"
 		"""
-		raise NotImplementedError("post test method not implemented")
+		mset = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
+		source_model = None
+
+		with msfile(mset) as table:
+			source_model = table.getcell('SOURCE_MODEL', 0)
+
+		assert source_model, "No model at SOURCE_MODEL[0]"
 
 	def post_18(self):
 		"""post method for "phase only recalibration"
@@ -916,12 +931,24 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 	def post_35(self):
 		"""post method for "3C147 density model"
 		"""
-		raise NotImplementedError("post test method not implemented")
+		mset = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
+		source_model = None
+
+		with msfile(mset) as table:
+			source_model = table.getcell('SOURCE_MODEL', 0)
+
+		assert source_model, "No model at SOURCE_MODEL[0]"
 
 	def post_36(self):
 		"""post method for "3C84 spectral information column"
 		"""
-		raise NotImplementedError("post test method not implemented")
+		mset = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
+		source_model = None
+
+		with msfile(mset) as table:
+			source_model = table.getcell('SOURCE_MODEL', 0)
+
+		assert source_model, "No model at SOURCE_MODEL[0]"
 
 	def post_37(self):
 		"""post method for "initial phase calibration"
