@@ -27,15 +27,17 @@ __all__ = ["Post_Test_EVLA3BitTutorialG192Eg"]
 
 @contextmanager # add err handling?
 def mshandler(file):
+	exception = None
 	table_instance = tbtool()
-	try:
-		table_instance.open(file)
+	table_instance.open(file)
+	try:		
 		yield table_instance
-		table_instance.close()
-	except:
-		table_instance.close()
+	except Exception, e:
+		exception = e
 
+	table_instance.close()
 	del table_instance
+	raise exception
 
 class Post_Test_EVLA3BitTutorialG192Eg():
 	"""Post class for EVLA_3-bit_Tutorial_G192 casa guide
