@@ -42,7 +42,7 @@ __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "Regression
 
 regressionLogger = logging.getLogger("RegressionLogger")
 
-class RegressionInject(object):
+class RegressionInject():
 
 	def __init__(self, arg0, arg1 = None):
 		self.__module_name = arg0
