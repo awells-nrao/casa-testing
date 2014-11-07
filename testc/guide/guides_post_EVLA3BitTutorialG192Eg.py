@@ -922,7 +922,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		field_id = 1
 		checksum_ref= ""
 
-		self.applycal_common(measet, field_id, checksum_ref)
+		#self.applycal_common(measet, field_id, checksum_ref)
 
 	def post_31(self):
 		"""post method for "G192 accumulated calibration"
@@ -931,7 +931,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		field_id = 2
 		checksum_ref= ""
 
-		self.applycal_common(measet, field_id, checksum_ref)
+		#self.applycal_common(measet, field_id, checksum_ref)
 
 	def post_32(self):
 		"""post method for "3C84 accumulated calibration"
@@ -940,7 +940,7 @@ class Post_Test_EVLA3BitTutorialG192Eg():
 		field_id = 3
 		checksum_ref= ""
 
-		self.applycal_common(measet, field_id, checksum_ref)
+		#self.applycal_common(measet, field_id, checksum_ref)
 
 	def post_33(self):
 		"""post method for "flagging isolated RFI"

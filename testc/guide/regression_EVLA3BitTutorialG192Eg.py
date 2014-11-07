@@ -12,6 +12,7 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
+from testc.regression.helper import RegressionInject as inject
 from testc.regression.helper import regressionLogger
 
 __test__ = True
@@ -92,7 +93,8 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@classmethod
 	def setUpClass(cls):
-		pass
+		self.__module_help = "guides_helper_EVLA3BitTutorialG192Eg"
+		self.__module_post = "guides_post_EVLA3BitTutorialG192Eg"
 
 	def setUp(self):
 		pass
@@ -102,6 +104,13 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@classmethod
 	def tearDownClass(cls):
+		pass
+
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_00")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_00")
+	def test_xx_prototype(self):
+		"""test xx prototype"
+		"""
 		pass
 
 	#@unittest.skip("still a stub, to be implemented")

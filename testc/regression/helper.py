@@ -29,6 +29,7 @@ import shutil
 import logging
 import hashlib
 import threading
+import imp
 
 import unittest
 import nose
@@ -37,9 +38,38 @@ from testc.nose.plugin import psprofile
 from testc import regression
 
 __test__ = False
-__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regressionLogger"]
+__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "RegressionInject", "regressionLogger"]
 
 regressionLogger = logging.getLogger("RegressionLogger")
+
+class RegressionInject(object):
+
+	def __init__(self, arg0, arg1 = None):
+		self.__module_name = arg0
+		self.__method_name = arg1
+		self.__module = None
+		self.__method = None
+
+	def __call__(self, func):
+		def decorated(*args):
+			file, path, desc = imp.find_module(self.__module_name, sys.path[1:])
+			assert file, "No module %s found" % self.__module_name
+
+			regressionLogger.debug("No module %s found" % self.__module_name)
+
+			RegressionHelper.inject_casac_globals()
+			regressionLogger.debug("CASA globals 'injected'")
+
+			self.__module = imp.load_module(self.__module_name, file, path, desc)
+
+			if self.__method:
+				self.__method = getattr(self.__module, self.__method)
+				self.__method()
+			
+			return func
+
+		return decorated
+
 
 class RegressionHelper():
 
@@ -47,20 +77,8 @@ class RegressionHelper():
 		raise NotImplementedError("This class only implements static methods")
 
 	@staticmethod
-	def __is_gnulinux():
-		pass
-
-	@staticmethod
-	def working_dir(working_dir = None):
-		pass
-
-	@staticmethod
 	def casapath():
 		return os.environ.get("CASAPATH", "unset").split()[0]
-
-	@staticmethod
-	def regression_data():
-		return os.environ.get("CASA_REGRESSION_DATA", "unset")
 
 	@staticmethod
 	def assert_file(file):
@@ -76,7 +94,8 @@ class RegressionHelper():
 		# module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
 		# index_file = file if file else 
 		pass
-		
+	
+	# deprecated
 	@staticmethod
 	def base_path(file):
 		return os.path.dirname(file)
@@ -122,6 +141,30 @@ class RegressionHelper():
 
 		return digest
 
+	@staticmethod
+	def inject_casac_globals(module):
+		casac_globals = RegressionHelper.casa_console_globals()
+		for item in casac_globals.items():
+			globals()[item[0]] = item[1]
+
+	@staticmethod
+	def casa_console_globals():
+		"""Return the CASA globals of the ipython console frame stack
+		"""
+		_stack = inspect.stack()
+		_stack_flag = -1
+		_stack_frame = None
+		_stack_frame_globals = None
+
+		for _stack_level in _stack:
+			_stack_flag += 1
+			if(string.find(_stack_level[1], "ipython console")):
+				_stack_frame = sys._getframe(_stack_flag)
+				_stack_frame_globals = _stack_frame.f_globals
+
+		assert _stack_frame_globals, "No ipython console globals defined"
+		return _stack_frame_globals
+
 class RegressionBase(unittest.TestCase):
 
 	def setUp(self):
@@ -145,7 +188,7 @@ class RegressionBase(unittest.TestCase):
 		is intended to be used by child classes to resolve where
 		the class extended is locate, will return the base path
 		"""
-		module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
+		module_path =  os.path.dirname(importlib.import_module(self.__module__).__file__)
 		RegressionHelper.assert_file(module_path)
 		return module_path
 
@@ -197,6 +240,7 @@ class RegressionRunner:
 		"""Execute the regression test by using nose with the nose arguments
 		and with -d -s -v and --with-xunit (xml generation)
 		"""
+		# use imp instead of fixed package uri? not sure yet - atejeda
 		test_package = "testc.regression" if not guide else "testc.guide"
 		test_module_uri = "%s.%s" % (test_package, test)
 		test_module = importlib.import_module(test_module_uri)
