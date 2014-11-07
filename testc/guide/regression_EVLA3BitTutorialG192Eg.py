@@ -105,8 +105,8 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 	def tearDownClass(cls):
 		pass
 
-	@inject("guides_post_EVLA3BitTutorialG192Eg","post_00")
-	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_00")
+	#@inject("guides_post_EVLA3BitTutorialG192Eg","post_00")
+	#@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_00")
 	def test_00_splitting_fields_for_analysis(self):
 		"""test 00 EVLA_3-bit_Tutorial_G192 "splitting fields for analysis"
 		"""
