@@ -93,8 +93,7 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@classmethod
 	def setUpClass(cls):
-		self.__module_help = "guides_helper_EVLA3BitTutorialG192Eg"
-		self.__module_post = "guides_post_EVLA3BitTutorialG192Eg"
+		pass
 
 	def setUp(self):
 		pass
