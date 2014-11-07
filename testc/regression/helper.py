@@ -66,6 +66,7 @@ class RegressionInject():
 				self.__method = getattr(self.__module, self.__method)
 				self.__method()
 			
+			func(*args)
 			return func
 
 		return decorated
