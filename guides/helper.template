@@ -37,4 +37,4 @@ def helper_${phrase[2]}():
 #set($tabbed_content = "\t" + $content)${tabbed_content}#end #end
 
 # method_name is defined in locals(), injected
-if __name__ == "__main__": eval("%s()" % method_name)
+if __name__ == "__main__": eval("%s()" % method_name, globals(), locals())

@@ -656,4 +656,4 @@ def helper_62():
 	       outfile='imgG192_6s_spw0-63_mfs2.image.tt0.filtered')
 
 # method_name is defined in locals(), injected
-if __name__ == "__main__": eval("%s()" % method_name)
+if __name__ == "__main__": eval("%s()" % method_name, globals(), locals())

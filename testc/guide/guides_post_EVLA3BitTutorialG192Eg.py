@@ -2031,4 +2031,4 @@ def post_62():
 	RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile_tt0))
 
 # method_name is defined in locals(), injected
-if __name__ == "__main__": eval("%s()" % method_name)
+if __name__ == "__main__": eval("%s()" % method_name, globals(), locals())
