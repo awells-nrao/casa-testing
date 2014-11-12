@@ -59,11 +59,9 @@ class RegressionInject():
 			regressionLogger.debug("about to inject %s for %s, using method?: %s" % (function.__name__, self.__module_name, self.__method_name))
 
 			casa_console_globals = RegressionHelper.casa_console_globals()
+			method_name = self.__method_name
 
-			if self.__method_name:
-				casa_console_globals["cmethod"] = self.__method_name
-
-			execfile(module_path, casa_console_globals)
+			execfile(module_path, casa_console_globals, locals())
 			
 			#function(*args, **kwargs)
 			return function
