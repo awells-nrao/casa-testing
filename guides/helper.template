@@ -28,6 +28,8 @@ assert globals().has_key("casa"), "CASA environment is needed for this module (%
 
 import os
 
+__test__ = False
+
 #foreach ($phrase in $guide_phrases)
 def helper_${phrase[2]}():
 	""" "${phrase[0]}"

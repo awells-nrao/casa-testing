@@ -23,7 +23,6 @@ from testc.regression.helper import regressionLogger
 from numpy import count_nonzero
 
 __test__ = False
-__all__ = ["Post_Test_EVLA3BitTutorialG192Eg"]
 
 @contextmanager
 def mshandler(file):
@@ -118,7 +117,7 @@ def post_07():
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
-	.setjy_common(measet, checksum_ref)
+	setjy_common(measet, checksum_ref)
 
 def post_08():
 	"""post method for "determining antenna position corrections"
@@ -450,7 +449,7 @@ def post_17():
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
-	.setjy_common(measet, checksum_ref)
+	setjy_common(measet, checksum_ref)
 
 def post_18():
 	"""post method for "phase only recalibration"
@@ -899,7 +898,7 @@ def post_29():
 	field_id = 0
 	checksum_ref= ""
 
-	.applycal_common(measet, field_id, checksum_ref)
+	applycal_common(measet, field_id, checksum_ref)
 	
 def post_30():
 	"""post method for "gain accumulated calibration"
@@ -908,7 +907,7 @@ def post_30():
 	field_id = 1
 	checksum_ref= ""
 
-	#.applycal_common(measet, field_id, checksum_ref)
+	#applycal_common(measet, field_id, checksum_ref)
 
 def post_31():
 	"""post method for "G192 accumulated calibration"
@@ -917,7 +916,7 @@ def post_31():
 	field_id = 2
 	checksum_ref= ""
 
-	#.applycal_common(measet, field_id, checksum_ref)
+	#applycal_common(measet, field_id, checksum_ref)
 
 def post_32():
 	"""post method for "3C84 accumulated calibration"
@@ -926,7 +925,7 @@ def post_32():
 	field_id = 3
 	checksum_ref= ""
 
-	#.applycal_common(measet, field_id, checksum_ref)
+	#applycal_common(measet, field_id, checksum_ref)
 
 def post_33():
 	"""post method for "flagging isolated RFI"
@@ -953,14 +952,14 @@ def post_35():
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
-	.setjy_common(measet, checksum_ref)
+	setjy_common(measet, checksum_ref)
 
 def post_36():
 	"""post method for "3C84 spectral information column"
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
-	.setjy_common(measet, checksum_ref)
+	setjy_common(measet, checksum_ref)
 
 def post_37():
 	"""post method for "initial phase calibration"
@@ -1409,7 +1408,7 @@ def post_48():
 	field_id = 0
 	checksum_ref= ""
 
-	.applycal_common(measet, field_id, checksum_ref)
+	applycal_common(measet, field_id, checksum_ref)
 
 def post_49():
 	"""post method for "apply calibration tables field 1"
@@ -1418,7 +1417,7 @@ def post_49():
 	field_id = 1
 	checksum_ref= ""
 
-	#.applycal_common(measet, field_id, checksum_ref)
+	#applycal_common(measet, field_id, checksum_ref)
 
 def post_50():
 	"""post method for "apply calibration tables field 2"
@@ -1427,7 +1426,7 @@ def post_50():
 	field_id = 2
 	checksum_ref= ""
 
-	#.applycal_common(measet, field_id, checksum_ref)
+	#applycal_common(measet, field_id, checksum_ref)
 
 def post_51():
 	"""post method for "apply calibration tables field 3"
@@ -1436,7 +1435,7 @@ def post_51():
 	field_id = 3
 	checksum_ref= ""
 
-	#.applycal_common(measet, field_id, checksum_ref)
+	#applycal_common(measet, field_id, checksum_ref)
 
 def post_52():
 	"""post method for "splitting calibrated data 3C147"

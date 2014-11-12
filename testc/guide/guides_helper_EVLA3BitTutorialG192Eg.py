@@ -83,6 +83,8 @@ assert globals().has_key("casa"), "CASA environment is needed for this module (%
 
 import os
 
+__test__ = False
+
 def helper_00(): 
 	""" helper method for "splitting fields for analysis"
 	"""
