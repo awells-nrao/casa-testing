@@ -49,7 +49,7 @@ def regressionInject(module, execm = False):
 			testc_file, testc_path, testc_desc = imp.find_module("testc")
 			module_paths = sys.path + [os.path.join(testc_path, "regression"), os.path.join(testc_path, "guide")] 			
 			module_file, module_path, module_desc = imp.find_module(module, module_paths)
-			
+
 			method_name = fn.__name__
 			custom_globals = dict(globals().items() + RegressionHelper.casa_console_globals().items())
 
@@ -57,9 +57,9 @@ def regressionInject(module, execm = False):
 			execfile(module_path, custom_globals, locals())
 			fn(*args, **kwargs)
 
-		return wraps(fn)(wrapped)
-	
-	return test_injection
+	return wraps(fn)(wrapped)
+
+return test_injection
 
 class RegressionHelper():
 
