@@ -85,26 +85,25 @@ import os
 
 __test__ = False
 
-def helper_00(): 
-	""" helper method for "splitting fields for analysis"
+def test_00_splitting_fields_for_analysis():
+	""" "splitting fields for analysis"
 	"""
 	split('TVER0004.sb14459364.eb14492359.56295.26287841435.ms', outputvis='G192_6s.ms', \
 	      datacolumn='all', field='3,6,7,10', keepflags=False, spw='2~65')
 
-def helper_01(): 
-	""" helper method for "listobs on the initial data set"
+def test_01_listobs_on_the_initial_data_set():
+	""" "listobs on the initial data set"
 	"""
 	listobs('G192_6s.ms', listfile='G192_listobs.txt')
 
-def helper_02(): 
-	""" helper method for "flag table plot"
+def test_02_flag_table_plot():
+	""" "flag table plot"
 	"""
-	myrows = range(2868)
 	flagcmd(vis='G192_6s.ms', inpmode='table', action='plot', tablerows=myrows,
 	        useapplied=True, plotfile='PlotG192_flagcmd_4.1.png')
 
-def helper_03(): 
-	""" helper method for "bandpass calibrator analysis flagging"
+def test_03_bandpass_calibrator_analysis_flagging():
+	""" "bandpass calibrator analysis flagging"
 	"""
 	flaglist = ['antenna="ea01,ea10,ea19,ea13"',
 	            'antenna="ea24" spw="40,47~48"',
@@ -112,64 +111,60 @@ def helper_03():
 	flagcmd(vis='G192_6s.ms', inpmode='list', inpfile=flaglist, \
 	        action='apply', flagbackup=True)
 
-def helper_04(): 
-	""" helper method for "RFI phase calibrator flagging"
+def test_04_rfi_phase_calibrator_flagging():
+	""" "RFI phase calibrator flagging"
 	"""
 	flaglist = ['spw="33:124,37:91,38:66~67;75~77,46:126,48:0"', \
 	            'spw="53:68~69,63:80,10:26,15:127,27:62,27:64"']
 	flagcmd(vis='G192_6s.ms', inpmode='list', inpfile=flaglist, \
 	        action='apply', flagbackup=True)
 
-def helper_05(): 
-	""" helper method for "splitting good and bad data"
+def test_05_splitting_good_and_bad_data():
+	""" "splitting good and bad data"
 	"""
 	# Remove any existing split data, otherwise split will not happen
 	os.system('rm -rf G192_flagged_6s.ms')
 	split(vis='G192_6s.ms', outputvis='G192_flagged_6s.ms', \
 	      datacolumn='data', keepflags=False)
 
-def helper_06(): 
-	""" helper method for "split and flagged listobs"
+def test_06_split_and_flagged_listobs():
+	""" "split and flagged listobs"
 	"""
 	listobs('G192_flagged_6s.ms', listfile='G192_flagged_listobs.txt')
 
-def helper_07(): 
-	""" helper method for "model for the flux calibrator"
+def test_07_model_for_the_flux_calibrator():
+	""" "model for the flux calibrator"
 	"""
 	setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
 	      model='3C147_A.im')
 
-def helper_08(): 
-	""" helper method for "determining antenna position corrections"
+def test_08_determining_antenna_position_corrections():
+	""" "determining antenna position corrections"
 	"""
 	gencal('G192_flagged_6s.ms', caltable='calG192.antpos', \
 	       caltype='antpos', antenna='')
 
-def helper_09(): 
-	""" helper method for "generating gaincurve calibration"
+def test_09_generating_gaincurve_calibration():
+	""" "generating gaincurve calibration"
 	"""
 	gencal('G192_flagged_6s.ms', caltable='calG192.gaincurve', \
 	       caltype='gc')
 
-def helper_10(): 
-	""" helper method for "generate atmospheric opacity calibration"
+def test_10_generate_atmospheric_opacity_calibration():
+	""" "generate atmospheric opacity calibration"
 	"""
-	myTau = plotweather(vis='G192_flagged_6s.ms', doPlot=T)
-	SPWs = []
-	for window in range(0,64):
-		SPWs.append(str(window))
 	spwString = ','.join(SPWs)
 	gencal(vis='G192_flagged_6s.ms', caltable='calG192.opacity',
 	       caltype='opac', spw=spwString, parameter=myTau)
 
-def helper_11(): 
-	""" helper method for "generate requantizer gains corrections"
+def test_11_generate_requantizer_gains_corrections():
+	""" "generate requantizer gains corrections"
 	"""
 	gencal('G192_flagged_6s.ms', caltable='calG192.requantizer', \
 	       caltype='rq')
 
-def helper_12(): 
-	""" helper method for "phase only calibration"
+def test_12_phase_only_calibration():
+	""" "phase only calibration"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0', \
 	        field='3', spw='*:60~68', \
@@ -178,8 +173,8 @@ def helper_12():
 	        gaintype='G', refant='ea05', calmode='p', \
 	        solint='int', minsnr=3)
 
-def helper_13(): 
-	""" helper method for "residual delays"
+def test_13_residual_delays():
+	""" "residual delays"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -187,8 +182,8 @@ def helper_13():
 	        field='3', spw='*:5~122', gaintype='K', \
 	        refant='ea05', solint='inf', minsnr=3)
 
-def helper_14(): 
-	""" helper method for "antenna bandpasses"
+def test_14_antenna_bandpasses():
+	""" "antenna bandpasses"
 	"""
 	bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0', \
 	         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -196,8 +191,8 @@ def helper_14():
 	         field='3', refant='ea05', solnorm=False, \
 	         bandtype='B', solint='inf')
 
-def helper_15(): 
-	""" helper method for "flux and bandpass calibrators gain"
+def test_15_flux_and_bandpass_calibrators_gain():
+	""" "flux and bandpass calibrators gain"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1', field='0,3', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -205,22 +200,22 @@ def helper_15():
 	                   'calG192.B0'], \
 	        gaintype='G', refant='ea05', calmode='ap', solint='30s', minsnr=3)
 
-def helper_16(): 
-	""" helper method for "bandpass calibrator gain amplitudes scaling"
+def test_16_bandpass_calibrator_gain_amplitudes_scaling():
+	""" "bandpass calibrator gain amplitudes scaling"
 	"""
 	flux1 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G1', \
 	                  fluxtable='calG192.F1', reference='0', \
 	                  transfer='3', listfile='3C84.fluxinfo', fitorder=1)
 
-def helper_17(): 
-	""" helper method for "spectral information"
+def test_17_spectral_information():
+	""" "spectral information"
 	"""
 	setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
 	      reffreq='32.4488GHz')
 
-def helper_18(): 
-	""" helper method for "phase only recalibration"
+def test_18_phase_only_recalibration():
+	""" "phase only recalibration"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0.b', \
 	        field='3', spw='*:60~68', \
@@ -229,8 +224,8 @@ def helper_18():
 	        gaintype='G', refant='ea05', calmode='p', \
 	        solint='int', minsnr=3)
 
-def helper_19(): 
-	""" helper method for "residual delays recalibration"
+def test_19_residual_delays_recalibration():
+	""" "residual delays recalibration"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0.b', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -238,8 +233,8 @@ def helper_19():
 	        field='3', spw='*:5~122', gaintype='K', \
 	        refant='ea05', solint='inf', minsnr=3)
 
-def helper_20(): 
-	""" helper method for "antenna bandpasses recalibration"
+def test_20_antenna_bandpasses_recalibration():
+	""" "antenna bandpasses recalibration"
 	"""
 	bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0.b', \
 	         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -247,8 +242,8 @@ def helper_20():
 	         field='3', refant='ea05', solnorm=False, \
 	         bandtype='B', solint='inf')
 
-def helper_21(): 
-	""" helper method for "compute gain phases using 3C147"
+def test_21_compute_gain_phases_using_3c147():
+	""" "compute gain phases using 3C147"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -256,8 +251,8 @@ def helper_21():
 	        field='0', refant='ea05', solnorm=F, \
 	        solint='int', gaintype='G', calmode='p')
 
-def helper_22(): 
-	""" helper method for "compute gain phases using J0603+174"
+def test_22_compute_gain_phases_using_j0603_174():
+	""" "compute gain phases using J0603+174"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -265,8 +260,8 @@ def helper_22():
 	        field='1', refant='ea05', solnorm=F, \
 	        solint='12s', gaintype='G', calmode='p', append=True)
 
-def helper_23(): 
-	""" helper method for "compute gain phases using 3C84"
+def test_23_compute_gain_phases_using_3c84():
+	""" "compute gain phases using 3C84"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -274,8 +269,8 @@ def helper_23():
 	        field='3', refant='ea05', solnorm=F, \
 	        solint='int', gaintype='G', calmode='p', append=True)
 
-def helper_24(): 
-	""" helper method for "applying phase calibration"
+def test_24_applying_phase_calibration():
+	""" "applying phase calibration"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.inf', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -283,8 +278,8 @@ def helper_24():
 	        field='1', refant='ea05', solnorm=F, \
 	        solint='inf', gaintype='G', calmode='p')
 
-def helper_25(): 
-	""" helper method for "3C147 scan solving amplitudes"
+def test_25_3c147_scan_solving_amplitudes():
+	""" "3C147 scan solving amplitudes"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -294,8 +289,8 @@ def helper_25():
 	        field='0', refant='ea05', solnorm=F, \
 	        solint='inf', gaintype='G', calmode='a')
 
-def helper_26(): 
-	""" helper method for "J0603+174  scan solving amplitudes"
+def test_26_j0603_174__scan_solving_amplitudes():
+	""" "J0603+174  scan solving amplitudes"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -305,8 +300,8 @@ def helper_26():
 	        field='1', refant='ea05', solnorm=F, \
 	        solint='inf', gaintype='G', calmode='a', append=True)
 
-def helper_27(): 
-	""" helper method for "3C84 scan solving amplitudes"
+def test_27_3c84_scan_solving_amplitudes():
+	""" "3C84 scan solving amplitudes"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -317,14 +312,14 @@ def helper_27():
 	        solint='inf', gaintype='G', calmode='a', append=True)
 	#
 
-def helper_28(): 
-	""" helper method for "using fluxscale to transfer the amplitude solutions"
+def test_28_using_fluxscale_to_transfer_the_amplitude_solutions():
+	""" "using fluxscale to transfer the amplitude solutions"
 	"""
 	flux2 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	                  fluxtable='calG192.F2', reference='0')
 
-def helper_29(): 
-	""" helper method for "3C147 accumulated calibration"
+def test_29_3c147_accumulated_calibration():
+	""" "3C147 accumulated calibration"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='0', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -333,8 +328,8 @@ def helper_29():
 	         gainfield=['', '', '', '', '', '', '0', '0'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
-def helper_30(): 
-	""" helper method for "gain accumulated calibration"
+def test_30_gain_accumulated_calibration():
+	""" "gain accumulated calibration"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='1', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -343,8 +338,8 @@ def helper_30():
 	         gainfield=['', '', '', '', '', '', '1', '1'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
-def helper_31(): 
-	""" helper method for "G192 accumulated calibration"
+def test_31_g192_accumulated_calibration():
+	""" "G192 accumulated calibration"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='2', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -353,8 +348,8 @@ def helper_31():
 	         gainfield=['', '', '', '', '', '', '1', '1'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'linear'], calwt=False)
 
-def helper_32(): 
-	""" helper method for "3C84 accumulated calibration"
+def test_32_3c84_accumulated_calibration():
+	""" "3C84 accumulated calibration"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='3', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -363,40 +358,40 @@ def helper_32():
 	         gainfield=['', '', '', '', '', '', '3', '3'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
-def helper_33(): 
-	""" helper method for "flagging isolated RFI"
+def test_33_flagging_isolated_rfi():
+	""" "flagging isolated RFI"
 	"""
 	flagdata(vis='G192_flagged_6s.ms', field='0', \
 	         spw='29', timerange='6:35:00~6:36:40')
 
-def helper_34(): 
-	""" helper method for "baseline flagging"
+def test_34_baseline_flagging():
+	""" "baseline flagging"
 	"""
 	flagdata(vis='G192_flagged_6s.ms', antenna='ea03&ea07')
 
-def helper_35(): 
-	""" helper method for "3C147 density model"
+def test_35_3c147_density_model():
+	""" "3C147 density model"
 	"""
 	setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
 	      model='3C147_A.im')
 
-def helper_36(): 
-	""" helper method for "3C84 spectral information column"
+def test_36_3c84_spectral_information_column():
+	""" "3C84 spectral information column"
 	"""
 	setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
 	      reffreq='32.4488GHz')
 
-def helper_37(): 
-	""" helper method for "initial phase calibration"
+def test_37_initial_phase_calibration():
+	""" "initial phase calibration"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0.b.2', field='3', spw='*:60~68',\
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', \
 	                  'calG192.requantizer', 'calG192.opacity'], \
 	        gaintype='G', refant='ea05', calmode='p', solint='int', minsnr=3)
 
-def helper_38(): 
-	""" helper method for "delay calibration"
+def test_38_delay_calibration():
+	""" "delay calibration"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0.b.2', \
 	        field='3', spw='*:5~122', gaintype='K', \
@@ -404,8 +399,8 @@ def helper_38():
 	                  'calG192.requantizer', 'calG192.opacity','calG192.G0.b.2'], \
 	        refant='ea05', solint='inf', minsnr=3)
 
-def helper_39(): 
-	""" helper method for "bandpass calibration"
+def test_39_bandpass_calibration():
+	""" "bandpass calibration"
 	"""
 	bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0.b.2', \
 	         field='3', refant='ea05', solnorm=False, \
@@ -413,8 +408,8 @@ def helper_39():
 	                   'calG192.opacity','calG192.G0.b.2', 'calG192.K0.b.2'], \
 	         bandtype='B', solint='inf')
 
-def helper_40(): 
-	""" helper method for "phase gain calibration field 0"
+def test_40_phase_gain_calibration_field_0():
+	""" "phase gain calibration field 0"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
 	        field='0', refant='ea05', solnorm=F, \
@@ -422,8 +417,8 @@ def helper_40():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='int', gaintype='G', calmode='p')
 
-def helper_41(): 
-	""" helper method for "phase gain calibration field 1"
+def test_41_phase_gain_calibration_field_1():
+	""" "phase gain calibration field 1"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
 	        field='1', refant='ea05', solnorm=F, \
@@ -431,8 +426,8 @@ def helper_41():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='12s', gaintype='G', calmode='p', append=True)
 
-def helper_42(): 
-	""" helper method for "phase gain calibration field 3"
+def test_42_phase_gain_calibration_field_3():
+	""" "phase gain calibration field 3"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
 	        field='3', refant='ea05', solnorm=F, \
@@ -440,8 +435,8 @@ def helper_42():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='int', gaintype='G', calmode='p', append=True)
 
-def helper_43(): 
-	""" helper method for "phase gain calibration infinite solution interval"
+def test_43_phase_gain_calibration_infinite_solution_interval():
+	""" "phase gain calibration infinite solution interval"
 	"""
 	# (Note: we will apply this table to our science target at the applycal stage.)
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.inf.2', \
@@ -450,8 +445,8 @@ def helper_43():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='inf', gaintype='G', calmode='p')
 
-def helper_44(): 
-	""" helper method for "amplitude calibration solutions field 0"
+def test_44_amplitude_calibration_solutions_field_0():
+	""" "amplitude calibration solutions field 0"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	        field='0', refant='ea05', solnorm=F, \
@@ -462,8 +457,8 @@ def helper_44():
 	        interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
 	        solint='inf', gaintype='G', calmode='a')
 
-def helper_45(): 
-	""" helper method for "amplitude calibration solutions field 1"
+def test_45_amplitude_calibration_solutions_field_1():
+	""" "amplitude calibration solutions field 1"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	        field='1', refant='ea05', solnorm=F, \
@@ -474,8 +469,8 @@ def helper_45():
 	        interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
 	        solint='inf', gaintype='G', calmode='a', append=True)
 
-def helper_46(): 
-	""" helper method for "amplitude calibration solutions field 3"
+def test_46_amplitude_calibration_solutions_field_3():
+	""" "amplitude calibration solutions field 3"
 	"""
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	        field='3', refant='ea05', solnorm=F, \
@@ -486,14 +481,14 @@ def helper_46():
 	        interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
 	        solint='inf', gaintype='G', calmode='a', append=True)
 
-def helper_47(): 
-	""" helper method for "flux calibration solutions"
+def test_47_flux_calibration_solutions():
+	""" "flux calibration solutions"
 	"""
 	flux3 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	                  fluxtable='calG192.F2.2', reference='0')
 
-def helper_48(): 
-	""" helper method for "apply calibration tables field 0"
+def test_48_apply_calibration_tables_field_0():
+	""" "apply calibration tables field 0"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='0', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -501,8 +496,8 @@ def helper_48():
 	         gainfield=['', '', '', '', '', '', '0', '0'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
-def helper_49(): 
-	""" helper method for "apply calibration tables field 1"
+def test_49_apply_calibration_tables_field_1():
+	""" "apply calibration tables field 1"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='1', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -510,8 +505,8 @@ def helper_49():
 	         gainfield=['', '', '', '', '', '', '1', '1'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
-def helper_50(): 
-	""" helper method for "apply calibration tables field 2"
+def test_50_apply_calibration_tables_field_2():
+	""" "apply calibration tables field 2"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='2', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -519,8 +514,8 @@ def helper_50():
 	         gainfield=['', '', '', '', '', '', '1', '1'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'linear'], calwt=False)
 
-def helper_51(): 
-	""" helper method for "apply calibration tables field 3"
+def test_51_apply_calibration_tables_field_3():
+	""" "apply calibration tables field 3"
 	"""
 	applycal(vis='G192_flagged_6s.ms', field='3', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -528,39 +523,39 @@ def helper_51():
 	         gainfield=['', '', '', '', '', '', '3', '3'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
-def helper_52(): 
-	""" helper method for "splitting calibrated data 3C147"
+def test_52_splitting_calibrated_data_3c147():
+	""" "splitting calibrated data 3C147"
 	"""
 	os.system('rm -rf 3C147_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='3C147_split_6s.ms', \
 	      datacolumn='corrected', field='0')
 	#
 
-def helper_53(): 
-	""" helper method for "splitting calibrated data J0603+174"
+def test_53_splitting_calibrated_data_j0603_174():
+	""" "splitting calibrated data J0603+174"
 	"""
 	os.system('rm -rf J0603_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='J0603_split_6s.ms', \
 	      datacolumn='corrected', field='1')
 	#
 
-def helper_54(): 
-	""" helper method for "splitting calibrated data G192"
+def test_54_splitting_calibrated_data_g192():
+	""" "splitting calibrated data G192"
 	"""
 	os.system('rm -rf G192_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='G192_split_6s.ms', \
 	      datacolumn='corrected', field='2')
 	#
 
-def helper_55(): 
-	""" helper method for "splitting calibrated data 3C84"
+def test_55_splitting_calibrated_data_3c84():
+	""" "splitting calibrated data 3C84"
 	"""
 	os.system('rm -rf 3C84_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='3C84_split_6s.ms', \
 	      datacolumn='corrected', field='3')
 
-def helper_56(): 
-	""" helper method for "single spectral window cleaning"
+def test_56_single_spectral_window_cleaning():
+	""" "single spectral window cleaning"
 	"""
 	clean(vis='G192_split_6s.ms', spw='48:5~122', \
 	      imagename='imgG192_6s_spw48', \
@@ -570,8 +565,8 @@ def helper_56():
 	      weighting='briggs', robust=0.5, \
 	      interactive=True)
 
-def helper_57(): 
-	""" helper method for "lower frequency baseband cleaning"
+def test_57_lower_frequency_baseband_cleaning():
+	""" "lower frequency baseband cleaning"
 	"""
 	clean(vis='G192_split_6s.ms', spw='32~63:5~122', \
 	      imagename='imgG192_6s_spw32-63', \
@@ -587,8 +582,8 @@ def helper_57():
 	mystat = imstat('imgG192_6s_spw32-63.residual')
 	print 'Residual standard deviation = '+str(mystat['sigma'][0]) + ' Jy'
 
-def helper_58(): 
-	""" helper method for "upper frequency baseband cleaning"
+def test_58_upper_frequency_baseband_cleaning():
+	""" "upper frequency baseband cleaning"
 	"""
 	clean(vis='G192_split_6s.ms', spw='0~31:5~122', \
 	      imagename='imgG192_6s_spw0-31', \
@@ -606,8 +601,8 @@ def helper_58():
 	myfit = imfit('imgG192_6s_spw0-31.image', region='G192.crtf')
 	print 'Source flux = '+str(myfit['results']['component0']['flux']['value'][0])+'+/-'+str(myfit['results']['component0']['flux']['error'][0]) + ' Jy'
 
-def helper_59(): 
-	""" helper method for "basebands mfs taylor cleaning"
+def test_59_basebands_mfs_taylor_cleaning():
+	""" "basebands mfs taylor cleaning"
 	"""
 	clean(vis='G192_split_6s.ms', spw='0~63:5~122', \
 	      imagename='imgG192_6s_spw0-63_mfs2', \
@@ -621,8 +616,8 @@ def helper_59():
 	myfit = imfit('imgG192_6s_spw0-63_mfs2.image.tt0', region='G192.crtf') + ' Jy'
 	print 'Source flux = '+str(myfit['results']['component0']['flux']['value'][0])+'+/-'+str(myfit['results']['component0']['flux']['error'][0])
 
-def helper_60(): 
-	""" helper method for "spectral index image filtering"
+def test_60_spectral_index_image_filtering():
+	""" "spectral index image filtering"
 	"""
 	immath(imagename=['imgG192_6s_spw0-63_mfs2.image.alpha',
 	                  'imgG192_6s_spw0-63_mfs2.image.tt0'],
@@ -630,8 +625,8 @@ def helper_60():
 	       expr='IM0[IM1>2.0E-4]',
 	       outfile='imgG192_6s_spw0-63_mfs2.image.alpha.filtered')
 
-def helper_61(): 
-	""" helper method for "spectral index probable errors filtering"
+def test_61_spectral_index_probable_errors_filtering():
+	""" "spectral index probable errors filtering"
 	"""
 	immath(imagename=['imgG192_6s_spw0-63_mfs2.image.alpha.error',
 	                  'imgG192_6s_spw0-63_mfs2.image.tt0'],
@@ -639,8 +634,8 @@ def helper_61():
 	       expr='IM0[IM1>2E-4]',
 	       outfile='imgG192_6s_spw0-63_mfs2.image.alpha.error.filtered')
 
-def helper_62(): 
-	""" helper method for "intensity weighted mean spectral analysis"
+def test_62_intensity_weighted_mean_spectral_analysis():
+	""" "intensity weighted mean spectral analysis"
 	"""
 	immath(imagename=['imgG192_6s_spw0-63_mfs2.image.tt1',
 	                  'imgG192_6s_spw0-63_mfs2.image.tt0'],

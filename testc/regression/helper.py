@@ -30,6 +30,7 @@ import logging
 import hashlib
 import threading
 import imp
+from functools import wraps
 
 import unittest
 import nose
@@ -38,36 +39,27 @@ from testc.nose.plugin import psprofile
 from testc import regression
 
 __test__ = False
-__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "RegressionInject", "regressionLogger"]
+__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regressionInject", "regressionLogger"]
 
 regressionLogger = logging.getLogger("RegressionLogger")
 
-class RegressionInject():
-
-	def __init__(self, arg0, arg1 = None):
-		self.__module_name = arg0
-		self.__method_name = arg1
-
-	def __call__(self, function):
-
-		def test_injection(*args, **kwargs):
-
+def regressionInject(module, execm = False):
+	def test_injection(fn):
+		def wrapped(*args, **kwargs):
 			testc_file, testc_path, testc_desc = imp.find_module("testc")
 			module_paths = sys.path + [os.path.join(testc_path, "regression"), os.path.join(testc_path, "guide")] 			
-			module_file, module_path, module_desc = imp.find_module(self.__module_name, module_paths)
-
-			regressionLogger.debug("about to inject %s for %s, using method?: %s" % (function.__name__, self.__module_name, self.__method_name))
-
-			casa_console_globals = RegressionHelper.casa_console_globals()
-			method_name = self.__method_name
-
-			execfile(module_path, casa_console_globals, locals())
+			module_file, module_path, module_desc = imp.find_module(module, module_paths)
 			
-			#function(*args, **kwargs)
-			return function
+			method_name = fn.__name__
+			custom_globals = dict(globals().items() + RegressionHelper.casa_console_globals().items())
 
-		return test_injection
+			regressionLogger.debug("about to inject %s.%s" % (module, method_name))
+			execfile(module_path, custom_globals, locals())
+			fn(*args, **kwargs)
 
+		return wraps(fn)(wrapped)
+	
+	return test_injection
 
 class RegressionHelper():
 

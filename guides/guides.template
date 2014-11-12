@@ -18,7 +18,7 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
-from testc.regression.helper import RegressionInject as inject
+from testc.regression.helper import regressionInject as inject
 from testc.regression.helper import regressionLogger
 
 __test__ = True
@@ -34,7 +34,6 @@ class ${guide_class}(RegressionBase):
 
 	#foreach ($phrase in $guide_phrases)
 	test_$phrase[2] "$phrase[0]"#end
-
 	"""
 
 	@classmethod
@@ -52,8 +51,8 @@ class ${guide_class}(RegressionBase):
 		pass
 
 	#foreach ($phrase in $guide_phrases)
-	@inject("guides_post_${guide}","post_${phrase[2]}")
-	@inject("guides_helper_${guide}","helper_${phrase[2]}")
+	@inject("guides_post_${guide}")
+	@inject("guides_helper_${guide}")
 	#@unittest.skip("reason?")
 	def test_${phrase[2]}_${phrase[3]}(self):
 		"""test ${phrase[2]} $uri "$phrase[0]"
@@ -62,10 +61,9 @@ class ${guide_class}(RegressionBase):
 	#end
 
 ## class methods stubs for the post testing
-
 ##foreach ($phrase in $guide_phrases)
-##	def post_${phrase[2]}(self):
-##		"""post method for "$phrase[0]"
-##		"""
-##		assert True, "dummy assert"
-##end
+##def test_${phrase[2]}_${phrase[3]}():
+##"""post method for "$phrase[0]"
+##"""
+##	pass
+#end

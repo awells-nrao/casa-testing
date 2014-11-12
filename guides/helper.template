@@ -31,7 +31,7 @@ import os
 __test__ = False
 
 #foreach ($phrase in $guide_phrases)
-def helper_${phrase[2]}():
+def test_${phrase[2]}_${phrase[3]}():
 	""" "${phrase[0]}"
 	"""#foreach ($content in $phrase[1].split("\n"))		
 #set($tabbed_content = "\t" + $content)${tabbed_content}#end #end
