@@ -57,9 +57,9 @@ def regressionInject(module, execm = False):
 			execfile(module_path, custom_globals, locals())
 			fn(*args, **kwargs)
 
-	return wraps(fn)(wrapped)
+		return wraps(fn)(wrapped)
 
-return test_injection
+	return test_injection
 
 class RegressionHelper():
 
