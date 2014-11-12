@@ -29,7 +29,7 @@ assert globals().has_key("casa"), "CASA environment is needed for this module (%
 import os
 
 #foreach ($phrase in $guide_phrases)
-def helper_${phrase[2]}(self):
+def helper_${phrase[2]}():
 	""" "${phrase[0]}"
 	"""#foreach ($content in $phrase[1].split("\n"))		
 #set($tabbed_content = "\t" + $content)${tabbed_content}#end #end
