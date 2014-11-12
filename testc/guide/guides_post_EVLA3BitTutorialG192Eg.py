@@ -39,14 +39,14 @@ def mshandler(file):
 	del table_instance
 	raise exception
 
-def setjy_common(, measet, checksum_ref):
+def setjy_common(measet, checksum_ref):
 	with mshandler(measet) as table:
 		source_model = table.getcell('SOURCE_MODEL', 0)
 		assert source_model, "no model defined at SOURCE.SOURCE_MODEL[0]"
 		checksum = RegressionHelper.md5sum(source_model, on_memory = True)
 		assert checksum == checksum_ref, "different data, checksum computed is %s" % checksum
 
-def applycal_common(, measet, field_id, checksum_ref):
+def applycal_common(measet, field_id, checksum_ref):
 	column = "CORRECTED_DATA"
 
 	with mshandler(measet) as table:
