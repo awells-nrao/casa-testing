@@ -107,448 +107,504 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@inject("guides_post_EVLA3BitTutorialG192Eg","post_00")
 	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_00")
+	#@unittest.skip("reason?")
 	def test_00_splitting_fields_for_analysis(self):
 		"""test 00 EVLA_3-bit_Tutorial_G192 "splitting fields for analysis"
 		"""
-		print "test_00_splitting_fields_for_analysis tested by injection"
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_00_splitting_fields_for_analysis(self):
-	# 	"""test 00 EVLA_3-bit_Tutorial_G192 "splitting fields for analysis"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_00"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_00"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_01")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_01")
+	#@unittest.skip("reason?")
+	def test_01_listobs_on_the_initial_data_set(self):
+		"""test 01 EVLA_3-bit_Tutorial_G192 "listobs on the initial data set"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_01_listobs_on_the_initial_data_set(self):
-	# 	"""test 01 EVLA_3-bit_Tutorial_G192 "listobs on the initial data set"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_01"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_01"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_02")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_02")
+	#@unittest.skip("reason?")
+	def test_02_flag_table_plot(self):
+		"""test 02 EVLA_3-bit_Tutorial_G192 "flag table plot"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_02_flag_table_plot(self):
-	# 	"""test 02 EVLA_3-bit_Tutorial_G192 "flag table plot"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_02"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_02"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_03")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_03")
+	#@unittest.skip("reason?")
+	def test_03_bandpass_calibrator_analysis_flagging(self):
+		"""test 03 EVLA_3-bit_Tutorial_G192 "bandpass calibrator analysis flagging"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_03_bandpass_calibrator_analysis_flagging(self):
-	# 	"""test 03 EVLA_3-bit_Tutorial_G192 "bandpass calibrator analysis flagging"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_03"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_03"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_04")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_04")
+	#@unittest.skip("reason?")
+	def test_04_rfi_phase_calibrator_flagging(self):
+		"""test 04 EVLA_3-bit_Tutorial_G192 "RFI phase calibrator flagging"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_04_rfi_phase_calibrator_flagging(self):
-	# 	"""test 04 EVLA_3-bit_Tutorial_G192 "RFI phase calibrator flagging"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_04"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_04"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_05")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_05")
+	#@unittest.skip("reason?")
+	def test_05_splitting_good_and_bad_data(self):
+		"""test 05 EVLA_3-bit_Tutorial_G192 "splitting good and bad data"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_05_splitting_good_and_bad_data(self):
-	# 	"""test 05 EVLA_3-bit_Tutorial_G192 "splitting good and bad data"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_05"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_05"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_06")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_06")
+	#@unittest.skip("reason?")
+	def test_06_split_and_flagged_listobs(self):
+		"""test 06 EVLA_3-bit_Tutorial_G192 "split and flagged listobs"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_06_split_and_flagged_listobs(self):
-	# 	"""test 06 EVLA_3-bit_Tutorial_G192 "split and flagged listobs"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_06"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_06"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_07")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_07")
+	#@unittest.skip("reason?")
+	def test_07_model_for_the_flux_calibrator(self):
+		"""test 07 EVLA_3-bit_Tutorial_G192 "model for the flux calibrator"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_07_model_for_the_flux_calibrator(self):
-	# 	"""test 07 EVLA_3-bit_Tutorial_G192 "model for the flux calibrator"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_07"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_07"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_08")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_08")
+	#@unittest.skip("reason?")
+	def test_08_determining_antenna_position_corrections(self):
+		"""test 08 EVLA_3-bit_Tutorial_G192 "determining antenna position corrections"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_08_determining_antenna_position_corrections(self):
-	# 	"""test 08 EVLA_3-bit_Tutorial_G192 "determining antenna position corrections"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_08"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_08"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_09")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_09")
+	#@unittest.skip("reason?")
+	def test_09_generating_gaincurve_calibration(self):
+		"""test 09 EVLA_3-bit_Tutorial_G192 "generating gaincurve calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_09_generating_gaincurve_calibration(self):
-	# 	"""test 09 EVLA_3-bit_Tutorial_G192 "generating gaincurve calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_09"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_09"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_10")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_10")
+	#@unittest.skip("reason?")
+	def test_10_generate_atmospheric_opacity_calibration(self):
+		"""test 10 EVLA_3-bit_Tutorial_G192 "generate atmospheric opacity calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_10_generate_atmospheric_opacity_calibration(self):
-	# 	"""test 10 EVLA_3-bit_Tutorial_G192 "generate atmospheric opacity calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_10"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_10"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_11")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_11")
+	#@unittest.skip("reason?")
+	def test_11_generate_requantizer_gains_corrections(self):
+		"""test 11 EVLA_3-bit_Tutorial_G192 "generate requantizer gains corrections"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_11_generate_requantizer_gains_corrections(self):
-	# 	"""test 11 EVLA_3-bit_Tutorial_G192 "generate requantizer gains corrections"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_11"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_11"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_12")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_12")
+	#@unittest.skip("reason?")
+	def test_12_phase_only_calibration(self):
+		"""test 12 EVLA_3-bit_Tutorial_G192 "phase only calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_12_phase_only_calibration(self):
-	# 	"""test 12 EVLA_3-bit_Tutorial_G192 "phase only calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_12"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_12"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_13")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_13")
+	#@unittest.skip("reason?")
+	def test_13_residual_delays(self):
+		"""test 13 EVLA_3-bit_Tutorial_G192 "residual delays"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_13_residual_delays(self):
-	# 	"""test 13 EVLA_3-bit_Tutorial_G192 "residual delays"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_13"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_13"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_14")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_14")
+	#@unittest.skip("reason?")
+	def test_14_antenna_bandpasses(self):
+		"""test 14 EVLA_3-bit_Tutorial_G192 "antenna bandpasses"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_14_antenna_bandpasses(self):
-	# 	"""test 14 EVLA_3-bit_Tutorial_G192 "antenna bandpasses"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_14"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_14"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_15")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_15")
+	#@unittest.skip("reason?")
+	def test_15_flux_and_bandpass_calibrators_gain(self):
+		"""test 15 EVLA_3-bit_Tutorial_G192 "flux and bandpass calibrators gain"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_15_flux_and_bandpass_calibrators_gain(self):
-	# 	"""test 15 EVLA_3-bit_Tutorial_G192 "flux and bandpass calibrators gain"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_15"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_15"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_16")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_16")
+	#@unittest.skip("reason?")
+	def test_16_bandpass_calibrator_gain_amplitudes_scaling(self):
+		"""test 16 EVLA_3-bit_Tutorial_G192 "bandpass calibrator gain amplitudes scaling"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_16_bandpass_calibrator_gain_amplitudes_scaling(self):
-	# 	"""test 16 EVLA_3-bit_Tutorial_G192 "bandpass calibrator gain amplitudes scaling"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_16"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_16"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_17")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_17")
+	#@unittest.skip("reason?")
+	def test_17_spectral_information(self):
+		"""test 17 EVLA_3-bit_Tutorial_G192 "spectral information"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_17_spectral_information(self):
-	# 	"""test 17 EVLA_3-bit_Tutorial_G192 "spectral information"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_17"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_17"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_18")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_18")
+	#@unittest.skip("reason?")
+	def test_18_phase_only_recalibration(self):
+		"""test 18 EVLA_3-bit_Tutorial_G192 "phase only recalibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_18_phase_only_recalibration(self):
-	# 	"""test 18 EVLA_3-bit_Tutorial_G192 "phase only recalibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_18"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_18"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_19")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_19")
+	#@unittest.skip("reason?")
+	def test_19_residual_delays_recalibration(self):
+		"""test 19 EVLA_3-bit_Tutorial_G192 "residual delays recalibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_19_residual_delays_recalibration(self):
-	# 	"""test 19 EVLA_3-bit_Tutorial_G192 "residual delays recalibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_19"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_19"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_20")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_20")
+	#@unittest.skip("reason?")
+	def test_20_antenna_bandpasses_recalibration(self):
+		"""test 20 EVLA_3-bit_Tutorial_G192 "antenna bandpasses recalibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_20_antenna_bandpasses_recalibration(self):
-	# 	"""test 20 EVLA_3-bit_Tutorial_G192 "antenna bandpasses recalibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_20"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_20"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_21")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_21")
+	#@unittest.skip("reason?")
+	def test_21_compute_gain_phases_using_3c147(self):
+		"""test 21 EVLA_3-bit_Tutorial_G192 "compute gain phases using 3C147"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_21_compute_gain_phases_using_3c147(self):
-	# 	"""test 21 EVLA_3-bit_Tutorial_G192 "compute gain phases using 3C147"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_21"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_21"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_22")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_22")
+	#@unittest.skip("reason?")
+	def test_22_compute_gain_phases_using_j0603_174(self):
+		"""test 22 EVLA_3-bit_Tutorial_G192 "compute gain phases using J0603+174"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_22_compute_gain_phases_using_j0603_174(self):
-	# 	"""test 22 EVLA_3-bit_Tutorial_G192 "compute gain phases using J0603+174"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_22"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_22"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_23")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_23")
+	#@unittest.skip("reason?")
+	def test_23_compute_gain_phases_using_3c84(self):
+		"""test 23 EVLA_3-bit_Tutorial_G192 "compute gain phases using 3C84"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_23_compute_gain_phases_using_3c84(self):
-	# 	"""test 23 EVLA_3-bit_Tutorial_G192 "compute gain phases using 3C84"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_23"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_23"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_24")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_24")
+	#@unittest.skip("reason?")
+	def test_24_applying_phase_calibration(self):
+		"""test 24 EVLA_3-bit_Tutorial_G192 "applying phase calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_24_applying_phase_calibration(self):
-	# 	"""test 24 EVLA_3-bit_Tutorial_G192 "applying phase calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_24"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_24"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_25")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_25")
+	#@unittest.skip("reason?")
+	def test_25_3c147_scan_solving_amplitudes(self):
+		"""test 25 EVLA_3-bit_Tutorial_G192 "3C147 scan solving amplitudes"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_25_3c147_scan_solving_amplitudes(self):
-	# 	"""test 25 EVLA_3-bit_Tutorial_G192 "3C147 scan solving amplitudes"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_25"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_25"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_26")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_26")
+	#@unittest.skip("reason?")
+	def test_26_j0603_174__scan_solving_amplitudes(self):
+		"""test 26 EVLA_3-bit_Tutorial_G192 "J0603+174  scan solving amplitudes"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_26_j0603_174__scan_solving_amplitudes(self):
-	# 	"""test 26 EVLA_3-bit_Tutorial_G192 "J0603+174  scan solving amplitudes"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_26"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_26"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_27")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_27")
+	#@unittest.skip("reason?")
+	def test_27_3c84_scan_solving_amplitudes(self):
+		"""test 27 EVLA_3-bit_Tutorial_G192 "3C84 scan solving amplitudes"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_27_3c84_scan_solving_amplitudes(self):
-	# 	"""test 27 EVLA_3-bit_Tutorial_G192 "3C84 scan solving amplitudes"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_27"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_27"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_28")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_28")
+	#@unittest.skip("reason?")
+	def test_28_using_fluxscale_to_transfer_the_amplitude_solutions(self):
+		"""test 28 EVLA_3-bit_Tutorial_G192 "using fluxscale to transfer the amplitude solutions"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_28_using_fluxscale_to_transfer_the_amplitude_solutions(self):
-	# 	"""test 28 EVLA_3-bit_Tutorial_G192 "using fluxscale to transfer the amplitude solutions"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_28"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_28"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_29")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_29")
+	#@unittest.skip("reason?")
+	def test_29_3c147_accumulated_calibration(self):
+		"""test 29 EVLA_3-bit_Tutorial_G192 "3C147 accumulated calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_29_3c147_accumulated_calibration(self):
-	# 	"""test 29 EVLA_3-bit_Tutorial_G192 "3C147 accumulated calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_29"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_29"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_30")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_30")
+	#@unittest.skip("reason?")
+	def test_30_gain_accumulated_calibration(self):
+		"""test 30 EVLA_3-bit_Tutorial_G192 "gain accumulated calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_30_gain_accumulated_calibration(self):
-	# 	"""test 30 EVLA_3-bit_Tutorial_G192 "gain accumulated calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_30"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_30"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_31")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_31")
+	#@unittest.skip("reason?")
+	def test_31_g192_accumulated_calibration(self):
+		"""test 31 EVLA_3-bit_Tutorial_G192 "G192 accumulated calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_31_g192_accumulated_calibration(self):
-	# 	"""test 31 EVLA_3-bit_Tutorial_G192 "G192 accumulated calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_31"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_31"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_32")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_32")
+	#@unittest.skip("reason?")
+	def test_32_3c84_accumulated_calibration(self):
+		"""test 32 EVLA_3-bit_Tutorial_G192 "3C84 accumulated calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_32_3c84_accumulated_calibration(self):
-	# 	"""test 32 EVLA_3-bit_Tutorial_G192 "3C84 accumulated calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_32"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_32"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_33")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_33")
+	#@unittest.skip("reason?")
+	def test_33_flagging_isolated_rfi(self):
+		"""test 33 EVLA_3-bit_Tutorial_G192 "flagging isolated RFI"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_33_flagging_isolated_rfi(self):
-	# 	"""test 33 EVLA_3-bit_Tutorial_G192 "flagging isolated RFI"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_33"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_33"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_34")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_34")
+	#@unittest.skip("reason?")
+	def test_34_baseline_flagging(self):
+		"""test 34 EVLA_3-bit_Tutorial_G192 "baseline flagging"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_34_baseline_flagging(self):
-	# 	"""test 34 EVLA_3-bit_Tutorial_G192 "baseline flagging"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_34"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_34"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_35")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_35")
+	#@unittest.skip("reason?")
+	def test_35_3c147_density_model(self):
+		"""test 35 EVLA_3-bit_Tutorial_G192 "3C147 density model"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_35_3c147_density_model(self):
-	# 	"""test 35 EVLA_3-bit_Tutorial_G192 "3C147 density model"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_35"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_35"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_36")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_36")
+	#@unittest.skip("reason?")
+	def test_36_3c84_spectral_information_column(self):
+		"""test 36 EVLA_3-bit_Tutorial_G192 "3C84 spectral information column"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_36_3c84_spectral_information_column(self):
-	# 	"""test 36 EVLA_3-bit_Tutorial_G192 "3C84 spectral information column"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_36"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_36"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_37")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_37")
+	#@unittest.skip("reason?")
+	def test_37_initial_phase_calibration(self):
+		"""test 37 EVLA_3-bit_Tutorial_G192 "initial phase calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_37_initial_phase_calibration(self):
-	# 	"""test 37 EVLA_3-bit_Tutorial_G192 "initial phase calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_37"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_37"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_38")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_38")
+	#@unittest.skip("reason?")
+	def test_38_delay_calibration(self):
+		"""test 38 EVLA_3-bit_Tutorial_G192 "delay calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_38_delay_calibration(self):
-	# 	"""test 38 EVLA_3-bit_Tutorial_G192 "delay calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_38"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_38"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_39")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_39")
+	#@unittest.skip("reason?")
+	def test_39_bandpass_calibration(self):
+		"""test 39 EVLA_3-bit_Tutorial_G192 "bandpass calibration"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_39_bandpass_calibration(self):
-	# 	"""test 39 EVLA_3-bit_Tutorial_G192 "bandpass calibration"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_39"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_39"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_40")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_40")
+	#@unittest.skip("reason?")
+	def test_40_phase_gain_calibration_field_0(self):
+		"""test 40 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 0"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_40_phase_gain_calibration_field_0(self):
-	# 	"""test 40 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 0"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_40"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_40"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_41")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_41")
+	#@unittest.skip("reason?")
+	def test_41_phase_gain_calibration_field_1(self):
+		"""test 41 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 1"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_41_phase_gain_calibration_field_1(self):
-	# 	"""test 41 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 1"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_41"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_41"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_42")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_42")
+	#@unittest.skip("reason?")
+	def test_42_phase_gain_calibration_field_3(self):
+		"""test 42 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 3"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_42_phase_gain_calibration_field_3(self):
-	# 	"""test 42 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 3"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_42"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_42"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_43")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_43")
+	#@unittest.skip("reason?")
+	def test_43_phase_gain_calibration_infinite_solution_interval(self):
+		"""test 43 EVLA_3-bit_Tutorial_G192 "phase gain calibration infinite solution interval"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_43_phase_gain_calibration_infinite_solution_interval(self):
-	# 	"""test 43 EVLA_3-bit_Tutorial_G192 "phase gain calibration infinite solution interval"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_43"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_43"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_44")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_44")
+	#@unittest.skip("reason?")
+	def test_44_amplitude_calibration_solutions_field_0(self):
+		"""test 44 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 0"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_44_amplitude_calibration_solutions_field_0(self):
-	# 	"""test 44 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 0"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_44"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_44"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_45")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_45")
+	#@unittest.skip("reason?")
+	def test_45_amplitude_calibration_solutions_field_1(self):
+		"""test 45 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 1"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_45_amplitude_calibration_solutions_field_1(self):
-	# 	"""test 45 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 1"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_45"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_45"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_46")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_46")
+	#@unittest.skip("reason?")
+	def test_46_amplitude_calibration_solutions_field_3(self):
+		"""test 46 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 3"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_46_amplitude_calibration_solutions_field_3(self):
-	# 	"""test 46 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 3"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_46"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_46"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_47")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_47")
+	#@unittest.skip("reason?")
+	def test_47_flux_calibration_solutions(self):
+		"""test 47 EVLA_3-bit_Tutorial_G192 "flux calibration solutions"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_47_flux_calibration_solutions(self):
-	# 	"""test 47 EVLA_3-bit_Tutorial_G192 "flux calibration solutions"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_47"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_47"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_48")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_48")
+	#@unittest.skip("reason?")
+	def test_48_apply_calibration_tables_field_0(self):
+		"""test 48 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 0"
+		"""
+		pass
 
-	# ##@unittest.skip("still a stub, to be implemented")
-	# def test_48_apply_calibration_tables_field_0(self):
-	# 	"""test 48 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 0"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_48"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_48"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_49")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_49")
+	#@unittest.skip("reason?")
+	def test_49_apply_calibration_tables_field_1(self):
+		"""test 49 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 1"
+		"""
+		pass
 
-	# ##@unittest.skip("still a stub, to be implemented")
-	# def test_49_apply_calibration_tables_field_1(self):
-	# 	"""test 49 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 1"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_49"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_49"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_50")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_50")
+	#@unittest.skip("reason?")
+	def test_50_apply_calibration_tables_field_2(self):
+		"""test 50 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 2"
+		"""
+		pass
 
-	# ##@unittest.skip("still a stub, to be implemented")
-	# def test_50_apply_calibration_tables_field_2(self):
-	# 	"""test 50 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 2"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_50"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_50"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_51")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_51")
+	#@unittest.skip("reason?")
+	def test_51_apply_calibration_tables_field_3(self):
+		"""test 51 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 3"
+		"""
+		pass
 
-	# ##@unittest.skip("still a stub, to be implemented")
-	# def test_51_apply_calibration_tables_field_3(self):
-	# 	"""test 51 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 3"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_51"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_51"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_52")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_52")
+	#@unittest.skip("reason?")
+	def test_52_splitting_calibrated_data_3c147(self):
+		"""test 52 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C147"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_52_splitting_calibrated_data_3c147(self):
-	# 	"""test 52 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C147"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_52"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_52"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_53")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_53")
+	#@unittest.skip("reason?")
+	def test_53_splitting_calibrated_data_j0603_174(self):
+		"""test 53 EVLA_3-bit_Tutorial_G192 "splitting calibrated data J0603+174"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_53_splitting_calibrated_data_j0603_174(self):
-	# 	"""test 53 EVLA_3-bit_Tutorial_G192 "splitting calibrated data J0603+174"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_53"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_53"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_54")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_54")
+	#@unittest.skip("reason?")
+	def test_54_splitting_calibrated_data_g192(self):
+		"""test 54 EVLA_3-bit_Tutorial_G192 "splitting calibrated data G192"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_54_splitting_calibrated_data_g192(self):
-	# 	"""test 54 EVLA_3-bit_Tutorial_G192 "splitting calibrated data G192"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_54"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_54"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_55")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_55")
+	#@unittest.skip("reason?")
+	def test_55_splitting_calibrated_data_3c84(self):
+		"""test 55 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C84"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_55_splitting_calibrated_data_3c84(self):
-	# 	"""test 55 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C84"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_55"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_55"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_56")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_56")
+	#@unittest.skip("reason?")
+	def test_56_single_spectral_window_cleaning(self):
+		"""test 56 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
+		"""
+		pass
 
-	# @unittest.skip("still a stub, to be implemented")
-	# def test_56_single_spectral_window_cleaning(self):
-	# 	"""test 56 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_56"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_56"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_57")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_57")
+	#@unittest.skip("reason?")
+	def test_57_lower_frequency_baseband_cleaning(self):
+		"""test 57 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
+		"""
+		pass
 
-	# @unittest.skip("still a stub, to be implemented")
-	# def test_57_lower_frequency_baseband_cleaning(self):
-	# 	"""test 57 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_57"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_57"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_58")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_58")
+	#@unittest.skip("reason?")
+	def test_58_upper_frequency_baseband_cleaning(self):
+		"""test 58 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
+		"""
+		pass
 
-	# @unittest.skip("still a stub, to be implemented")
-	# def test_58_upper_frequency_baseband_cleaning(self):
-	# 	"""test 58 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_58"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_58"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_59")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_59")
+	#@unittest.skip("reason?")
+	def test_59_basebands_mfs_taylor_cleaning(self):
+		"""test 59 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"
+		"""
+		pass
 
-	# @unittest.skip("still a stub, to be implemented")
-	# def test_59_basebands_mfs_taylor_cleaning(self):
-	# 	"""test 59 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_59"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_59"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_60")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_60")
+	#@unittest.skip("reason?")
+	def test_60_spectral_index_image_filtering(self):
+		"""test 60 EVLA_3-bit_Tutorial_G192 "spectral index image filtering"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_60_spectral_index_image_filtering(self):
-	# 	"""test 60 EVLA_3-bit_Tutorial_G192 "spectral index image filtering"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_60"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_60"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_61")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_61")
+	#@unittest.skip("reason?")
+	def test_61_spectral_index_probable_errors_filtering(self):
+		"""test 61 EVLA_3-bit_Tutorial_G192 "spectral index probable errors filtering"
+		"""
+		pass
 
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_61_spectral_index_probable_errors_filtering(self):
-	# 	"""test 61 EVLA_3-bit_Tutorial_G192 "spectral index probable errors filtering"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_61"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_61"})
-
-	# #@unittest.skip("still a stub, to be implemented")
-	# def test_62_intensity_weighted_mean_spectral_analysis(self):
-	# 	"""test 62 EVLA_3-bit_Tutorial_G192 "intensity weighted mean spectral analysis"
-	# 	"""
-	# 	self.execute("guides_helper_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "helper_62"})
-	# 	self.execute("guides_post_EVLA3BitTutorialG192Eg", custom_globals = {"exec_method" : "post_62"})
+	@inject("guides_post_EVLA3BitTutorialG192Eg","post_62")
+	@inject("guides_helper_EVLA3BitTutorialG192Eg","helper_62")
+	#@unittest.skip("reason?")
+	def test_62_intensity_weighted_mean_spectral_analysis(self):
+		"""test 62 EVLA_3-bit_Tutorial_G192 "intensity weighted mean spectral analysis"
+		"""
+		pass

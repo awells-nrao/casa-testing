@@ -160,7 +160,7 @@ if __name__ == '__main__':
                 extracted_script = "%s/%s" % (options.extracted, element["guide"].strip()) # absolute
                 template = element["template"].strip() # absolute
                 template_helper = element["template_helper"].strip() # absolute
-                output_path = "/".join(guide.__file__.split("/")[:-1]) # where this module is located
+                output_path = os.path.dirname(__file__) # where this module is located
 
                 print "- %s %s" % ( guide_uri, "-"*(77 - len(guide_uri)))
                 print "script   : %s" % extracted_script

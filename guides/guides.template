@@ -18,6 +18,7 @@ import unittest
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
+from testc.regression.helper import RegressionInject as inject
 from testc.regression.helper import regressionLogger
 
 __test__ = True
@@ -51,15 +52,16 @@ class ${guide_class}(RegressionBase):
 		pass
 
 	#foreach ($phrase in $guide_phrases)
-	@unittest.skip("still a stub, to be implemented")
+	@inject("guides_post_${guide}","post_${phrase[2]}")
+	@inject("guides_helper_${guide}","helper_${phrase[2]}")
+	#@unittest.skip("reason?")
 	def test_${phrase[2]}_${phrase[3]}(self):
 		"""test ${phrase[2]} $uri "$phrase[0]"
 		"""
-		self.execute("guides_helper_${guide}", custom_globals = {"exec_method" : "helper_${phrase[2]}"})
-		self.execute("guides_post_${guide}", custom_globals = {"exec_method" : "post_${phrase[2]}"})		
+		pass	
 	#end
 
-## class methods stubs for the actual testing
+## class methods stubs for the post testing
 
 ##foreach ($phrase in $guide_phrases)
 ##	def post_${phrase[2]}(self):

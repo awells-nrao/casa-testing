@@ -47,29 +47,28 @@ class RegressionInject():
 	def __init__(self, arg0, arg1 = None):
 		self.__module_name = arg0
 		self.__method_name = arg1
-		self.__module = None
-		self.__method = None
 
-	def __call__(self, func):
-		def decorated(*args):
-			file, path, desc = imp.find_module(self.__module_name, sys.path[1:])
-			assert file, "No module %s found" % self.__module_name
+	def __call__(self, function):
 
-			regressionLogger.debug("No module %s found" % self.__module_name)
+		def test_injection(*args, **kwargs):
 
-			RegressionHelper.inject_casac_globals()
-			regressionLogger.debug("CASA globals 'injected'")
+			testc_file, testc_path, testc_desc = imp.find_module("testc")
+			module_paths = sys.path + [os.path.join(testc_path, "regression"), os.path.join(testc_path, "guide")] 			
+			module_file, module_path, module_desc = imp.find_module(self.__module_name, module_paths)
 
-			self.__module = imp.load_module(self.__module_name, file, path, desc)
+			regressionLogger.debug("about to inject %s for %s, using method?: %s" % (function.__name__, self.__module_name, self.__method_name))
 
-			if self.__method:
-				self.__method = getattr(self.__module, self.__method)
-				self.__method()
+			casa_console_globals = RegressionHelper.casa_console_globals()
+
+			if self.__method_name:
+				casa_console_globals["cmethod"] = self.__method_name
+
+			execfile(module_path, casa_console_globals)
 			
-			func(*args)
-			return func
+			#function(*args, **kwargs)
+			return function
 
-		return decorated
+		return test_injection
 
 
 class RegressionHelper():
@@ -143,12 +142,6 @@ class RegressionHelper():
 		return digest
 
 	@staticmethod
-	def inject_casac_globals(module):
-		casac_globals = RegressionHelper.casa_console_globals()
-		for item in casac_globals.items():
-			globals()[item[0]] = item[1]
-
-	@staticmethod
 	def casa_console_globals():
 		"""Return the CASA globals of the ipython console frame stack
 		"""
@@ -193,29 +186,12 @@ class RegressionBase(unittest.TestCase):
 		RegressionHelper.assert_file(module_path)
 		return module_path
 
-	def __console_globals(self):
-		"""Return the globals of the ipython console frame stack
-		"""
-		_stack = inspect.stack()
-		_stack_flag = -1
-		_stack_frame = None
-		_stack_frame_globals = None
-
-		for _stack_level in _stack:
-			_stack_flag += 1
-			if(string.find(_stack_level[1], "ipython console")):
-				_stack_frame = sys._getframe(_stack_flag)
-				_stack_frame_globals = _stack_frame.f_globals
-
-		assert _stack_frame_globals, "No ipython console globals defined"
-		return _stack_frame_globals
-
 	def execute(self, casapy_script, import_module = False, custom_globals = None):
 
 		if import_module:
 			importlib.import_module("%s" % casapy_script)
 		else:
-			console_frame_globals = self.__console_globals()
+			console_frame_globals = RegressionHelper.casa_console_globals()
 			console_frame_globals = dict(console_frame_globals.items() + custom_globals.items()) if custom_globals else console_frame_globals
 			cexec_script = self.__script_path(self.__class_module_path(), casapy_script)
 			execfile(cexec_script, console_frame_globals)
