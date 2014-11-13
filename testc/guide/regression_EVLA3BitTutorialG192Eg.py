@@ -554,7 +554,7 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@inject("guides_post_EVLA3BitTutorialG192Eg")
 	@inject("guides_helper_EVLA3BitTutorialG192Eg")
-	#@unittest.skip("reason?")
+	@unittest.skip("interactive is set to true")
 	def test_56_single_spectral_window_cleaning(self):
 		"""test 56 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
 		"""
@@ -562,7 +562,7 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@inject("guides_post_EVLA3BitTutorialG192Eg")
 	@inject("guides_helper_EVLA3BitTutorialG192Eg")
-	#@unittest.skip("reason?")
+	@unittest.skip("interactive is set to true")
 	def test_57_lower_frequency_baseband_cleaning(self):
 		"""test 57 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
 		"""
@@ -570,7 +570,7 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@inject("guides_post_EVLA3BitTutorialG192Eg")
 	@inject("guides_helper_EVLA3BitTutorialG192Eg")
-	#@unittest.skip("reason?")
+	@unittest.skip("interactive is set to true")
 	def test_58_upper_frequency_baseband_cleaning(self):
 		"""test 58 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
 		"""
@@ -578,7 +578,7 @@ class Test_EVLA3BitTutorialG192Eg(RegressionBase):
 
 	@inject("guides_post_EVLA3BitTutorialG192Eg")
 	@inject("guides_helper_EVLA3BitTutorialG192Eg")
-	#@unittest.skip("reason?")
+	@unittest.skip("interactive is set to true")
 	def test_59_basebands_mfs_taylor_cleaning(self):
 		"""test 59 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"
 		"""

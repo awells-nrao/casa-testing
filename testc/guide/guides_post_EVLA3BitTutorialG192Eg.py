@@ -60,325 +60,9 @@ def applycal_common(measet, field_id, checksum_ref):
 def test_00_splitting_fields_for_analysis():
 	"""post method for "splitting fields for analysis"
 	"""
-	pass
-
-def test_01_listobs_on_the_initial_data_set():
-	"""post method for "listobs on the initial data set"
-	"""
-	pass
-
-def test_02_flag_table_plot():
-	"""post method for "flag table plot"
-	"""
-	pass
-
-def test_03_bandpass_calibrator_analysis_flagging():
-	"""post method for "bandpass calibrator analysis flagging"
-	"""
-	pass
-
-def test_04_rfi_phase_calibrator_flagging():
-	"""post method for "RFI phase calibrator flagging"
-	"""
-	pass
-
-def test_05_splitting_good_and_bad_data():
-	"""post method for "splitting good and bad data"
-	"""
-	pass
-
-def test_06_split_and_flagged_listobs():
-	"""post method for "split and flagged listobs"
-	"""
-	pass
-
-def test_07_model_for_the_flux_calibrator():
-	"""post method for "model for the flux calibrator"
-	"""
-	pass
-
-def test_08_determining_antenna_position_corrections():
-	"""post method for "determining antenna position corrections"
-	"""
-	pass
-
-def test_09_generating_gaincurve_calibration():
-	"""post method for "generating gaincurve calibration"
-	"""
-	pass
-
-def test_10_generate_atmospheric_opacity_calibration():
-	"""post method for "generate atmospheric opacity calibration"
-	"""
-	pass
-
-def test_11_generate_requantizer_gains_corrections():
-	"""post method for "generate requantizer gains corrections"
-	"""
-	pass
-
-def test_12_phase_only_calibration():
-	"""post method for "phase only calibration"
-	"""
-	pass
-
-def test_13_residual_delays():
-	"""post method for "residual delays"
-	"""
-	pass
-
-def test_14_antenna_bandpasses():
-	"""post method for "antenna bandpasses"
-	"""
-	pass
-
-def test_15_flux_and_bandpass_calibrators_gain():
-	"""post method for "flux and bandpass calibrators gain"
-	"""
-	pass
-
-def test_16_bandpass_calibrator_gain_amplitudes_scaling():
-	"""post method for "bandpass calibrator gain amplitudes scaling"
-	"""
-	pass
-
-def test_17_spectral_information():
-	"""post method for "spectral information"
-	"""
-	pass
-
-def test_18_phase_only_recalibration():
-	"""post method for "phase only recalibration"
-	"""
-	pass
-
-def test_19_residual_delays_recalibration():
-	"""post method for "residual delays recalibration"
-	"""
-	pass
-
-def test_20_antenna_bandpasses_recalibration():
-	"""post method for "antenna bandpasses recalibration"
-	"""
-	pass
-
-def test_21_compute_gain_phases_using_3c147():
-	"""post method for "compute gain phases using 3C147"
-	"""
-	pass
-
-def test_22_compute_gain_phases_using_j0603_174():
-	"""post method for "compute gain phases using J0603+174"
-	"""
-	pass
-
-def test_23_compute_gain_phases_using_3c84():
-	"""post method for "compute gain phases using 3C84"
-	"""
-	pass
-
-def test_24_applying_phase_calibration():
-	"""post method for "applying phase calibration"
-	"""
-	pass
-
-def test_25_3c147_scan_solving_amplitudes():
-	"""post method for "3C147 scan solving amplitudes"
-	"""
-	pass
-
-def test_26_j0603_174__scan_solving_amplitudes():
-	"""post method for "J0603+174  scan solving amplitudes"
-	"""
-	pass
-
-def test_27_3c84_scan_solving_amplitudes():
-	"""post method for "3C84 scan solving amplitudes"
-	"""
-	pass
-
-def test_28_using_fluxscale_to_transfer_the_amplitude_solutions():
-	"""post method for "using fluxscale to transfer the amplitude solutions"
-	"""
-	pass
-
-def test_29_3c147_accumulated_calibration():
-	"""post method for "3C147 accumulated calibration"
-	"""
-	pass
-
-def test_30_gain_accumulated_calibration():
-	"""post method for "gain accumulated calibration"
-	"""
-	pass
-
-def test_31_g192_accumulated_calibration():
-	"""post method for "G192 accumulated calibration"
-	"""
-	pass
-
-def test_32_3c84_accumulated_calibration():
-	"""post method for "3C84 accumulated calibration"
-	"""
-	pass
-
-def test_33_flagging_isolated_rfi():
-	"""post method for "flagging isolated RFI"
-	"""
-	pass
-
-def test_34_baseline_flagging():
-	"""post method for "baseline flagging"
-	"""
-	pass
-
-def test_35_3c147_density_model():
-	"""post method for "3C147 density model"
-	"""
-	pass
-
-def test_36_3c84_spectral_information_column():
-	"""post method for "3C84 spectral information column"
-	"""
-	pass
-
-def test_37_initial_phase_calibration():
-	"""post method for "initial phase calibration"
-	"""
-	pass
-
-def test_38_delay_calibration():
-	"""post method for "delay calibration"
-	"""
-	pass
-
-def test_39_bandpass_calibration():
-	"""post method for "bandpass calibration"
-	"""
-	pass
-
-def test_40_phase_gain_calibration_field_0():
-	"""post method for "phase gain calibration field 0"
-	"""
-	pass
-
-def test_41_phase_gain_calibration_field_1():
-	"""post method for "phase gain calibration field 1"
-	"""
-	pass
-
-def test_42_phase_gain_calibration_field_3():
-	"""post method for "phase gain calibration field 3"
-	"""
-	pass
-
-def test_43_phase_gain_calibration_infinite_solution_interval():
-	"""post method for "phase gain calibration infinite solution interval"
-	"""
-	pass
-
-def test_44_amplitude_calibration_solutions_field_0():
-	"""post method for "amplitude calibration solutions field 0"
-	"""
-	pass
-
-def test_45_amplitude_calibration_solutions_field_1():
-	"""post method for "amplitude calibration solutions field 1"
-	"""
-	pass
-
-def test_46_amplitude_calibration_solutions_field_3():
-	"""post method for "amplitude calibration solutions field 3"
-	"""
-	pass
-
-def test_47_flux_calibration_solutions():
-	"""post method for "flux calibration solutions"
-	"""
-	pass
-
-def test_48_apply_calibration_tables_field_0():
-	"""post method for "apply calibration tables field 0"
-	"""
-	pass
-
-def test_49_apply_calibration_tables_field_1():
-	"""post method for "apply calibration tables field 1"
-	"""
-	pass
-
-def test_50_apply_calibration_tables_field_2():
-	"""post method for "apply calibration tables field 2"
-	"""
-	pass
-
-def test_51_apply_calibration_tables_field_3():
-	"""post method for "apply calibration tables field 3"
-	"""
-	pass
-
-def test_52_splitting_calibrated_data_3c147():
-	"""post method for "splitting calibrated data 3C147"
-	"""
-	pass
-
-def test_53_splitting_calibrated_data_j0603_174():
-	"""post method for "splitting calibrated data J0603+174"
-	"""
-	pass
-
-def test_54_splitting_calibrated_data_g192():
-	"""post method for "splitting calibrated data G192"
-	"""
-	pass
-
-def test_55_splitting_calibrated_data_3c84():
-	"""post method for "splitting calibrated data 3C84"
-	"""
-	pass
-
-def test_56_single_spectral_window_cleaning():
-	"""post method for "single spectral window cleaning"
-	"""
-	pass
-
-def test_57_lower_frequency_baseband_cleaning():
-	"""post method for "lower frequency baseband cleaning"
-	"""
-	pass
-
-def test_58_upper_frequency_baseband_cleaning():
-	"""post method for "upper frequency baseband cleaning"
-	"""
-	pass
-
-def test_59_basebands_mfs_taylor_cleaning():
-	"""post method for "basebands mfs taylor cleaning"
-	"""
-	pass
-
-def test_60_spectral_index_image_filtering():
-	"""post method for "spectral index image filtering"
-	"""
-	pass
-
-def test_61_spectral_index_probable_errors_filtering():
-	"""post method for "spectral index probable errors filtering"
-	"""
-	pass
-
-def test_62_intensity_weighted_mean_spectral_analysis():
-	"""post method for "intensity weighted mean spectral analysis"
-	"""
-	pass
-
-
-def post_00():
-	"""post method for "splitting fields for analysis"
-	"""
 	RegressionHelper.assert_file("%s/G192_6s.ms" % os.getcwd())
 
-def post_01():
+def test_01_listobs_on_the_initial_data_set():
 	"""post method for "listobs on the initial data set"
 	"""
 	listobs_file = "%s/G192_listobs.txt" % os.getcwd()
@@ -389,12 +73,12 @@ def post_01():
 	remove.append("%s/listobs.last" % os.getcwd())
 	#RegressionHelper.data_remove(remove)
 
-def post_02():
+def test_02_flag_table_plot():
 	"""post method for "flag table plot"
 	"""
 	RegressionHelper.assert_file("%s/PlotG192_flagcmd_4.1.png" % os.getcwd())
 
-def post_03():
+def test_03_bandpass_calibrator_analysis_flagging():
 	"""post method for "bandpass calibrator analysis flagging"
 	"""
 	measet = "%s/G192_6s.ms" % os.getcwd()
@@ -404,7 +88,7 @@ def post_03():
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 
-def post_04():
+def test_04_rfi_phase_calibrator_flagging():
 	"""post method for "RFI phase calibrator flagging"
 	"""
 	measet = "%s/G192_6s.ms" % os.getcwd()
@@ -414,7 +98,7 @@ def post_04():
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 	
-def post_05():
+def test_05_splitting_good_and_bad_data():
 	"""post method for "splitting good and bad data"
 	"""
 	# dont delete G192_flagged_6s.ms all the tests relies on the
@@ -422,20 +106,20 @@ def post_05():
 	measet = "G192_flagged_6s.ms"
 	RegressionHelper.assert_file("%s/%s" % (os.getcwd(), measet))
 
-def post_06():
+def test_06_split_and_flagged_listobs():
 	"""post method for "split and flagged listobs"
 	"""
 	listobs_file = "%s/G192_flagged_listobs.txt" % os.getcwd()
 	RegressionHelper.assert_file(listobs_file)
 
-def post_07():
+def test_07_model_for_the_flux_calibrator():
 	"""post method for "model for the flux calibrator"
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
 	setjy_common(measet, checksum_ref)
 
-def post_08():
+def test_08_determining_antenna_position_corrections():
 	"""post method for "determining antenna position corrections"
 	"""
 	produced_files = []
@@ -475,7 +159,7 @@ def post_08():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_09():
+def test_09_generating_gaincurve_calibration():
 	"""post method for "generating gaincurve calibration"
 	"""
 	produced_files = []
@@ -515,7 +199,7 @@ def post_09():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_10():
+def test_10_generate_atmospheric_opacity_calibration():
 	"""post method for "generate atmospheric opacity calibration"
 	"""
 	produced_files = []
@@ -555,7 +239,7 @@ def post_10():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_11():
+def test_11_generate_requantizer_gains_corrections():
 	"""post method for "generate requantizer gains corrections"
 	"""
 	produced_files = []
@@ -595,7 +279,7 @@ def post_11():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_12():
+def test_12_phase_only_calibration():
 	"""post method for "phase only calibration"
 	"""
 	produced_files = []
@@ -635,7 +319,7 @@ def post_12():
 	
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_13():
+def test_13_residual_delays():
 	"""post method for "residual delays"
 	"""
 	produced_files = []
@@ -675,7 +359,7 @@ def post_13():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_14():
+def test_14_antenna_bandpasses():
 	"""post method for "antenna bandpasses"
 	"""
 	produced_files = []
@@ -715,7 +399,7 @@ def post_14():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_15():
+def test_15_flux_and_bandpass_calibrators_gain():
 	"""post method for "flux and bandpass calibrators gain"
 	"""
 	produced_files = []
@@ -753,21 +437,19 @@ def post_15():
 	produced_files.append("calG192.G1/OBSERVATION/table.f0")
 	produced_files.append("calG192.G1/table.f0")
 
-	RegressionHelper.assert_files(produced_files, os.getcwd())
-
-def post_16():
+def test_16_bandpass_calibrator_gain_amplitudes_scaling():
 	"""post method for "bandpass calibrator gain amplitudes scaling"
 	"""
 	RegressionHelper.assert_file("%s/3C84.fluxinfo" % os.getcwd())
 
-def post_17():
+def test_17_spectral_information():
 	"""post method for "spectral information"
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
 	setjy_common(measet, checksum_ref)
 
-def post_18():
+def test_18_phase_only_recalibration():
 	"""post method for "phase only recalibration"
 	"""
 	produced_files = []
@@ -807,7 +489,7 @@ def post_18():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_19():
+def test_19_residual_delays_recalibration():
 	"""post method for "residual delays recalibration"
 	"""
 	produced_files = []
@@ -847,7 +529,7 @@ def post_19():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_20():
+def test_20_antenna_bandpasses_recalibration():
 	"""post method for "antenna bandpasses recalibration"
 	"""
 	produced_files = []
@@ -887,7 +569,7 @@ def post_20():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_21():
+def test_21_compute_gain_phases_using_3c147():
 	"""post method for "compute gain phases using 3C147"
 	"""
 	produced_files = []
@@ -927,7 +609,7 @@ def post_21():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_22():
+def test_22_compute_gain_phases_using_j0603_174():
 	"""post method for "compute gain phases using J0603+174"
 	"""
 	produced_files = []
@@ -967,7 +649,7 @@ def post_22():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_23():
+def test_23_compute_gain_phases_using_3c84():
 	"""post method for "compute gain phases using 3C84"
 	"""
 	produced_files = []
@@ -1007,7 +689,7 @@ def post_23():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_24():
+def test_24_applying_phase_calibration():
 	"""post method for "applying phase calibration"
 	"""
 	produced_files = []
@@ -1047,7 +729,7 @@ def post_24():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_25():
+def test_25_3c147_scan_solving_amplitudes():
 	"""post method for "3C147 scan solving amplitudes"
 	"""
 	produced_files = []
@@ -1087,7 +769,7 @@ def post_25():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_26():
+def test_26_j0603_174__scan_solving_amplitudes():
 	"""post method for "J0603+174  scan solving amplitudes"
 	"""
 	produced_files = []
@@ -1127,7 +809,7 @@ def post_26():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_27():
+def test_27_3c84_scan_solving_amplitudes():
 	"""post method for "3C84 scan solving amplitudes"
 	"""
 	produced_files = []
@@ -1167,7 +849,7 @@ def post_27():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_28():
+def test_28_using_fluxscale_to_transfer_the_amplitude_solutions():
 	"""post method for "using fluxscale to transfer the amplitude solutions"
 	"""
 	produced_files = []
@@ -1207,7 +889,7 @@ def post_28():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_29():
+def test_29_3c147_accumulated_calibration():
 	"""post method for "3C147 accumulated calibration"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
@@ -1215,8 +897,8 @@ def post_29():
 	checksum_ref= ""
 
 	applycal_common(measet, field_id, checksum_ref)
-	
-def post_30():
+
+def test_30_gain_accumulated_calibration():
 	"""post method for "gain accumulated calibration"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
@@ -1225,7 +907,7 @@ def post_30():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
-def post_31():
+def test_31_g192_accumulated_calibration():
 	"""post method for "G192 accumulated calibration"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()	
@@ -1234,7 +916,7 @@ def post_31():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
-def post_32():
+def test_32_3c84_accumulated_calibration():
 	"""post method for "3C84 accumulated calibration"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()	
@@ -1243,7 +925,7 @@ def post_32():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
-def post_33():
+def test_33_flagging_isolated_rfi():
 	"""post method for "flagging isolated RFI"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
@@ -1253,7 +935,7 @@ def post_33():
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 
-def post_34():
+def test_34_baseline_flagging():
 	"""post method for "baseline flagging"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
@@ -1263,21 +945,21 @@ def post_34():
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 
-def post_35():
+def test_35_3c147_density_model():
 	"""post method for "3C147 density model"
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
 	setjy_common(measet, checksum_ref)
 
-def post_36():
+def test_36_3c84_spectral_information_column():
 	"""post method for "3C84 spectral information column"
 	"""
 	measet = "%s/G192_flagged_6s.ms/SOURCE" % os.getcwd()
 	checksum_ref = ""
 	setjy_common(measet, checksum_ref)
 
-def post_37():
+def test_37_initial_phase_calibration():
 	"""post method for "initial phase calibration"
 	"""
 	produced_files = []
@@ -1317,7 +999,7 @@ def post_37():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_38():
+def test_38_delay_calibration():
 	"""post method for "delay calibration"
 	"""
 	produced_files = []
@@ -1357,7 +1039,7 @@ def post_38():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_39():
+def test_39_bandpass_calibration():
 	"""post method for "bandpass calibration"
 	"""
 	produced_files = []
@@ -1397,7 +1079,7 @@ def post_39():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_40():
+def test_40_phase_gain_calibration_field_0():
 	"""post method for "phase gain calibration field 0"
 	"""
 	produced_files = []
@@ -1437,7 +1119,7 @@ def post_40():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_41():
+def test_41_phase_gain_calibration_field_1():
 	"""post method for "phase gain calibration field 1"
 	"""
 	produced_files = []
@@ -1477,7 +1159,7 @@ def post_41():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_42():
+def test_42_phase_gain_calibration_field_3():
 	"""post method for "phase gain calibration field 3"
 	"""
 	produced_files = []
@@ -1517,7 +1199,7 @@ def post_42():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_43():
+def test_43_phase_gain_calibration_infinite_solution_interval():
 	"""post method for "phase gain calibration infinite solution interval"
 	"""
 	produced_files = []
@@ -1557,7 +1239,7 @@ def post_43():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_44():
+def test_44_amplitude_calibration_solutions_field_0():
 	"""post method for "amplitude calibration solutions field 0"
 	"""
 	produced_files = []
@@ -1597,7 +1279,7 @@ def post_44():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_45():
+def test_45_amplitude_calibration_solutions_field_1():
 	"""post method for "amplitude calibration solutions field 1"
 	"""
 	produced_files = []
@@ -1637,7 +1319,7 @@ def post_45():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_46():
+def test_46_amplitude_calibration_solutions_field_3():
 	"""post method for "amplitude calibration solutions field 3"
 	"""
 	produced_files = []
@@ -1677,7 +1359,7 @@ def post_46():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_47():
+def test_47_flux_calibration_solutions():
 	"""post method for "flux calibration solutions"
 	"""
 	produced_files = []
@@ -1717,7 +1399,7 @@ def post_47():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_48():
+def test_48_apply_calibration_tables_field_0():
 	"""post method for "apply calibration tables field 0"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()		
@@ -1726,7 +1408,7 @@ def post_48():
 
 	applycal_common(measet, field_id, checksum_ref)
 
-def post_49():
+def test_49_apply_calibration_tables_field_1():
 	"""post method for "apply calibration tables field 1"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()	
@@ -1735,7 +1417,7 @@ def post_49():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
-def post_50():
+def test_50_apply_calibration_tables_field_2():
 	"""post method for "apply calibration tables field 2"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()	
@@ -1744,7 +1426,7 @@ def post_50():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
-def post_51():
+def test_51_apply_calibration_tables_field_3():
 	"""post method for "apply calibration tables field 3"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()	
@@ -1753,7 +1435,7 @@ def post_51():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
-def post_52():
+def test_52_splitting_calibrated_data_3c147():
 	"""post method for "splitting calibrated data 3C147"
 	"""
 	produced_files = []
@@ -1897,7 +1579,7 @@ def post_52():
 	remove.append("%s/%s" % (os.getcwd(), outputvis))
 	#RegressionHelper.data_remove(remove)
 
-def post_53():
+def test_53_splitting_calibrated_data_j0603_174():
 	"""post method for "splitting calibrated data J0603+174"
 	"""
 	produced_files = []
@@ -2033,7 +1715,7 @@ def post_53():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_54():
+def test_54_splitting_calibrated_data_g192():
 	"""post method for "splitting calibrated data G192"
 	"""
 	produced_files = []
@@ -2169,7 +1851,7 @@ def post_54():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_55():
+def test_55_splitting_calibrated_data_3c84():
 	"""post method for "splitting calibrated data 3C84"
 	"""
 	produced_files = []
@@ -2305,39 +1987,39 @@ def post_55():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
-def post_56():
+def test_56_single_spectral_window_cleaning():
 	"""post method for "single spectral window cleaning"
 	"""
 	raise NotImplementedError("post test method not implemented")
 
-def post_57():
+def test_57_lower_frequency_baseband_cleaning():
 	"""post method for "lower frequency baseband cleaning"
 	"""
 	raise NotImplementedError("post test method not implemented")
 
-def post_58():
+def test_58_upper_frequency_baseband_cleaning():
 	"""post method for "upper frequency baseband cleaning"
 	"""
 	raise NotImplementedError("post test method not implemented")
 
-def post_59():
+def test_59_basebands_mfs_taylor_cleaning():
 	"""post method for "basebands mfs taylor cleaning"
 	"""
 	raise NotImplementedError("post test method not implemented")
 
-def post_60():
+def test_60_spectral_index_image_filtering():
 	"""post method for "spectral index image filtering"
 	"""
 	outfile = "imgG192_6s_spw0-63_mfs2.image.alpha.filtered"
 	RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile))
 
-def post_61():
+def test_61_spectral_index_probable_errors_filtering():
 	"""post method for "spectral index probable errors filtering"
 	"""
 	outfile = "imgG192_6s_spw0-63_mfs2.image.alpha.error.filtered"
 	RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile))
 
-def post_62():
+def test_62_intensity_weighted_mean_spectral_analysis():
 	"""post method for "intensity weighted mean spectral analysis"
 	"""
 	outfile_tt1 = "imgG192_6s_spw0-63_mfs2.image.tt1.filtered"
