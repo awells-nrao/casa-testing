@@ -18,13 +18,16 @@ from contextlib import contextmanager
 from contextlib import closing
 
 from testc.regression.helper import RegressionHelper
+from testc.regression.helper import RegressionBase
 from testc.regression.helper import regressionLogger
+from testc.regression.helper import injectEnv
 
 from numpy import count_nonzero
 
 __test__ = False
 
 @contextmanager
+@injectEnv
 def mshandler(file):
 	exception = None
 	table_instance = tbtool()
@@ -2027,6 +2030,3 @@ def test_62_intensity_weighted_mean_spectral_analysis():
 	
 	RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile_tt1))
 	RegressionHelper.assert_file("%s/%s" % (os.getcwd(), outfile_tt0))
-
-# method_name is defined in locals(), injected
-if __name__ == "__main__": eval("%s()" % method_name, globals(), locals())

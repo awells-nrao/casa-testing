@@ -83,25 +83,31 @@ assert globals().has_key("casa"), "CASA environment is needed for this module (%
 
 import os
 
+from testc.regression.helper import injectEnv
+
 __test__ = False
 
+@injectEnv
 def test_00_splitting_fields_for_analysis():
 	""" "splitting fields for analysis"
 	"""
 	split('TVER0004.sb14459364.eb14492359.56295.26287841435.ms', outputvis='G192_6s.ms', \
 	      datacolumn='all', field='3,6,7,10', keepflags=False, spw='2~65')
 
+@injectEnv
 def test_01_listobs_on_the_initial_data_set():
 	""" "listobs on the initial data set"
 	"""
 	listobs('G192_6s.ms', listfile='G192_listobs.txt')
 
+@injectEnv
 def test_02_flag_table_plot():
 	""" "flag table plot"
 	"""
 	flagcmd(vis='G192_6s.ms', inpmode='table', action='plot', tablerows=myrows,
 	        useapplied=True, plotfile='PlotG192_flagcmd_4.1.png')
 
+@injectEnv
 def test_03_bandpass_calibrator_analysis_flagging():
 	""" "bandpass calibrator analysis flagging"
 	"""
@@ -111,6 +117,7 @@ def test_03_bandpass_calibrator_analysis_flagging():
 	flagcmd(vis='G192_6s.ms', inpmode='list', inpfile=flaglist, \
 	        action='apply', flagbackup=True)
 
+@injectEnv
 def test_04_rfi_phase_calibrator_flagging():
 	""" "RFI phase calibrator flagging"
 	"""
@@ -119,6 +126,7 @@ def test_04_rfi_phase_calibrator_flagging():
 	flagcmd(vis='G192_6s.ms', inpmode='list', inpfile=flaglist, \
 	        action='apply', flagbackup=True)
 
+@injectEnv
 def test_05_splitting_good_and_bad_data():
 	""" "splitting good and bad data"
 	"""
@@ -127,29 +135,34 @@ def test_05_splitting_good_and_bad_data():
 	split(vis='G192_6s.ms', outputvis='G192_flagged_6s.ms', \
 	      datacolumn='data', keepflags=False)
 
+@injectEnv
 def test_06_split_and_flagged_listobs():
 	""" "split and flagged listobs"
 	"""
 	listobs('G192_flagged_6s.ms', listfile='G192_flagged_listobs.txt')
 
+@injectEnv
 def test_07_model_for_the_flux_calibrator():
 	""" "model for the flux calibrator"
 	"""
 	setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
 	      model='3C147_A.im')
 
+@injectEnv
 def test_08_determining_antenna_position_corrections():
 	""" "determining antenna position corrections"
 	"""
 	gencal('G192_flagged_6s.ms', caltable='calG192.antpos', \
 	       caltype='antpos', antenna='')
 
+@injectEnv
 def test_09_generating_gaincurve_calibration():
 	""" "generating gaincurve calibration"
 	"""
 	gencal('G192_flagged_6s.ms', caltable='calG192.gaincurve', \
 	       caltype='gc')
 
+@injectEnv
 def test_10_generate_atmospheric_opacity_calibration():
 	""" "generate atmospheric opacity calibration"
 	"""
@@ -157,12 +170,14 @@ def test_10_generate_atmospheric_opacity_calibration():
 	gencal(vis='G192_flagged_6s.ms', caltable='calG192.opacity',
 	       caltype='opac', spw=spwString, parameter=myTau)
 
+@injectEnv
 def test_11_generate_requantizer_gains_corrections():
 	""" "generate requantizer gains corrections"
 	"""
 	gencal('G192_flagged_6s.ms', caltable='calG192.requantizer', \
 	       caltype='rq')
 
+@injectEnv
 def test_12_phase_only_calibration():
 	""" "phase only calibration"
 	"""
@@ -173,6 +188,7 @@ def test_12_phase_only_calibration():
 	        gaintype='G', refant='ea05', calmode='p', \
 	        solint='int', minsnr=3)
 
+@injectEnv
 def test_13_residual_delays():
 	""" "residual delays"
 	"""
@@ -182,6 +198,7 @@ def test_13_residual_delays():
 	        field='3', spw='*:5~122', gaintype='K', \
 	        refant='ea05', solint='inf', minsnr=3)
 
+@injectEnv
 def test_14_antenna_bandpasses():
 	""" "antenna bandpasses"
 	"""
@@ -191,6 +208,7 @@ def test_14_antenna_bandpasses():
 	         field='3', refant='ea05', solnorm=False, \
 	         bandtype='B', solint='inf')
 
+@injectEnv
 def test_15_flux_and_bandpass_calibrators_gain():
 	""" "flux and bandpass calibrators gain"
 	"""
@@ -200,6 +218,7 @@ def test_15_flux_and_bandpass_calibrators_gain():
 	                   'calG192.B0'], \
 	        gaintype='G', refant='ea05', calmode='ap', solint='30s', minsnr=3)
 
+@injectEnv
 def test_16_bandpass_calibrator_gain_amplitudes_scaling():
 	""" "bandpass calibrator gain amplitudes scaling"
 	"""
@@ -207,6 +226,7 @@ def test_16_bandpass_calibrator_gain_amplitudes_scaling():
 	                  fluxtable='calG192.F1', reference='0', \
 	                  transfer='3', listfile='3C84.fluxinfo', fitorder=1)
 
+@injectEnv
 def test_17_spectral_information():
 	""" "spectral information"
 	"""
@@ -214,6 +234,7 @@ def test_17_spectral_information():
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
 	      reffreq='32.4488GHz')
 
+@injectEnv
 def test_18_phase_only_recalibration():
 	""" "phase only recalibration"
 	"""
@@ -224,6 +245,7 @@ def test_18_phase_only_recalibration():
 	        gaintype='G', refant='ea05', calmode='p', \
 	        solint='int', minsnr=3)
 
+@injectEnv
 def test_19_residual_delays_recalibration():
 	""" "residual delays recalibration"
 	"""
@@ -233,6 +255,7 @@ def test_19_residual_delays_recalibration():
 	        field='3', spw='*:5~122', gaintype='K', \
 	        refant='ea05', solint='inf', minsnr=3)
 
+@injectEnv
 def test_20_antenna_bandpasses_recalibration():
 	""" "antenna bandpasses recalibration"
 	"""
@@ -242,6 +265,7 @@ def test_20_antenna_bandpasses_recalibration():
 	         field='3', refant='ea05', solnorm=False, \
 	         bandtype='B', solint='inf')
 
+@injectEnv
 def test_21_compute_gain_phases_using_3c147():
 	""" "compute gain phases using 3C147"
 	"""
@@ -251,6 +275,7 @@ def test_21_compute_gain_phases_using_3c147():
 	        field='0', refant='ea05', solnorm=F, \
 	        solint='int', gaintype='G', calmode='p')
 
+@injectEnv
 def test_22_compute_gain_phases_using_j0603_174():
 	""" "compute gain phases using J0603+174"
 	"""
@@ -260,6 +285,7 @@ def test_22_compute_gain_phases_using_j0603_174():
 	        field='1', refant='ea05', solnorm=F, \
 	        solint='12s', gaintype='G', calmode='p', append=True)
 
+@injectEnv
 def test_23_compute_gain_phases_using_3c84():
 	""" "compute gain phases using 3C84"
 	"""
@@ -269,6 +295,7 @@ def test_23_compute_gain_phases_using_3c84():
 	        field='3', refant='ea05', solnorm=F, \
 	        solint='int', gaintype='G', calmode='p', append=True)
 
+@injectEnv
 def test_24_applying_phase_calibration():
 	""" "applying phase calibration"
 	"""
@@ -278,6 +305,7 @@ def test_24_applying_phase_calibration():
 	        field='1', refant='ea05', solnorm=F, \
 	        solint='inf', gaintype='G', calmode='p')
 
+@injectEnv
 def test_25_3c147_scan_solving_amplitudes():
 	""" "3C147 scan solving amplitudes"
 	"""
@@ -289,6 +317,7 @@ def test_25_3c147_scan_solving_amplitudes():
 	        field='0', refant='ea05', solnorm=F, \
 	        solint='inf', gaintype='G', calmode='a')
 
+@injectEnv
 def test_26_j0603_174__scan_solving_amplitudes():
 	""" "J0603+174  scan solving amplitudes"
 	"""
@@ -300,6 +329,7 @@ def test_26_j0603_174__scan_solving_amplitudes():
 	        field='1', refant='ea05', solnorm=F, \
 	        solint='inf', gaintype='G', calmode='a', append=True)
 
+@injectEnv
 def test_27_3c84_scan_solving_amplitudes():
 	""" "3C84 scan solving amplitudes"
 	"""
@@ -312,12 +342,14 @@ def test_27_3c84_scan_solving_amplitudes():
 	        solint='inf', gaintype='G', calmode='a', append=True)
 	#
 
+@injectEnv
 def test_28_using_fluxscale_to_transfer_the_amplitude_solutions():
 	""" "using fluxscale to transfer the amplitude solutions"
 	"""
 	flux2 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	                  fluxtable='calG192.F2', reference='0')
 
+@injectEnv
 def test_29_3c147_accumulated_calibration():
 	""" "3C147 accumulated calibration"
 	"""
@@ -328,6 +360,7 @@ def test_29_3c147_accumulated_calibration():
 	         gainfield=['', '', '', '', '', '', '0', '0'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
+@injectEnv
 def test_30_gain_accumulated_calibration():
 	""" "gain accumulated calibration"
 	"""
@@ -338,6 +371,7 @@ def test_30_gain_accumulated_calibration():
 	         gainfield=['', '', '', '', '', '', '1', '1'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
+@injectEnv
 def test_31_g192_accumulated_calibration():
 	""" "G192 accumulated calibration"
 	"""
@@ -348,6 +382,7 @@ def test_31_g192_accumulated_calibration():
 	         gainfield=['', '', '', '', '', '', '1', '1'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'linear'], calwt=False)
 
+@injectEnv
 def test_32_3c84_accumulated_calibration():
 	""" "3C84 accumulated calibration"
 	"""
@@ -358,23 +393,27 @@ def test_32_3c84_accumulated_calibration():
 	         gainfield=['', '', '', '', '', '', '3', '3'],
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
+@injectEnv
 def test_33_flagging_isolated_rfi():
 	""" "flagging isolated RFI"
 	"""
 	flagdata(vis='G192_flagged_6s.ms', field='0', \
 	         spw='29', timerange='6:35:00~6:36:40')
 
+@injectEnv
 def test_34_baseline_flagging():
 	""" "baseline flagging"
 	"""
 	flagdata(vis='G192_flagged_6s.ms', antenna='ea03&ea07')
 
+@injectEnv
 def test_35_3c147_density_model():
 	""" "3C147 density model"
 	"""
 	setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
 	      model='3C147_A.im')
 
+@injectEnv
 def test_36_3c84_spectral_information_column():
 	""" "3C84 spectral information column"
 	"""
@@ -382,6 +421,7 @@ def test_36_3c84_spectral_information_column():
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
 	      reffreq='32.4488GHz')
 
+@injectEnv
 def test_37_initial_phase_calibration():
 	""" "initial phase calibration"
 	"""
@@ -390,6 +430,7 @@ def test_37_initial_phase_calibration():
 	                  'calG192.requantizer', 'calG192.opacity'], \
 	        gaintype='G', refant='ea05', calmode='p', solint='int', minsnr=3)
 
+@injectEnv
 def test_38_delay_calibration():
 	""" "delay calibration"
 	"""
@@ -399,6 +440,7 @@ def test_38_delay_calibration():
 	                  'calG192.requantizer', 'calG192.opacity','calG192.G0.b.2'], \
 	        refant='ea05', solint='inf', minsnr=3)
 
+@injectEnv
 def test_39_bandpass_calibration():
 	""" "bandpass calibration"
 	"""
@@ -408,6 +450,7 @@ def test_39_bandpass_calibration():
 	                   'calG192.opacity','calG192.G0.b.2', 'calG192.K0.b.2'], \
 	         bandtype='B', solint='inf')
 
+@injectEnv
 def test_40_phase_gain_calibration_field_0():
 	""" "phase gain calibration field 0"
 	"""
@@ -417,6 +460,7 @@ def test_40_phase_gain_calibration_field_0():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='int', gaintype='G', calmode='p')
 
+@injectEnv
 def test_41_phase_gain_calibration_field_1():
 	""" "phase gain calibration field 1"
 	"""
@@ -426,6 +470,7 @@ def test_41_phase_gain_calibration_field_1():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='12s', gaintype='G', calmode='p', append=True)
 
+@injectEnv
 def test_42_phase_gain_calibration_field_3():
 	""" "phase gain calibration field 3"
 	"""
@@ -435,6 +480,7 @@ def test_42_phase_gain_calibration_field_3():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='int', gaintype='G', calmode='p', append=True)
 
+@injectEnv
 def test_43_phase_gain_calibration_infinite_solution_interval():
 	""" "phase gain calibration infinite solution interval"
 	"""
@@ -445,6 +491,7 @@ def test_43_phase_gain_calibration_infinite_solution_interval():
 	                   'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
 	        solint='inf', gaintype='G', calmode='p')
 
+@injectEnv
 def test_44_amplitude_calibration_solutions_field_0():
 	""" "amplitude calibration solutions field 0"
 	"""
@@ -457,6 +504,7 @@ def test_44_amplitude_calibration_solutions_field_0():
 	        interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
 	        solint='inf', gaintype='G', calmode='a')
 
+@injectEnv
 def test_45_amplitude_calibration_solutions_field_1():
 	""" "amplitude calibration solutions field 1"
 	"""
@@ -469,6 +517,7 @@ def test_45_amplitude_calibration_solutions_field_1():
 	        interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
 	        solint='inf', gaintype='G', calmode='a', append=True)
 
+@injectEnv
 def test_46_amplitude_calibration_solutions_field_3():
 	""" "amplitude calibration solutions field 3"
 	"""
@@ -481,12 +530,14 @@ def test_46_amplitude_calibration_solutions_field_3():
 	        interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
 	        solint='inf', gaintype='G', calmode='a', append=True)
 
+@injectEnv
 def test_47_flux_calibration_solutions():
 	""" "flux calibration solutions"
 	"""
 	flux3 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	                  fluxtable='calG192.F2.2', reference='0')
 
+@injectEnv
 def test_48_apply_calibration_tables_field_0():
 	""" "apply calibration tables field 0"
 	"""
@@ -496,6 +547,7 @@ def test_48_apply_calibration_tables_field_0():
 	         gainfield=['', '', '', '', '', '', '0', '0'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
+@injectEnv
 def test_49_apply_calibration_tables_field_1():
 	""" "apply calibration tables field 1"
 	"""
@@ -505,6 +557,7 @@ def test_49_apply_calibration_tables_field_1():
 	         gainfield=['', '', '', '', '', '', '1', '1'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
+@injectEnv
 def test_50_apply_calibration_tables_field_2():
 	""" "apply calibration tables field 2"
 	"""
@@ -514,6 +567,7 @@ def test_50_apply_calibration_tables_field_2():
 	         gainfield=['', '', '', '', '', '', '1', '1'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'linear'], calwt=False)
 
+@injectEnv
 def test_51_apply_calibration_tables_field_3():
 	""" "apply calibration tables field 3"
 	"""
@@ -523,6 +577,7 @@ def test_51_apply_calibration_tables_field_3():
 	         gainfield=['', '', '', '', '', '', '3', '3'], \
 	         interp=['', '', '', '', 'nearest', 'nearest', 'linear', 'nearest'], calwt=False)
 
+@injectEnv
 def test_52_splitting_calibrated_data_3c147():
 	""" "splitting calibrated data 3C147"
 	"""
@@ -531,6 +586,7 @@ def test_52_splitting_calibrated_data_3c147():
 	      datacolumn='corrected', field='0')
 	#
 
+@injectEnv
 def test_53_splitting_calibrated_data_j0603_174():
 	""" "splitting calibrated data J0603+174"
 	"""
@@ -539,6 +595,7 @@ def test_53_splitting_calibrated_data_j0603_174():
 	      datacolumn='corrected', field='1')
 	#
 
+@injectEnv
 def test_54_splitting_calibrated_data_g192():
 	""" "splitting calibrated data G192"
 	"""
@@ -547,6 +604,7 @@ def test_54_splitting_calibrated_data_g192():
 	      datacolumn='corrected', field='2')
 	#
 
+@injectEnv
 def test_55_splitting_calibrated_data_3c84():
 	""" "splitting calibrated data 3C84"
 	"""
@@ -554,6 +612,7 @@ def test_55_splitting_calibrated_data_3c84():
 	split(vis='G192_flagged_6s.ms', outputvis='3C84_split_6s.ms', \
 	      datacolumn='corrected', field='3')
 
+@injectEnv
 def test_56_single_spectral_window_cleaning():
 	""" "single spectral window cleaning"
 	"""
@@ -565,6 +624,7 @@ def test_56_single_spectral_window_cleaning():
 	      weighting='briggs', robust=0.5, \
 	      interactive=True)
 
+@injectEnv
 def test_57_lower_frequency_baseband_cleaning():
 	""" "lower frequency baseband cleaning"
 	"""
@@ -582,6 +642,7 @@ def test_57_lower_frequency_baseband_cleaning():
 	mystat = imstat('imgG192_6s_spw32-63.residual')
 	print 'Residual standard deviation = '+str(mystat['sigma'][0]) + ' Jy'
 
+@injectEnv
 def test_58_upper_frequency_baseband_cleaning():
 	""" "upper frequency baseband cleaning"
 	"""
@@ -601,6 +662,7 @@ def test_58_upper_frequency_baseband_cleaning():
 	myfit = imfit('imgG192_6s_spw0-31.image', region='G192.crtf')
 	print 'Source flux = '+str(myfit['results']['component0']['flux']['value'][0])+'+/-'+str(myfit['results']['component0']['flux']['error'][0]) + ' Jy'
 
+@injectEnv
 def test_59_basebands_mfs_taylor_cleaning():
 	""" "basebands mfs taylor cleaning"
 	"""
@@ -616,6 +678,7 @@ def test_59_basebands_mfs_taylor_cleaning():
 	myfit = imfit('imgG192_6s_spw0-63_mfs2.image.tt0', region='G192.crtf') + ' Jy'
 	print 'Source flux = '+str(myfit['results']['component0']['flux']['value'][0])+'+/-'+str(myfit['results']['component0']['flux']['error'][0])
 
+@injectEnv
 def test_60_spectral_index_image_filtering():
 	""" "spectral index image filtering"
 	"""
@@ -625,6 +688,7 @@ def test_60_spectral_index_image_filtering():
 	       expr='IM0[IM1>2.0E-4]',
 	       outfile='imgG192_6s_spw0-63_mfs2.image.alpha.filtered')
 
+@injectEnv
 def test_61_spectral_index_probable_errors_filtering():
 	""" "spectral index probable errors filtering"
 	"""
@@ -634,6 +698,7 @@ def test_61_spectral_index_probable_errors_filtering():
 	       expr='IM0[IM1>2E-4]',
 	       outfile='imgG192_6s_spw0-63_mfs2.image.alpha.error.filtered')
 
+@injectEnv
 def test_62_intensity_weighted_mean_spectral_analysis():
 	""" "intensity weighted mean spectral analysis"
 	"""
@@ -649,6 +714,3 @@ def test_62_intensity_weighted_mean_spectral_analysis():
 	       mode='evalexpr',
 	       expr='IM0[IM0>2E-4]',
 	       outfile='imgG192_6s_spw0-63_mfs2.image.tt0.filtered')
-
-# method_name is defined in locals(), injected
-if __name__ == "__main__": eval("%s()" % method_name, globals(), locals())
