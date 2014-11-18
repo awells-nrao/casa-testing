@@ -44,35 +44,32 @@ __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regression
 regressionLogger = logging.getLogger("RegressionLogger")
 
 def injectMod(module, method = True):
-	def test_injection(fn):
+	def test_injection(func):
 		def wrapped(*args, **kwargs):
 			testc_file, testc_path, testc_desc = imp.find_module("testc")
 			module_paths = sys.path + [os.path.join(testc_path, "regression"), os.path.join(testc_path, "guide")] 			
 			module_file, module_path, module_desc = imp.find_module(module, module_paths)
-
-			custom_globals = dict(globals().items() + RegressionHelper.casa_console_globals().items())
 
 			if method:
 				module_object = imp.load_module(module, module_file, module_path, module_desc)
 				if isinstance(method, str):
 					method_object = getattr(module_object, method)
 				else:
-					method_object = getattr(module_object, fn.__name__)
+					method_object = getattr(module_object, func.__name__)
 				method_object()
 			else:
+				casa_globals = dict(globals().items() + RegressionHelper.casa_console_globals().items())
 				execfile(module_path, custom_globals, locals())
 			
-			fn(*args, **kwargs)
-		return wraps(fn)(wrapped)
+			return func(*args, **kwargs)
+		return wraps(func)(wrapped)
 	return test_injection
 
-def injectEnv():
-	def test_injection(fn):
-		def wrapped(*args, **kwargs):
-			fn.func_globals = dict(RegressionHelper.casa_console_globals().items() + fn.func_globals.items())
-			fn(*args, **kwargs)
-		return wraps(fn)(wrapped)
-	return test_injection
+def injectEnv(func):
+	def wrapped(*args, **kwargs):
+		casa_globals = dict(RegressionHelper.casa_console_globals().items() + func.func_globals.items())
+		return type(func)(func.func_code, casa_globals)(*args, **kwargs)
+	return wraps(func)(wrapped)
 
 class RegressionHelper():
 
