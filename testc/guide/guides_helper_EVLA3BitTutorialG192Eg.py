@@ -77,9 +77,9 @@ test_62 "intensity weighted mean spectral analysis"
 
 import sys
 
-assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
-assert globals().has_key("IPython"), "IPython environment is needed for this module (%s)" % __file__
-assert globals().has_key("casa"), "CASA environment is needed for this module (%s)" % __file__
+# assert sys.version >= '2' and sys.version_info.minor >= 7, "Python 2.7 or greater is supported"
+# assert globals().has_key("IPython"), "IPython environment is needed for this module (%s)" % __file__
+# assert globals().has_key("casa"), "CASA environment is needed for this module (%s)" % __file__
 
 import os
 
