@@ -104,6 +104,7 @@ def test_01_listobs_on_the_initial_data_set():
 def test_02_flag_table_plot():
 	""" "flag table plot"
 	"""
+	myrows = range(2868)
 	flagcmd(vis='G192_6s.ms', inpmode='table', action='plot', tablerows=myrows,
 	        useapplied=True, plotfile='PlotG192_flagcmd_4.1.png')
 
