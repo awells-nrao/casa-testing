@@ -81,6 +81,7 @@ def test_02_flag_table_plot():
 	"""
 	RegressionHelper.assert_file("%s/PlotG192_flagcmd_4.1.png" % os.getcwd())
 
+# the number of FLAG_ROWS (2909568) doesn't match to the expected one
 def test_03_bandpass_calibrator_analysis_flagging():
 	"""post method for "bandpass calibrator analysis flagging"
 	"""
@@ -91,6 +92,7 @@ def test_03_bandpass_calibrator_analysis_flagging():
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 
+# the number of FLAG_ROWS (2909568) doesn't match to the expected one
 def test_04_rfi_phase_calibrator_flagging():
 	"""post method for "RFI phase calibrator flagging"
 	"""
@@ -115,6 +117,7 @@ def test_06_split_and_flagged_listobs():
 	listobs_file = "%s/G192_flagged_listobs.txt" % os.getcwd()
 	RegressionHelper.assert_file(listobs_file)
 
+# error: TypeError: must be string or buffer, not dict
 def test_07_model_for_the_flux_calibrator():
 	"""post method for "model for the flux calibrator"
 	"""
@@ -202,6 +205,7 @@ def test_09_generating_gaincurve_calibration():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
+# error: global name 'SPWs' is not defined
 def test_10_generate_atmospheric_opacity_calibration():
 	"""post method for "generate atmospheric opacity calibration"
 	"""
@@ -445,6 +449,7 @@ def test_16_bandpass_calibrator_gain_amplitudes_scaling():
 	"""
 	RegressionHelper.assert_file("%s/3C84.fluxinfo" % os.getcwd())
 
+# error: must be string or buffer, not dict
 def test_17_spectral_information():
 	"""post method for "spectral information"
 	"""
@@ -901,6 +906,7 @@ def test_29_3c147_accumulated_calibration():
 
 	applycal_common(measet, field_id, checksum_ref)
 
+# fix memory issues related to the checksum
 def test_30_gain_accumulated_calibration():
 	"""post method for "gain accumulated calibration"
 	"""
@@ -910,6 +916,7 @@ def test_30_gain_accumulated_calibration():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
+# fix memory issues related to the checksum
 def test_31_g192_accumulated_calibration():
 	"""post method for "G192 accumulated calibration"
 	"""
@@ -919,6 +926,7 @@ def test_31_g192_accumulated_calibration():
 
 	#applycal_common(measet, field_id, checksum_ref)
 
+# fix memory issues related to the checksum
 def test_32_3c84_accumulated_calibration():
 	"""post method for "3C84 accumulated calibration"
 	"""

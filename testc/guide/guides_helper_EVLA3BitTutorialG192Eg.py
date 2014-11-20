@@ -166,7 +166,10 @@ def test_09_generating_gaincurve_calibration():
 def test_10_generate_atmospheric_opacity_calibration():
 	""" "generate atmospheric opacity calibration"
 	"""
-	spwString = ','.join(SPWs)
+	SPWs = []
+	for window in range(0,64):
+		SPWs.append(str(window))
+		spwString = ','.join(SPWs)
 	gencal(vis='G192_flagged_6s.ms', caltable='calG192.opacity',
 	       caltype='opac', spw=spwString, parameter=myTau)
 
