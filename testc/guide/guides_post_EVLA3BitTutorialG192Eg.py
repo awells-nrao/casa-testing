@@ -90,7 +90,7 @@ def test_03_bandpass_calibrator_analysis_flagging():
 	with mshandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
-		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
+		assert nrows == 2909568, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 
 # the number of FLAG_ROWS (2909568) doesn't match to the expected one
 def test_04_rfi_phase_calibrator_flagging():
@@ -101,7 +101,7 @@ def test_04_rfi_phase_calibrator_flagging():
 	with mshandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
-		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
+		assert nrows == 2909568, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 	
 def test_05_splitting_good_and_bad_data():
 	"""post method for "splitting good and bad data"
@@ -117,7 +117,7 @@ def test_06_split_and_flagged_listobs():
 	listobs_file = "%s/G192_flagged_listobs.txt" % os.getcwd()
 	RegressionHelper.assert_file(listobs_file)
 
-# error: TypeError: must be string or buffer, not dict
+# must be string or buffer, not dict
 def test_07_model_for_the_flux_calibrator():
 	"""post method for "model for the flux calibrator"
 	"""
@@ -449,7 +449,7 @@ def test_16_bandpass_calibrator_gain_amplitudes_scaling():
 	"""
 	RegressionHelper.assert_file("%s/3C84.fluxinfo" % os.getcwd())
 
-# error: must be string or buffer, not dict
+# must be string or buffer, not dict
 def test_17_spectral_information():
 	"""post method for "spectral information"
 	"""
@@ -897,12 +897,13 @@ def test_28_using_fluxscale_to_transfer_the_amplitude_solutions():
 
 	RegressionHelper.assert_files(produced_files, os.getcwd())
 
+# different data, checksum computed is 3b96fa951412a6022104d9d700e5a43e
 def test_29_3c147_accumulated_calibration():
 	"""post method for "3C147 accumulated calibration"
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
 	field_id = 0
-	checksum_ref= ""
+	checksum_ref= "3b96fa951412a6022104d9d700e5a43e"
 
 	applycal_common(measet, field_id, checksum_ref)
 
@@ -954,7 +955,7 @@ def test_34_baseline_flagging():
 	with mshandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
-		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
+		assert nrows == 30912, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
 
 def test_35_3c147_density_model():
 	"""post method for "3C147 density model"
@@ -1415,7 +1416,7 @@ def test_48_apply_calibration_tables_field_0():
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()		
 	field_id = 0
-	checksum_ref= ""
+	checksum_ref= "f3ef0bb78677a022831e39aa268f3771"
 
 	applycal_common(measet, field_id, checksum_ref)
 
