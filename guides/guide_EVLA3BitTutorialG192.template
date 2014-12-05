@@ -24,8 +24,9 @@ from testc.regression.helper import injectMod
 __test__ = True
 __all__ = ["$guide_class"]
 
-module_helper = "guides_helper_${guide_class}"
-module_post   = "guides_post_${guide_class}"
+module_helper	= "guides_helper_${guide}"
+module_post		= "guides_post_${guide}"
+module_patch	= "guides_patch_${guide}"
 
 class ${guide_class}(RegressionBase):
 	"""Testing class for $uri casa guide
@@ -54,9 +55,20 @@ class ${guide_class}(RegressionBase):
 		pass
 
 	#foreach ($phrase in $guide_phrases)
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
-	@injectMod(module_post)
+	#@unittest.skip("reason?")#if("test_${phrase[2]}_${phrase[3]}" == "test_17_spectral_information") @injectMod(module_patch)
+	#elseif("test_${phrase[2]}_${phrase[3]}" == "test_35_3c84_spectral_information_column")
+	@injectMod(module_patch)
+	#elseif("test_${phrase[2]}_${phrase[3]}" == "test_55_single_spectral_window_cleaning")
+	@injectMod(module_patch)
+	#elseif("test_${phrase[2]}_${phrase[3]}" == "test_56_lower_frequency_baseband_cleaning")
+	@injectMod(module_patch)
+	#elseif("test_${phrase[2]}_${phrase[3]}" == "test_57_upper_frequency_baseband_cleaning")
+	@injectMod(module_patch)
+	#elseif("test_${phrase[2]}_${phrase[3]}" == "test_58_basebands_mfs_taylor_cleaning")
+	@injectMod(module_patch)      
+	#else
+	@injectMod(module_helper) 
+	#end@injectMod(module_post)
 	def test_${phrase[2]}_${phrase[3]}(self):
 		"""test ${phrase[2]} $uri "$phrase[0]"
 		"""

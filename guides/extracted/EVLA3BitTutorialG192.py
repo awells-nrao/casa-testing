@@ -13,6 +13,7 @@ myrows = range(2868)
 flagcmd(vis='G192_6s.ms', inpmode='table', action='plot', \
         useapplied=True, tablerows=myrows)
 # In CASA: flag table plot
+myrows = range(2868)
 flagcmd(vis='G192_6s.ms', inpmode='table', action='plot', tablerows=myrows, 
         useapplied=True, plotfile='PlotG192_flagcmd_4.1.png')
 # In CASA
@@ -100,11 +101,12 @@ gencal('G192_flagged_6s.ms', caltable='calG192.gaincurve', \
        caltype='gc')
 # In CASA
 myTau = plotweather(vis='G192_flagged_6s.ms', doPlot=T)
-# In CASA
+# In CASA: generate atmospheric opacity calibration
+myTau = plotweather(vis='G192_flagged_6s.ms', doPlot=F)
 SPWs = []
 for window in range(0,64):
     SPWs.append(str(window))
-# In CASA: generate atmospheric opacity calibration
+#
 spwString = ','.join(SPWs)
 gencal(vis='G192_flagged_6s.ms', caltable='calG192.opacity',
        caltype='opac', spw=spwString, parameter=myTau)
@@ -309,7 +311,7 @@ plotcal(caltable='calG192.G1.inf', xaxis='time', yaxis='phase', \
         iteration='antenna', plotrange=[-1,-1,-180,180])
 print r'''Command: plotcal(caltable='calG192.G1.inf', xaxis='time', yaxis='phase', \\n        iteration='antenna', plotrange=[-1,-1,-180,180])'''
 user_check=raw_input('When you are done with the window, close it and press enter to continue:')
-# In CASA: 3C147 scan solving amplitudes 
+# In CASA: 3C147 scan solving amplitudes
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
                    'calG192.opacity', 'calG192.K0.b', 'calG192.B0.b', 'calG192.G1.int'], \
@@ -326,8 +328,7 @@ gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
         interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
         field='1', refant='ea05', solnorm=F, \
         solint='inf', gaintype='G', calmode='a', append=True)
-
-# In CASA: 3C84 scan solving amplitudes
+#In CASA: 3C84 scan solving amplitudes
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
                    'calG192.opacity', 'calG192.K0.b', 'calG192.B0.b', 'calG192.G1.int'], \
@@ -445,36 +446,36 @@ user_check=raw_input('When you are done with the window, close it and press ente
 # In CASA
 # Clear the corrected data and model from header
 clearcal('G192_flagged_6s.ms', addmodel=False)
-
+ 
 # In CASA: 3C147 density model
 setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
       model='3C147_A.im')
-
+ 
 # In CASA: 3C84 spectral information column
 setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
       fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
       reffreq='32.4488GHz')
-
+ 
 # In CASA: initial phase calibration
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0.b.2', field='3', spw='*:60~68',\
         gaintable=['calG192.antpos', 'calG192.gaincurve', \
                   'calG192.requantizer', 'calG192.opacity'], \
         gaintype='G', refant='ea05', calmode='p', solint='int', minsnr=3) 
-
+ 
 # In CASA: delay calibration
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0.b.2', \
         field='3', spw='*:5~122', gaintype='K', \
         gaintable=['calG192.antpos', 'calG192.gaincurve', \
                   'calG192.requantizer', 'calG192.opacity','calG192.G0.b.2'], \
         refant='ea05', solint='inf', minsnr=3)
-
+ 
 # In CASA: bandpass calibration
 bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0.b.2', \
          field='3', refant='ea05', solnorm=False, \
         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer',\
                    'calG192.opacity','calG192.G0.b.2', 'calG192.K0.b.2'], \
          bandtype='B', solint='inf')
-
+ 
 # In CASA: phase gain calibration field 0
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
         field='0', refant='ea05', solnorm=F, \
@@ -495,8 +496,8 @@ gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
         gaintable=['calG192.antpos', 'calG192.requantizer','calG192.gaincurve', \
                    'calG192.opacity', 'calG192.K0.b.2','calG192.B0.b.2'], \
         solint='int', gaintype='G', calmode='p', append=True)
-
-# In CASA: phase gain calibration infinite solution interval
+ 
+# In CASA: phase gain calibration infinite solution interval 
 # (Note: we will apply this table to our science target at the applycal stage.)
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.inf.2', \
         field='1', refant='ea05', solnorm=F, \
@@ -533,11 +534,11 @@ gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
         gainfield=['', '', '', '', '3', '3', '3'], \
         interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
         solint='inf', gaintype='G', calmode='a', append=True)
-
+ 
 # In CASA: flux calibration solutions
 flux3 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
                   fluxtable='calG192.F2.2', reference='0')
-
+ 
 # In CASA: apply calibration tables field 0
 applycal(vis='G192_flagged_6s.ms', field='0', \
          gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -620,28 +621,24 @@ user_check=raw_input('When you are done with the window, close it and press ente
 os.system('rm -rf 3C147_split_6s.ms')
 split(vis='G192_flagged_6s.ms', outputvis='3C147_split_6s.ms', \
       datacolumn='corrected', field='0')
-#
 # In CASA: splitting calibrated data J0603+174
 os.system('rm -rf J0603_split_6s.ms')
 split(vis='G192_flagged_6s.ms', outputvis='J0603_split_6s.ms', \
       datacolumn='corrected', field='1')
-#
 # In CASA: splitting calibrated data G192
 os.system('rm -rf G192_split_6s.ms')
 split(vis='G192_flagged_6s.ms', outputvis='G192_split_6s.ms', \
       datacolumn='corrected', field='2')
-#
 # In CASA: splitting calibrated data 3C84
 os.system('rm -rf 3C84_split_6s.ms')
 split(vis='G192_flagged_6s.ms', outputvis='3C84_split_6s.ms', \
       datacolumn='corrected', field='3')
-# In CASA
+# In CASA: single spectral window cleaning
 # Removing any previous cleaning information
 # This assumes you want to start this clean from scratch
 # If you want to continue this from a previous clean run, 
 # the rm -rf system command should be be skipped
 os.system ('rm -rf imgG192_6s_spw48*')
-# In CASA: single spectral window cleaning
 clean(vis='G192_split_6s.ms', spw='48:5~122', \
       imagename='imgG192_6s_spw48', \
       mode='mfs', nterms=1, niter=10000, \
@@ -656,13 +653,12 @@ user_check=raw_input('When you are done with the window, close it and press ente
 # In CASA
 mystat = imstat('imgG192_6s_spw48.residual')
 print 'Residual standard deviation = '+str(mystat['sigma'][0]) + ' Jy'
-# In CASA
+# In CASA: lower frequency baseband cleaning
 # Removing any previous cleaning information
 # This assumes you want to start this clean from scratch
 # If you want to continue this from a previous clean run, 
 # the rm -rf system command should be be skipped
 os.system ('rm -rf imgG192_6s_spw32-63*')
-# In CASA: lower frequency baseband cleaning
 clean(vis='G192_split_6s.ms', spw='32~63:5~122', \
       imagename='imgG192_6s_spw32-63', \
       mode='mfs', nterms=1, niter=10000, \
@@ -679,13 +675,12 @@ print 'Residual standard deviation = '+str(mystat['sigma'][0]) + ' Jy'
 # In CASA
 myfit = imfit('imgG192_6s_spw32-63.image', region='G192.crtf')
 print 'Source flux = '+str(myfit['results']['component0']['flux']['value'][0])+'+/-'+str(myfit['results']['component0']['flux']['error'][0]) + ' Jy'
-# In CASA
+# In CASA: upper frequency baseband cleaning
 # Removing any previous cleaning information
 # This assumes you want to start this clean from scratch
 # If you want to continue this from a previous clean run, 
 # the rm -rf system command should be be skipped
 os.system ('rm -rf imgG192_6s_spw0-31*')
-# In CASA: upper frequency baseband cleaning
 clean(vis='G192_split_6s.ms', spw='0~31:5~122', \
       imagename='imgG192_6s_spw0-31', \
       mode='mfs', nterms=1, niter=10000, \
@@ -701,13 +696,12 @@ mystat = imstat('imgG192_6s_spw0-31.residual')
 print 'Residual standard deviation = '+str(mystat['sigma'][0]) + ' Jy'
 myfit = imfit('imgG192_6s_spw0-31.image', region='G192.crtf')
 print 'Source flux = '+str(myfit['results']['component0']['flux']['value'][0])+'+/-'+str(myfit['results']['component0']['flux']['error'][0]) + ' Jy'
-# In CASA
+# In CASA: basebands mfs taylor cleaning
 # Removing any previous cleaning information
 # This assumes you want to start this clean from scratch
 # If you want to continue this from a previous clean run, 
 # the rm -rf system command should be be skipped
 os.system ('rm -rf imgG192_6s_spw0-63_mfs2*')
-# In CASA: basebands mfs taylor cleaning
 clean(vis='G192_split_6s.ms', spw='0~63:5~122', \
       imagename='imgG192_6s_spw0-63_mfs2', \
       mode='mfs', nterms=2, niter=10000, gain=0.1, \
@@ -741,10 +735,9 @@ print r'''Command: viewer('imgG192_6s_spw0-63_mfs2.image.alpha.filtered')'''
 user_check=raw_input('When you are done with the window, close it and press enter to continue:')
 # In CASA
 listobs('G192_split_6s.ms', listunfl=True)
-# In CASA
+# In CASA: intensity weighted mean spectral analysis
 # Removing any file output from previous runs, so immath will proceed
 os.system('rm -rf imgG192_6s_spw0-63_mfs2.image.tt1.filtered')
-# In CASA: intensity weighted mean spectral analysis
 immath(imagename=['imgG192_6s_spw0-63_mfs2.image.tt1',
                   'imgG192_6s_spw0-63_mfs2.image.tt0'],
        mode='evalexpr',

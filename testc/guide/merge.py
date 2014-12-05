@@ -19,8 +19,8 @@ __test__ = False
 __all__ = ["GuideMerge"]
 
 class GuideMerge:
-    # event that is a class, it will used the methods as they were static ones
-    # based that is a proof of concept, this can be improved later
+    # even that is a class, it will used the methods as they were static ones
+    # based that this is a proof of concept, this can be improved later
 
     def __init__(self, script, template, template_helper,  output, uri):
         self.__script = script
@@ -30,8 +30,19 @@ class GuideMerge:
         self.__guide_uri = uri
 
     def __read_phrases(self, to_parse):
-        phrases = []
-        counter = 0
+	""" Read the phrases and generate the data structure to be used
+	by the template.
+
+	The phrases is a 2-d array, e.g.: [ [ phrase, lines of code, counter id, normalized phrase ] ]
+	to be used by the template render engine (airspeed).
+	
+	For every line it will evaluate if is a valid "In CASA" and if is a valid phrase as well.
+	For every "In CASA" found without a phrase it will stop adding lines to the previous phrase
+	founded, if a new phrase is founded it will add the phrase to the phrases[] and will add the
+	lines of code of the phrase til a "In CASA" is found either ways if is a phrase or not.
+	"""
+        phrases = [] # for store the phrase [ [ phrase, code lines, counter, normalized phrase ] ]
+        counter = 0 # it will differentiate duplicated phrases
 
         self.__assert_file(to_parse)
 
@@ -46,7 +57,10 @@ class GuideMerge:
 
                 if is_incasa:
                     phrase = None
-
+		
+		# it will be never be valid til the first ocurrence
+		# of a valid phrase, is for adding the lines of code
+		# of a valid phrase til the next is_incasa is True
                 if phrase and len(line) and not is_incasa:
                     phrases[-1:][0][1] += line
 
@@ -72,7 +86,7 @@ class GuideMerge:
             counter += 1
 
     def __normalize_phrase(self, phrase, char_replacement = "_"):
-        replaces = [ "-", "+", "_", " "]
+        replaces = ["-", "+", "_", " "]
         for replace in replaces:
             phrase = phrase.replace(replace, char_replacement)
         return phrase.lower()
@@ -123,6 +137,8 @@ class GuideMerge:
             else: raise e
 
     def merge(self):
+        self.__mkdir(self.__output_path)
+        
         template = self.__read(self.__template)
         helper_template = self.__read(self.__template_helper)
 
@@ -145,30 +161,29 @@ class GuideMerge:
 if __name__ == '__main__':
 
     parser = OptionParser()
-    parser.add_option('-c', "--config", dest="config", help="The configuration file to use", default="guides.conf")
-    parser.add_option("-e", "--extracted", dest="extracted", help="Where the extracted scripts are", default="%s/ws/extracted" % os.getcwd())
+    parser.add_option('-c', "--config", dest="config", help="The configuration file to use", default="%s/guides.conf" % os.getcwd())
+    parser.add_option("-e", "--extracted", dest="extracted", help="Where the extracted scripts are", default=os.getcwd())
+    parser.add_option("-o", "--output", dest="output", help="Where the generated code will be", default=os.getcwd())
 
     (options, args) = parser.parse_args()
 
     # iterate over the configuration
     with open(options.config) as json_data:
         json_obj = json.load(json_data)
+	config_base = os.path.dirname(options.config)
 
         for element in json_obj["guides"]:
             if element["enable"]:
                 guide_uri = element["uri"].strip()
                 extracted_script = "%s/%s" % (options.extracted, element["guide"].strip()) # absolute
-                template = element["template"].strip() # absolute
-                template_helper = element["template_helper"].strip() # absolute
-                output_path = os.path.dirname(__file__) # where this module is located
+                template = "%s/%s" %  (config_base, element["template"].strip()) # relative to the config path
+                template_helper =  "%s/%s" % (config_base, element["template_helper"].strip()) # relative to the config path
+                output_path = options.output
 
-                print "- %s %s" % ( guide_uri, "-"*(77 - len(guide_uri)))
+                print "- %s %s" % (guide_uri, "-" * (77 - len(guide_uri)))
                 print "script   : %s" % extracted_script
                 print "template : %s" % template
                 print "output   : %s" % output_path
 
-                try:
-                    merger = GuideMerge(extracted_script, template, template_helper, output_path, guide_uri)
-                    merger.merge()
-                except Exception, e:
-                    print "Something went wrong with %s: \n %s" % (guide_uri, e)
+                merger = GuideMerge(extracted_script, template, template_helper, output_path, guide_uri)
+                merger.merge()

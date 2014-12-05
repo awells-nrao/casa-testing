@@ -42,6 +42,7 @@ import urllib
 import urllib2
 import os.path
 import json
+import errno
 
 from optparse import OptionParser
 
@@ -457,11 +458,20 @@ def listCASATasks():
     print "Tasks in this module but not in casapy: " + str(casa_tasks_set.difference(all_tasks_set))
     return all_tasks
 
+def mkdir(path):
+    try:
+        os.makedirs(path)
+    #this is for python > 2.5
+    except OSError as e:
+        if e.errno == errno.EEXIST and os.path.isdir(path):
+            pass
+        else: raise e
+
 # =====================
 # MAIN PROGRAM
 # =====================
 
-def main( URL, options ):
+def main(URL, options, fileName = None):
     """ Create a Python script from a CASA Guide or existing Python script.
     
     * URL = URL to a CASA Guide web page (HTML) or a Python script.  
@@ -474,31 +484,36 @@ def main( URL, options ):
 
     If URL to a Python script, convert the script to a benchmarking script.
     """
+    
+    mkdir(options.output)
+
+    # TODO: remove these lines, eventually
     # Determine if the input file is a Python script
     pyInput = False
-    if ( URL[-3:].upper() == '.PY' ):
-        pyInput = True
+    #if ( URL[-3:].upper() == '.PY' ):
+    #    pyInput = True
 
     # Pull the input file across the web or get it from local network
     responseLines = []
     outFile = ''
-    if ( URL[:4].upper() == 'HTTP' ):
-        print "Acquiring " + URL
-        req = urllib2.Request(URL)
-        response = urllib2.urlopen(req)
-        responseLines = response.read().split("\n")
-        # Clean up the output file name
-        outFile = URL.split('/')[-1]
-        if not pyInput: outFile += '.py'
-        outFile = outFile.replace("index.php?title=","")
-        outFile = outFile.replace(":","")
-        outFile = outFile.replace("_","") 
-    else:
-        print "Copying " + URL + " to CWD."
-        os.system('scp elwood:'+URL+' ./')
-        outFile = os.path.basename(URL)
-        localFile = open( outFile , 'r' )
-        responseLines = localFile.read().split("\n")
+    #if ( URL[:4].upper() == 'HTTP' ): # TODO: remove this...
+    print "Acquiring " + URL
+    req = urllib2.Request(URL)
+    response = urllib2.urlopen(req)
+    responseLines = response.read().split("\n")
+    # Clean up the output file name
+    outFile = "%.py" % URL.split('/')[-1] if not fileName else fileName
+    #if not pyInput: outFile += '.py' # TODO: remove this...
+    outFile = outFile.replace("index.php?title=","")
+    outFile = outFile.replace(":","")
+    outFile = outFile.replace("_","") 
+	
+    #else: # TODO: remove this else, this should work only for online guides
+    #    print "Copying " + URL + " to CWD."
+    #    os.system('scp elwood:'+URL+' ./')
+    #    outFile = os.path.basename(URL)
+    #    localFile = open( outFile , 'r' )
+    #    responseLines = localFile.read().split("\n")
 
     # Initialize the parser and output line list
     readingCode = False
@@ -606,28 +621,21 @@ def main( URL, options ):
             print >>f, line
         f.close()
     
-    print "New file " + outFile + " written to current directory."
-    print "In casapy, run the file using ",
-    print 'execfile("' + outFile + '")'
+    print "output", outFile
+    #print "In casapy, run the file using ",
+    #print 'execfile("' + outFile + '")'
 
 if __name__ == "__main__":
-
-    # defined by the profile
-    default_config = ("%s/%s") % (os.getenv("CGUIDES_CONFIG"), "guides.json") 
-    default_extracted_dir = os.getenv("CGUIDES_EXTRACTED")
-
-    default_config = os.getenv("CGUIDES_CONFIG") + "/guides.json"
-    default_ws_pass1 = os.getenv("CGUIDES_PASS1")
 
     parser = OptionParser()
     parser.add_option('-b', '--benchmark', action="store_true", default=False, help="produce benchmark test script" )
     parser.add_option('-n', '--noninteractive', action="store_true", default=False, help="make script non-interactive (non-benchmark mode only)")
     parser.add_option('-p', '--plotmsoff', action="store_true", help="turn off all plotms commands")
-    parser.add_option('-c', '--config', help="Get the guides specified in a json file", default=default_config)
-    parser.add_option('-o', '--output', help='output dir for files', default=default_extracted_dir)
+    parser.add_option('-c', '--config', help="Get the guides specified in a json file", default="guides.json")
+    parser.add_option('-o', '--output', help='output dir for files', default=os.getcwd())
     
     (options, args) = parser.parse_args()
-
+	
     # iterate over the configuration file
     with open(options.config) as json_data:
         json_obj = json.load(json_data)
@@ -635,8 +643,7 @@ if __name__ == "__main__":
 
         for element in json_obj["guides"]:
             if element["enable"]:
-                uri = base_uri + element["guide"]
-                try:
-                    extract.main(uri, options)
-                except Exception, e:
-                    print "Something went wrong with %s: \n %s" % (script, e)
+		guide = element["guide"]
+                uri = base_uri + element["uri"]
+		print "- %s %s" % (uri, "-" * (77 - len(uri)))
+                main(uri, options, guide)

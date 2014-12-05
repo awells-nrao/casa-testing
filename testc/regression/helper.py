@@ -68,6 +68,7 @@ def injectMod(module, method = True):
 def injectEnv(func):
 	def wrapped(*args, **kwargs):
 		casa_globals = dict(RegressionHelper.casa_console_globals().items() + func.func_globals.items())
+		# see http://snipplr.com/view/17819/
 		return type(func)(func.func_code, casa_globals)(*args, **kwargs)
 	return wraps(func)(wrapped)
 
@@ -91,6 +92,7 @@ class RegressionHelper():
 		
 	@staticmethod
 	def locate_data(file):
+		# TODO: implement this 
 		# module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
 		# index_file = file if file else 
 		pass
