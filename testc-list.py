@@ -6,6 +6,8 @@ assert globals().has_key("casa"), "CASA environment is needed for this module (%
 
 import os
 
+# to use airspeed
+sys.path.append("/usr/lib/python2.6/site-packages/airspeed-0.4.2dev_20131111-py2.6.egg")
 # to use psutil for nose psutil pluging
 sys.path.append("/usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg")
 # to use xcoverage in nose xcoverage plugin
@@ -18,7 +20,7 @@ regressions = []
 
 # configure guides tests to execute
 guides = []
-guides.append("regression_EVLA3BitTutorialG192Eg")
+guides.append("regression_EVLA3BitTutorialG192")
 
 # test the regression
 for test in regressions:

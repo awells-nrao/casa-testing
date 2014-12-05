@@ -93,8 +93,8 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 	test_60 "spectral index image filtering"
 	test_61 "spectral index probable errors filtering"
 	test_62 "intensity weighted mean spectral analysis"
-	In order to skip a test, append the pyunit decorator: @unittest.skip("reason?")
 
+	In order to skip a test, append the pyunit decorator: @unittest.skip("reason?")
 	"""
 
 	@classmethod
@@ -363,7 +363,7 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 		"""
 		pass
 
-	@injectMod(module_helper) 
+	@injectMod(module_patch)
 	@injectMod(module_post)
 	def test_36_3c84_spectral_information_column(self):
 		"""test 36 EVLA_3-bit_Tutorial_G192 "3C84 spectral information column"
@@ -503,28 +503,28 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 		"""
 		pass
 
-	@injectMod(module_helper) 
+	@injectMod(module_patch)
 	@injectMod(module_post)
 	def test_56_single_spectral_window_cleaning(self):
 		"""test 56 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
 		"""
 		pass
 
-	@injectMod(module_helper) 
+	@injectMod(module_patch)
 	@injectMod(module_post)
 	def test_57_lower_frequency_baseband_cleaning(self):
 		"""test 57 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
 		"""
 		pass
 
-	@injectMod(module_helper) 
+	@injectMod(module_patch)
 	@injectMod(module_post)
 	def test_58_upper_frequency_baseband_cleaning(self):
 		"""test 58 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
 		"""
 		pass
 
-	@injectMod(module_helper) 
+	@injectMod(module_patch)      
 	@injectMod(module_post)
 	def test_59_basebands_mfs_taylor_cleaning(self):
 		"""test 59 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"

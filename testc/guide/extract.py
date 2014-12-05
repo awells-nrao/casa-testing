@@ -621,7 +621,7 @@ def main(URL, options, fileName = None):
             print >>f, line
         f.close()
     
-    print "output", outFile
+    print "Extracted: %s" % outFile
     #print "In casapy, run the file using ",
     #print 'execfile("' + outFile + '")'
 

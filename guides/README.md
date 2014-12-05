@@ -34,6 +34,7 @@ The CASA guides to work with must be specified in a [guides.conf](https://github
     ]
 }
 ```
+
 The structure is defined as:
 
    * enable: ```1``` for enable or ```0``` for disable the extraction and merge
@@ -237,6 +238,8 @@ Options:
   -o OUTPUT, --output=OUTPUT
                         output dir for files
 ```
+
+For the record, this script was inherited and slightly modified.
 
 ### Merge
 
