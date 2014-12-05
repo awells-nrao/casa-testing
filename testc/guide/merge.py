@@ -181,9 +181,9 @@ if __name__ == '__main__':
                 output_path = options.output
 
                 print "- %s %s" % (guide_uri, "-" * (77 - len(guide_uri)))
-                print "script   : %s" % extracted_script
-                print "template : %s" % template
-                print "output   : %s" % output_path
+                print "Script   : %s" % extracted_script
+                print "Template : %s" % template
+                print "Generated: %s" % output_path
 
                 merger = GuideMerge(extracted_script, template, template_helper, output_path, guide_uri)
                 merger.merge()
