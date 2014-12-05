@@ -37,6 +37,9 @@ class ${guide_class}(RegressionBase):
 
 	#foreach ($phrase in $guide_phrases)
 	test_$phrase[2] "$phrase[0]"#end
+
+
+	In order to skip a test, append the pyunit decorator: @unittest.skip("reason?")
 	"""
 
 	@classmethod

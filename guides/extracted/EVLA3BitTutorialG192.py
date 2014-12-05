@@ -328,7 +328,7 @@ gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
         interp=['', '', '', '', 'nearest', 'nearest', 'nearest'], \
         field='1', refant='ea05', solnorm=F, \
         solint='inf', gaintype='G', calmode='a', append=True)
-#In CASA: 3C84 scan solving amplitudes
+# In CASA: 3C84 scan solving amplitudes
 gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
                    'calG192.opacity', 'calG192.K0.b', 'calG192.B0.b', 'calG192.G1.int'], \

@@ -57,41 +57,45 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 	test_24 "applying phase calibration"
 	test_25 "3C147 scan solving amplitudes"
 	test_26 "J0603+174  scan solving amplitudes"
-	test_27 "using fluxscale to transfer the amplitude solutions"
-	test_28 "3C147 accumulated calibration"
-	test_29 "gain accumulated calibration"
-	test_30 "G192 accumulated calibration"
-	test_31 "3C84 accumulated calibration"
-	test_32 "flagging isolated RFI"
-	test_33 "baseline flagging"
-	test_34 "3C147 density model"
-	test_35 "3C84 spectral information column"
-	test_36 "initial phase calibration"
-	test_37 "delay calibration"
-	test_38 "bandpass calibration"
-	test_39 "phase gain calibration field 0"
-	test_40 "phase gain calibration field 1"
-	test_41 "phase gain calibration field 3"
-	test_42 "phase gain calibration infinite solution interval"
-	test_43 "amplitude calibration solutions field 0"
-	test_44 "amplitude calibration solutions field 1"
-	test_45 "amplitude calibration solutions field 3"
-	test_46 "flux calibration solutions"
-	test_47 "apply calibration tables field 0"
-	test_48 "apply calibration tables field 1"
-	test_49 "apply calibration tables field 2"
-	test_50 "apply calibration tables field 3"
-	test_51 "splitting calibrated data 3C147"
-	test_52 "splitting calibrated data J0603+174"
-	test_53 "splitting calibrated data G192"
-	test_54 "splitting calibrated data 3C84"
-	test_55 "single spectral window cleaning"
-	test_56 "lower frequency baseband cleaning"
-	test_57 "upper frequency baseband cleaning"
-	test_58 "basebands mfs taylor cleaning"
-	test_59 "spectral index image filtering"
-	test_60 "spectral index probable errors filtering"
-	test_61 "intensity weighted mean spectral analysis"	"""
+	test_27 "3C84 scan solving amplitudes"
+	test_28 "using fluxscale to transfer the amplitude solutions"
+	test_29 "3C147 accumulated calibration"
+	test_30 "gain accumulated calibration"
+	test_31 "G192 accumulated calibration"
+	test_32 "3C84 accumulated calibration"
+	test_33 "flagging isolated RFI"
+	test_34 "baseline flagging"
+	test_35 "3C147 density model"
+	test_36 "3C84 spectral information column"
+	test_37 "initial phase calibration"
+	test_38 "delay calibration"
+	test_39 "bandpass calibration"
+	test_40 "phase gain calibration field 0"
+	test_41 "phase gain calibration field 1"
+	test_42 "phase gain calibration field 3"
+	test_43 "phase gain calibration infinite solution interval"
+	test_44 "amplitude calibration solutions field 0"
+	test_45 "amplitude calibration solutions field 1"
+	test_46 "amplitude calibration solutions field 3"
+	test_47 "flux calibration solutions"
+	test_48 "apply calibration tables field 0"
+	test_49 "apply calibration tables field 1"
+	test_50 "apply calibration tables field 2"
+	test_51 "apply calibration tables field 3"
+	test_52 "splitting calibrated data 3C147"
+	test_53 "splitting calibrated data J0603+174"
+	test_54 "splitting calibrated data G192"
+	test_55 "splitting calibrated data 3C84"
+	test_56 "single spectral window cleaning"
+	test_57 "lower frequency baseband cleaning"
+	test_58 "upper frequency baseband cleaning"
+	test_59 "basebands mfs taylor cleaning"
+	test_60 "spectral index image filtering"
+	test_61 "spectral index probable errors filtering"
+	test_62 "intensity weighted mean spectral analysis"
+	In order to skip a test, append the pyunit decorator: @unittest.skip("reason?")
+
+	"""
 
 	@classmethod
 	def setUpClass(cls):
@@ -107,492 +111,443 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 	def tearDownClass(cls):
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_00_splitting_fields_for_analysis(self):
 		"""test 00 EVLA_3-bit_Tutorial_G192 "splitting fields for analysis"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_01_listobs_on_the_initial_data_set(self):
 		"""test 01 EVLA_3-bit_Tutorial_G192 "listobs on the initial data set"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_02_flag_table_plot(self):
 		"""test 02 EVLA_3-bit_Tutorial_G192 "flag table plot"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_03_bandpass_calibrator_analysis_flagging(self):
 		"""test 03 EVLA_3-bit_Tutorial_G192 "bandpass calibrator analysis flagging"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_04_rfi_phase_calibrator_flagging(self):
 		"""test 04 EVLA_3-bit_Tutorial_G192 "RFI phase calibrator flagging"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_05_splitting_good_and_bad_data(self):
 		"""test 05 EVLA_3-bit_Tutorial_G192 "splitting good and bad data"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_06_split_and_flagged_listobs(self):
 		"""test 06 EVLA_3-bit_Tutorial_G192 "split and flagged listobs"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_07_model_for_the_flux_calibrator(self):
 		"""test 07 EVLA_3-bit_Tutorial_G192 "model for the flux calibrator"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_08_determining_antenna_position_corrections(self):
 		"""test 08 EVLA_3-bit_Tutorial_G192 "determining antenna position corrections"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_09_generating_gaincurve_calibration(self):
 		"""test 09 EVLA_3-bit_Tutorial_G192 "generating gaincurve calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_10_generate_atmospheric_opacity_calibration(self):
 		"""test 10 EVLA_3-bit_Tutorial_G192 "generate atmospheric opacity calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_11_generate_requantizer_gains_corrections(self):
 		"""test 11 EVLA_3-bit_Tutorial_G192 "generate requantizer gains corrections"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_12_phase_only_calibration(self):
 		"""test 12 EVLA_3-bit_Tutorial_G192 "phase only calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_13_residual_delays(self):
 		"""test 13 EVLA_3-bit_Tutorial_G192 "residual delays"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_14_antenna_bandpasses(self):
 		"""test 14 EVLA_3-bit_Tutorial_G192 "antenna bandpasses"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_15_flux_and_bandpass_calibrators_gain(self):
 		"""test 15 EVLA_3-bit_Tutorial_G192 "flux and bandpass calibrators gain"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_16_bandpass_calibrator_gain_amplitudes_scaling(self):
 		"""test 16 EVLA_3-bit_Tutorial_G192 "bandpass calibrator gain amplitudes scaling"
 		"""
 		pass
 
-	#@unittest.skip("reason?") @injectMod(module_patch)
+	@injectMod(module_patch)
 	@injectMod(module_post)
 	def test_17_spectral_information(self):
 		"""test 17 EVLA_3-bit_Tutorial_G192 "spectral information"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_18_phase_only_recalibration(self):
 		"""test 18 EVLA_3-bit_Tutorial_G192 "phase only recalibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_19_residual_delays_recalibration(self):
 		"""test 19 EVLA_3-bit_Tutorial_G192 "residual delays recalibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_20_antenna_bandpasses_recalibration(self):
 		"""test 20 EVLA_3-bit_Tutorial_G192 "antenna bandpasses recalibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_21_compute_gain_phases_using_3c147(self):
 		"""test 21 EVLA_3-bit_Tutorial_G192 "compute gain phases using 3C147"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_22_compute_gain_phases_using_j0603_174(self):
 		"""test 22 EVLA_3-bit_Tutorial_G192 "compute gain phases using J0603+174"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_23_compute_gain_phases_using_3c84(self):
 		"""test 23 EVLA_3-bit_Tutorial_G192 "compute gain phases using 3C84"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_24_applying_phase_calibration(self):
 		"""test 24 EVLA_3-bit_Tutorial_G192 "applying phase calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_25_3c147_scan_solving_amplitudes(self):
 		"""test 25 EVLA_3-bit_Tutorial_G192 "3C147 scan solving amplitudes"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
 	def test_26_j0603_174__scan_solving_amplitudes(self):
 		"""test 26 EVLA_3-bit_Tutorial_G192 "J0603+174  scan solving amplitudes"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_27_using_fluxscale_to_transfer_the_amplitude_solutions(self):
-		"""test 27 EVLA_3-bit_Tutorial_G192 "using fluxscale to transfer the amplitude solutions"
+	def test_27_3c84_scan_solving_amplitudes(self):
+		"""test 27 EVLA_3-bit_Tutorial_G192 "3C84 scan solving amplitudes"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_28_3c147_accumulated_calibration(self):
-		"""test 28 EVLA_3-bit_Tutorial_G192 "3C147 accumulated calibration"
+	def test_28_using_fluxscale_to_transfer_the_amplitude_solutions(self):
+		"""test 28 EVLA_3-bit_Tutorial_G192 "using fluxscale to transfer the amplitude solutions"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_29_gain_accumulated_calibration(self):
-		"""test 29 EVLA_3-bit_Tutorial_G192 "gain accumulated calibration"
+	def test_29_3c147_accumulated_calibration(self):
+		"""test 29 EVLA_3-bit_Tutorial_G192 "3C147 accumulated calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_30_g192_accumulated_calibration(self):
-		"""test 30 EVLA_3-bit_Tutorial_G192 "G192 accumulated calibration"
+	def test_30_gain_accumulated_calibration(self):
+		"""test 30 EVLA_3-bit_Tutorial_G192 "gain accumulated calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_31_3c84_accumulated_calibration(self):
-		"""test 31 EVLA_3-bit_Tutorial_G192 "3C84 accumulated calibration"
+	def test_31_g192_accumulated_calibration(self):
+		"""test 31 EVLA_3-bit_Tutorial_G192 "G192 accumulated calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_32_flagging_isolated_rfi(self):
-		"""test 32 EVLA_3-bit_Tutorial_G192 "flagging isolated RFI"
+	def test_32_3c84_accumulated_calibration(self):
+		"""test 32 EVLA_3-bit_Tutorial_G192 "3C84 accumulated calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_33_baseline_flagging(self):
-		"""test 33 EVLA_3-bit_Tutorial_G192 "baseline flagging"
+	def test_33_flagging_isolated_rfi(self):
+		"""test 33 EVLA_3-bit_Tutorial_G192 "flagging isolated RFI"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_34_3c147_density_model(self):
-		"""test 34 EVLA_3-bit_Tutorial_G192 "3C147 density model"
+	def test_34_baseline_flagging(self):
+		"""test 34 EVLA_3-bit_Tutorial_G192 "baseline flagging"
 		"""
 		pass
 
-	#@unittest.skip("reason?")	@injectMod(module_patch)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_35_3c84_spectral_information_column(self):
-		"""test 35 EVLA_3-bit_Tutorial_G192 "3C84 spectral information column"
+	def test_35_3c147_density_model(self):
+		"""test 35 EVLA_3-bit_Tutorial_G192 "3C147 density model"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_36_initial_phase_calibration(self):
-		"""test 36 EVLA_3-bit_Tutorial_G192 "initial phase calibration"
+	def test_36_3c84_spectral_information_column(self):
+		"""test 36 EVLA_3-bit_Tutorial_G192 "3C84 spectral information column"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_37_delay_calibration(self):
-		"""test 37 EVLA_3-bit_Tutorial_G192 "delay calibration"
+	def test_37_initial_phase_calibration(self):
+		"""test 37 EVLA_3-bit_Tutorial_G192 "initial phase calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_38_bandpass_calibration(self):
-		"""test 38 EVLA_3-bit_Tutorial_G192 "bandpass calibration"
+	def test_38_delay_calibration(self):
+		"""test 38 EVLA_3-bit_Tutorial_G192 "delay calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_39_phase_gain_calibration_field_0(self):
-		"""test 39 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 0"
+	def test_39_bandpass_calibration(self):
+		"""test 39 EVLA_3-bit_Tutorial_G192 "bandpass calibration"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_40_phase_gain_calibration_field_1(self):
-		"""test 40 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 1"
+	def test_40_phase_gain_calibration_field_0(self):
+		"""test 40 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 0"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_41_phase_gain_calibration_field_3(self):
-		"""test 41 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 3"
+	def test_41_phase_gain_calibration_field_1(self):
+		"""test 41 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 1"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_42_phase_gain_calibration_infinite_solution_interval(self):
-		"""test 42 EVLA_3-bit_Tutorial_G192 "phase gain calibration infinite solution interval"
+	def test_42_phase_gain_calibration_field_3(self):
+		"""test 42 EVLA_3-bit_Tutorial_G192 "phase gain calibration field 3"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_43_amplitude_calibration_solutions_field_0(self):
-		"""test 43 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 0"
+	def test_43_phase_gain_calibration_infinite_solution_interval(self):
+		"""test 43 EVLA_3-bit_Tutorial_G192 "phase gain calibration infinite solution interval"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_44_amplitude_calibration_solutions_field_1(self):
-		"""test 44 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 1"
+	def test_44_amplitude_calibration_solutions_field_0(self):
+		"""test 44 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 0"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_45_amplitude_calibration_solutions_field_3(self):
-		"""test 45 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 3"
+	def test_45_amplitude_calibration_solutions_field_1(self):
+		"""test 45 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 1"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_46_flux_calibration_solutions(self):
-		"""test 46 EVLA_3-bit_Tutorial_G192 "flux calibration solutions"
+	def test_46_amplitude_calibration_solutions_field_3(self):
+		"""test 46 EVLA_3-bit_Tutorial_G192 "amplitude calibration solutions field 3"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_47_apply_calibration_tables_field_0(self):
-		"""test 47 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 0"
+	def test_47_flux_calibration_solutions(self):
+		"""test 47 EVLA_3-bit_Tutorial_G192 "flux calibration solutions"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_48_apply_calibration_tables_field_1(self):
-		"""test 48 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 1"
+	def test_48_apply_calibration_tables_field_0(self):
+		"""test 48 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 0"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_49_apply_calibration_tables_field_2(self):
-		"""test 49 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 2"
+	def test_49_apply_calibration_tables_field_1(self):
+		"""test 49 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 1"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_50_apply_calibration_tables_field_3(self):
-		"""test 50 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 3"
+	def test_50_apply_calibration_tables_field_2(self):
+		"""test 50 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 2"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_51_splitting_calibrated_data_3c147(self):
-		"""test 51 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C147"
+	def test_51_apply_calibration_tables_field_3(self):
+		"""test 51 EVLA_3-bit_Tutorial_G192 "apply calibration tables field 3"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_52_splitting_calibrated_data_j0603_174(self):
-		"""test 52 EVLA_3-bit_Tutorial_G192 "splitting calibrated data J0603+174"
+	def test_52_splitting_calibrated_data_3c147(self):
+		"""test 52 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C147"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_53_splitting_calibrated_data_g192(self):
-		"""test 53 EVLA_3-bit_Tutorial_G192 "splitting calibrated data G192"
+	def test_53_splitting_calibrated_data_j0603_174(self):
+		"""test 53 EVLA_3-bit_Tutorial_G192 "splitting calibrated data J0603+174"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_54_splitting_calibrated_data_3c84(self):
-		"""test 54 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C84"
+	def test_54_splitting_calibrated_data_g192(self):
+		"""test 54 EVLA_3-bit_Tutorial_G192 "splitting calibrated data G192"
 		"""
 		pass
 
-	#@unittest.skip("reason?")	@injectMod(module_patch)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_55_single_spectral_window_cleaning(self):
-		"""test 55 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
+	def test_55_splitting_calibrated_data_3c84(self):
+		"""test 55 EVLA_3-bit_Tutorial_G192 "splitting calibrated data 3C84"
 		"""
 		pass
 
-	#@unittest.skip("reason?")	@injectMod(module_patch)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_56_lower_frequency_baseband_cleaning(self):
-		"""test 56 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
+	def test_56_single_spectral_window_cleaning(self):
+		"""test 56 EVLA_3-bit_Tutorial_G192 "single spectral window cleaning"
 		"""
 		pass
 
-	#@unittest.skip("reason?")	@injectMod(module_patch)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_57_upper_frequency_baseband_cleaning(self):
-		"""test 57 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
+	def test_57_lower_frequency_baseband_cleaning(self):
+		"""test 57 EVLA_3-bit_Tutorial_G192 "lower frequency baseband cleaning"
 		"""
 		pass
 
-	#@unittest.skip("reason?")	@injectMod(module_patch)      
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_58_basebands_mfs_taylor_cleaning(self):
-		"""test 58 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"
+	def test_58_upper_frequency_baseband_cleaning(self):
+		"""test 58 EVLA_3-bit_Tutorial_G192 "upper frequency baseband cleaning"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_59_spectral_index_image_filtering(self):
-		"""test 59 EVLA_3-bit_Tutorial_G192 "spectral index image filtering"
+	def test_59_basebands_mfs_taylor_cleaning(self):
+		"""test 59 EVLA_3-bit_Tutorial_G192 "basebands mfs taylor cleaning"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_60_spectral_index_probable_errors_filtering(self):
-		"""test 60 EVLA_3-bit_Tutorial_G192 "spectral index probable errors filtering"
+	def test_60_spectral_index_image_filtering(self):
+		"""test 60 EVLA_3-bit_Tutorial_G192 "spectral index image filtering"
 		"""
 		pass
 
-	#@unittest.skip("reason?")
-	@injectMod(module_helper)
+	@injectMod(module_helper) 
 	@injectMod(module_post)
-	def test_61_intensity_weighted_mean_spectral_analysis(self):
-		"""test 61 EVLA_3-bit_Tutorial_G192 "intensity weighted mean spectral analysis"
+	def test_61_spectral_index_probable_errors_filtering(self):
+		"""test 61 EVLA_3-bit_Tutorial_G192 "spectral index probable errors filtering"
+		"""
+		pass
+
+	@injectMod(module_helper) 
+	@injectMod(module_post)
+	def test_62_intensity_weighted_mean_spectral_analysis(self):
+		"""test 62 EVLA_3-bit_Tutorial_G192 "intensity weighted mean spectral analysis"
 		"""
 		pass
