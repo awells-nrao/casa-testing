@@ -3,7 +3,7 @@
 ## Table of contents
 
    * [Configuration file](#configuration-file)
-   * [Templates, parsing and code generation](#templates-parsing=and-code-generation)
+   * [Templates, parsing and code generation](#templates-parsing-and-code-generation)
       * [Not all that glitter is gold](#not-all-that-glitter-is-gold)
    * [Decorators](#decorators)
       * [injectMod](#injectmod)
@@ -294,3 +294,9 @@ for test in guides:
 The only difference with the regression tests, from a execution point of view, is that the ```guide = True``` should be specified for the ```RegressionRunner.execute``` in order to find the regression test class in the guide package, an automated way can be easily implemented to locate the module, but was done in this way in order to avoid collisions with the module file name.
 
 In order to know how to use ```RegressionRunner``` and ```RegressionBase``` helper metods, refer to the regression documentation.
+
+Bear in mind the possible dependencies needed, these can be added by setting ```PYTHONPATH```  or like in this example using ones installed by ```easy_install`` or ```pip```.
+
+```
+sys.path.append("/usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg")
+```
