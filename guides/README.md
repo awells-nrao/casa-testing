@@ -1,5 +1,20 @@
 # Guides
 
+## Table of contents
+
+   * [Configuration file](#configuration-file)
+   * [Templates, parsing and code generation](#templates-parsing=and-code-generation)
+      * [Not all that glitter is gold](#not-all-that-glitter-is-gold)
+   * [Decorators](#decorators)
+      * [injectMod](#injectmod)
+      * [injectEnv](#injectenv)
+   * [How to](#how-to)
+      * [Extraction](#extraction)
+      * [Merge](#merge)
+      * [Execute](#execute)
+
+<hr/>
+
 ## Configuration file
 
 The CASA guides to work with must be specified in a [guides.conf](https://github.com/atejeda/casa-testing/blob/master/guides/guides.conf) configuration file, which is basically a JSON file.
@@ -31,6 +46,7 @@ A one guide is defined by the curly brackets, you can add more guides within the
 
 By using a configuration file, allows more flexibility to manage or group the tests in a easy way.
 
+<hr/>
 
 ## Templates, parsing and code generation
 
@@ -131,6 +147,8 @@ def test_17_spectral_information(self):
   pass
 ```
 
+<hr/>
+
 ## Decorators
 
 Think of as a stack of function wrappers, which are executed (pop) in a top-down order, which the function decorated is executed at the end. These decorators acts like ```dependency injection```.
@@ -189,6 +207,8 @@ def test_17_spectral_information():
 
 In the previous example, CASA globals, methods, routines, etc... are injected into the method.
 
+<hr/>
+
 ## How to
 
 First, clone this repository: ```git clone git@github.com:atejeda/casa-testing.git```, and for simplicity, export the following ```envvars```:
@@ -220,7 +240,6 @@ Options:
 
 ### Merge
 
-
 ```casaGuideMerge -c $CASA_TESTING/guides/guides.conf -e $EXTRACTED -o $PARSED```
 
 ```
@@ -235,7 +254,6 @@ Options:
   -o OUTPUT, --output=OUTPUT
                         Where the generated code will be
 ```
-
 
 ### Execute
 
