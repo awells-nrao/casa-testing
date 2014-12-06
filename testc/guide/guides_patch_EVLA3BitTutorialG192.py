@@ -20,8 +20,7 @@ def test_17_spectral_information():
 	""" "spectral information" patched to standard=manual
 	"""
 	casalog.origin("test_17_spectral_information")
-	casalog.post('-' * 80)
-	casalog.post("test_17_spectral_information")
+	casalog.post("starting")
 
 	setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
@@ -33,8 +32,7 @@ def test_35_3c84_spectral_information_column():
 	""" "3C84 spectral information column" patched to standard=manual
 	"""
 	casalog.origin("test_35_3c84_spectral_information_column")
-	casalog.post('-' * 80)
-	casalog.post("test_35_3c84_spectral_information_column")
+	casalog.post("starting")
 
 	setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
@@ -46,8 +44,7 @@ def test_55_single_spectral_window_cleaning():
 	""" "single spectral window cleaning" patched to iteractive=False
 	"""
 	casalog.origin("test_55_single_spectral_window_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_55_single_spectral_window_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -67,8 +64,7 @@ def test_56_lower_frequency_baseband_cleaning():
 	""" "lower frequency baseband cleaning" patched to iteractive=False
 	"""
 	casalog.origin("test_56_lower_frequency_baseband_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_56_lower_frequency_baseband_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -94,8 +90,7 @@ def test_57_upper_frequency_baseband_cleaning():
 	""" "upper frequency baseband cleaning" patched to iteractive=False
 	"""
 	casalog.origin("test_57_upper_frequency_baseband_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_57_upper_frequency_baseband_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -123,8 +118,7 @@ def test_58_basebands_mfs_taylor_cleaning():
 	""" "basebands mfs taylor cleaning" patched to iteractive=False
 	"""
 	casalog.origin("test_58_basebands_mfs_taylor_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_58_basebands_mfs_taylor_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch

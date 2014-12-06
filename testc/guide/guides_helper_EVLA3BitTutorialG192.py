@@ -92,8 +92,7 @@ def test_00_splitting_fields_for_analysis():
 	""" "splitting fields for analysis"
 	"""
 	casalog.origin("test_00_splitting_fields_for_analysis")
-	casalog.post('-' * 80)
-	casalog.post("test_00_splitting_fields_for_analysis")
+	casalog.post("starting")
 
 	split('TVER0004.sb14459364.eb14492359.56295.26287841435.ms', outputvis='G192_6s.ms', \
 	      datacolumn='all', field='3,6,7,10', keepflags=False, spw='2~65')
@@ -103,8 +102,7 @@ def test_01_listobs_on_the_initial_data_set():
 	""" "listobs on the initial data set"
 	"""
 	casalog.origin("test_01_listobs_on_the_initial_data_set")
-	casalog.post('-' * 80)
-	casalog.post("test_01_listobs_on_the_initial_data_set")
+	casalog.post("starting")
 
 	listobs('G192_6s.ms', listfile='G192_listobs.txt')
 
@@ -113,8 +111,7 @@ def test_02_flag_table_plot():
 	""" "flag table plot"
 	"""
 	casalog.origin("test_02_flag_table_plot")
-	casalog.post('-' * 80)
-	casalog.post("test_02_flag_table_plot")
+	casalog.post("starting")
 
 	myrows = range(2868)
 	flagcmd(vis='G192_6s.ms', inpmode='table', action='plot', tablerows=myrows,
@@ -125,8 +122,7 @@ def test_03_bandpass_calibrator_analysis_flagging():
 	""" "bandpass calibrator analysis flagging"
 	"""
 	casalog.origin("test_03_bandpass_calibrator_analysis_flagging")
-	casalog.post('-' * 80)
-	casalog.post("test_03_bandpass_calibrator_analysis_flagging")
+	casalog.post("starting")
 
 	flaglist = ['antenna="ea01,ea10,ea19,ea13"',
 	            'antenna="ea24" spw="40,47~48"',
@@ -139,8 +135,7 @@ def test_04_rfi_phase_calibrator_flagging():
 	""" "RFI phase calibrator flagging"
 	"""
 	casalog.origin("test_04_rfi_phase_calibrator_flagging")
-	casalog.post('-' * 80)
-	casalog.post("test_04_rfi_phase_calibrator_flagging")
+	casalog.post("starting")
 
 	flaglist = ['spw="33:124,37:91,38:66~67;75~77,46:126,48:0"', \
 	            'spw="53:68~69,63:80,10:26,15:127,27:62,27:64"']
@@ -152,8 +147,7 @@ def test_05_splitting_good_and_bad_data():
 	""" "splitting good and bad data"
 	"""
 	casalog.origin("test_05_splitting_good_and_bad_data")
-	casalog.post('-' * 80)
-	casalog.post("test_05_splitting_good_and_bad_data")
+	casalog.post("starting")
 
 	# Remove any existing split data, otherwise split will not happen
 	os.system('rm -rf G192_flagged_6s.ms')
@@ -165,8 +159,7 @@ def test_06_split_and_flagged_listobs():
 	""" "split and flagged listobs"
 	"""
 	casalog.origin("test_06_split_and_flagged_listobs")
-	casalog.post('-' * 80)
-	casalog.post("test_06_split_and_flagged_listobs")
+	casalog.post("starting")
 
 	listobs('G192_flagged_6s.ms', listfile='G192_flagged_listobs.txt')
 
@@ -175,8 +168,7 @@ def test_07_model_for_the_flux_calibrator():
 	""" "model for the flux calibrator"
 	"""
 	casalog.origin("test_07_model_for_the_flux_calibrator")
-	casalog.post('-' * 80)
-	casalog.post("test_07_model_for_the_flux_calibrator")
+	casalog.post("starting")
 
 	setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
 	      model='3C147_A.im')
@@ -186,8 +178,7 @@ def test_08_determining_antenna_position_corrections():
 	""" "determining antenna position corrections"
 	"""
 	casalog.origin("test_08_determining_antenna_position_corrections")
-	casalog.post('-' * 80)
-	casalog.post("test_08_determining_antenna_position_corrections")
+	casalog.post("starting")
 
 	gencal('G192_flagged_6s.ms', caltable='calG192.antpos', \
 	       caltype='antpos', antenna='')
@@ -197,8 +188,7 @@ def test_09_generating_gaincurve_calibration():
 	""" "generating gaincurve calibration"
 	"""
 	casalog.origin("test_09_generating_gaincurve_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_09_generating_gaincurve_calibration")
+	casalog.post("starting")
 
 	gencal('G192_flagged_6s.ms', caltable='calG192.gaincurve', \
 	       caltype='gc')
@@ -208,8 +198,7 @@ def test_10_generate_atmospheric_opacity_calibration():
 	""" "generate atmospheric opacity calibration"
 	"""
 	casalog.origin("test_10_generate_atmospheric_opacity_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_10_generate_atmospheric_opacity_calibration")
+	casalog.post("starting")
 
 	myTau = plotweather(vis='G192_flagged_6s.ms', doPlot=F)
 	SPWs = []
@@ -225,8 +214,7 @@ def test_11_generate_requantizer_gains_corrections():
 	""" "generate requantizer gains corrections"
 	"""
 	casalog.origin("test_11_generate_requantizer_gains_corrections")
-	casalog.post('-' * 80)
-	casalog.post("test_11_generate_requantizer_gains_corrections")
+	casalog.post("starting")
 
 	gencal('G192_flagged_6s.ms', caltable='calG192.requantizer', \
 	       caltype='rq')
@@ -236,8 +224,7 @@ def test_12_phase_only_calibration():
 	""" "phase only calibration"
 	"""
 	casalog.origin("test_12_phase_only_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_12_phase_only_calibration")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0', \
 	        field='3', spw='*:60~68', \
@@ -251,8 +238,7 @@ def test_13_residual_delays():
 	""" "residual delays"
 	"""
 	casalog.origin("test_13_residual_delays")
-	casalog.post('-' * 80)
-	casalog.post("test_13_residual_delays")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -265,8 +251,7 @@ def test_14_antenna_bandpasses():
 	""" "antenna bandpasses"
 	"""
 	casalog.origin("test_14_antenna_bandpasses")
-	casalog.post('-' * 80)
-	casalog.post("test_14_antenna_bandpasses")
+	casalog.post("starting")
 
 	bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0', \
 	         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -279,8 +264,7 @@ def test_15_flux_and_bandpass_calibrators_gain():
 	""" "flux and bandpass calibrators gain"
 	"""
 	casalog.origin("test_15_flux_and_bandpass_calibrators_gain")
-	casalog.post('-' * 80)
-	casalog.post("test_15_flux_and_bandpass_calibrators_gain")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1', field='0,3', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -293,8 +277,7 @@ def test_16_bandpass_calibrator_gain_amplitudes_scaling():
 	""" "bandpass calibrator gain amplitudes scaling"
 	"""
 	casalog.origin("test_16_bandpass_calibrator_gain_amplitudes_scaling")
-	casalog.post('-' * 80)
-	casalog.post("test_16_bandpass_calibrator_gain_amplitudes_scaling")
+	casalog.post("starting")
 
 	flux1 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G1', \
 	                  fluxtable='calG192.F1', reference='0', \
@@ -305,8 +288,7 @@ def test_17_spectral_information():
 	""" "spectral information"
 	"""
 	casalog.origin("test_17_spectral_information")
-	casalog.post('-' * 80)
-	casalog.post("test_17_spectral_information")
+	casalog.post("starting")
 
 	setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
@@ -317,8 +299,7 @@ def test_18_phase_only_recalibration():
 	""" "phase only recalibration"
 	"""
 	casalog.origin("test_18_phase_only_recalibration")
-	casalog.post('-' * 80)
-	casalog.post("test_18_phase_only_recalibration")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0.b', \
 	        field='3', spw='*:60~68', \
@@ -332,8 +313,7 @@ def test_19_residual_delays_recalibration():
 	""" "residual delays recalibration"
 	"""
 	casalog.origin("test_19_residual_delays_recalibration")
-	casalog.post('-' * 80)
-	casalog.post("test_19_residual_delays_recalibration")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0.b', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -346,8 +326,7 @@ def test_20_antenna_bandpasses_recalibration():
 	""" "antenna bandpasses recalibration"
 	"""
 	casalog.origin("test_20_antenna_bandpasses_recalibration")
-	casalog.post('-' * 80)
-	casalog.post("test_20_antenna_bandpasses_recalibration")
+	casalog.post("starting")
 
 	bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0.b', \
 	         gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -360,8 +339,7 @@ def test_21_compute_gain_phases_using_3c147():
 	""" "compute gain phases using 3C147"
 	"""
 	casalog.origin("test_21_compute_gain_phases_using_3c147")
-	casalog.post('-' * 80)
-	casalog.post("test_21_compute_gain_phases_using_3c147")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -374,8 +352,7 @@ def test_22_compute_gain_phases_using_j0603_174():
 	""" "compute gain phases using J0603+174"
 	"""
 	casalog.origin("test_22_compute_gain_phases_using_j0603_174")
-	casalog.post('-' * 80)
-	casalog.post("test_22_compute_gain_phases_using_j0603_174")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -388,8 +365,7 @@ def test_23_compute_gain_phases_using_3c84():
 	""" "compute gain phases using 3C84"
 	"""
 	casalog.origin("test_23_compute_gain_phases_using_3c84")
-	casalog.post('-' * 80)
-	casalog.post("test_23_compute_gain_phases_using_3c84")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -402,8 +378,7 @@ def test_24_applying_phase_calibration():
 	""" "applying phase calibration"
 	"""
 	casalog.origin("test_24_applying_phase_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_24_applying_phase_calibration")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.inf', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -416,8 +391,7 @@ def test_25_3c147_scan_solving_amplitudes():
 	""" "3C147 scan solving amplitudes"
 	"""
 	casalog.origin("test_25_3c147_scan_solving_amplitudes")
-	casalog.post('-' * 80)
-	casalog.post("test_25_3c147_scan_solving_amplitudes")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -432,8 +406,7 @@ def test_26_j0603_174__scan_solving_amplitudes():
 	""" "J0603+174  scan solving amplitudes"
 	"""
 	casalog.origin("test_26_j0603_174__scan_solving_amplitudes")
-	casalog.post('-' * 80)
-	casalog.post("test_26_j0603_174__scan_solving_amplitudes")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -448,8 +421,7 @@ def test_27_3c84_scan_solving_amplitudes():
 	""" "3C84 scan solving amplitudes"
 	"""
 	casalog.origin("test_27_3c84_scan_solving_amplitudes")
-	casalog.post('-' * 80)
-	casalog.post("test_27_3c84_scan_solving_amplitudes")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', 'calG192.requantizer', \
@@ -465,8 +437,7 @@ def test_28_using_fluxscale_to_transfer_the_amplitude_solutions():
 	""" "using fluxscale to transfer the amplitude solutions"
 	"""
 	casalog.origin("test_28_using_fluxscale_to_transfer_the_amplitude_solutions")
-	casalog.post('-' * 80)
-	casalog.post("test_28_using_fluxscale_to_transfer_the_amplitude_solutions")
+	casalog.post("starting")
 
 	flux2 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2', \
 	                  fluxtable='calG192.F2', reference='0')
@@ -476,8 +447,7 @@ def test_29_3c147_accumulated_calibration():
 	""" "3C147 accumulated calibration"
 	"""
 	casalog.origin("test_29_3c147_accumulated_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_29_3c147_accumulated_calibration")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='0', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -491,8 +461,7 @@ def test_30_gain_accumulated_calibration():
 	""" "gain accumulated calibration"
 	"""
 	casalog.origin("test_30_gain_accumulated_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_30_gain_accumulated_calibration")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='1', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -506,8 +475,7 @@ def test_31_g192_accumulated_calibration():
 	""" "G192 accumulated calibration"
 	"""
 	casalog.origin("test_31_g192_accumulated_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_31_g192_accumulated_calibration")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='2', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -521,8 +489,7 @@ def test_32_3c84_accumulated_calibration():
 	""" "3C84 accumulated calibration"
 	"""
 	casalog.origin("test_32_3c84_accumulated_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_32_3c84_accumulated_calibration")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='3', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', \
@@ -536,8 +503,7 @@ def test_33_flagging_isolated_rfi():
 	""" "flagging isolated RFI"
 	"""
 	casalog.origin("test_33_flagging_isolated_rfi")
-	casalog.post('-' * 80)
-	casalog.post("test_33_flagging_isolated_rfi")
+	casalog.post("starting")
 
 	flagdata(vis='G192_flagged_6s.ms', field='0', \
 	         spw='29', timerange='6:35:00~6:36:40')
@@ -547,8 +513,7 @@ def test_34_baseline_flagging():
 	""" "baseline flagging"
 	"""
 	casalog.origin("test_34_baseline_flagging")
-	casalog.post('-' * 80)
-	casalog.post("test_34_baseline_flagging")
+	casalog.post("starting")
 
 	flagdata(vis='G192_flagged_6s.ms', antenna='ea03&ea07')
 
@@ -557,8 +522,7 @@ def test_35_3c147_density_model():
 	""" "3C147 density model"
 	"""
 	casalog.origin("test_35_3c147_density_model")
-	casalog.post('-' * 80)
-	casalog.post("test_35_3c147_density_model")
+	casalog.post("starting")
 
 	setjy(vis='G192_flagged_6s.ms', field='0', scalebychan=True, \
 	      model='3C147_A.im')
@@ -568,8 +532,7 @@ def test_36_3c84_spectral_information_column():
 	""" "3C84 spectral information column"
 	"""
 	casalog.origin("test_36_3c84_spectral_information_column")
-	casalog.post('-' * 80)
-	casalog.post("test_36_3c84_spectral_information_column")
+	casalog.post("starting")
 
 	setjy(vis='G192_flagged_6s.ms', field='3', scalebychan=True, \
 	      fluxdensity=[29.8756, 0, 0, 0], spix=-0.598929, \
@@ -580,8 +543,7 @@ def test_37_initial_phase_calibration():
 	""" "initial phase calibration"
 	"""
 	casalog.origin("test_37_initial_phase_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_37_initial_phase_calibration")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G0.b.2', field='3', spw='*:60~68',\
 	        gaintable=['calG192.antpos', 'calG192.gaincurve', \
@@ -593,8 +555,7 @@ def test_38_delay_calibration():
 	""" "delay calibration"
 	"""
 	casalog.origin("test_38_delay_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_38_delay_calibration")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.K0.b.2', \
 	        field='3', spw='*:5~122', gaintype='K', \
@@ -607,8 +568,7 @@ def test_39_bandpass_calibration():
 	""" "bandpass calibration"
 	"""
 	casalog.origin("test_39_bandpass_calibration")
-	casalog.post('-' * 80)
-	casalog.post("test_39_bandpass_calibration")
+	casalog.post("starting")
 
 	bandpass(vis='G192_flagged_6s.ms', caltable='calG192.B0.b.2', \
 	         field='3', refant='ea05', solnorm=False, \
@@ -621,8 +581,7 @@ def test_40_phase_gain_calibration_field_0():
 	""" "phase gain calibration field 0"
 	"""
 	casalog.origin("test_40_phase_gain_calibration_field_0")
-	casalog.post('-' * 80)
-	casalog.post("test_40_phase_gain_calibration_field_0")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
 	        field='0', refant='ea05', solnorm=F, \
@@ -635,8 +594,7 @@ def test_41_phase_gain_calibration_field_1():
 	""" "phase gain calibration field 1"
 	"""
 	casalog.origin("test_41_phase_gain_calibration_field_1")
-	casalog.post('-' * 80)
-	casalog.post("test_41_phase_gain_calibration_field_1")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
 	        field='1', refant='ea05', solnorm=F, \
@@ -649,8 +607,7 @@ def test_42_phase_gain_calibration_field_3():
 	""" "phase gain calibration field 3"
 	"""
 	casalog.origin("test_42_phase_gain_calibration_field_3")
-	casalog.post('-' * 80)
-	casalog.post("test_42_phase_gain_calibration_field_3")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.int.2', \
 	        field='3', refant='ea05', solnorm=F, \
@@ -663,8 +620,7 @@ def test_43_phase_gain_calibration_infinite_solution_interval():
 	""" "phase gain calibration infinite solution interval"
 	"""
 	casalog.origin("test_43_phase_gain_calibration_infinite_solution_interval")
-	casalog.post('-' * 80)
-	casalog.post("test_43_phase_gain_calibration_infinite_solution_interval")
+	casalog.post("starting")
 
 	# (Note: we will apply this table to our science target at the applycal stage.)
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G1.inf.2', \
@@ -678,8 +634,7 @@ def test_44_amplitude_calibration_solutions_field_0():
 	""" "amplitude calibration solutions field 0"
 	"""
 	casalog.origin("test_44_amplitude_calibration_solutions_field_0")
-	casalog.post('-' * 80)
-	casalog.post("test_44_amplitude_calibration_solutions_field_0")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	        field='0', refant='ea05', solnorm=F, \
@@ -695,8 +650,7 @@ def test_45_amplitude_calibration_solutions_field_1():
 	""" "amplitude calibration solutions field 1"
 	"""
 	casalog.origin("test_45_amplitude_calibration_solutions_field_1")
-	casalog.post('-' * 80)
-	casalog.post("test_45_amplitude_calibration_solutions_field_1")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	        field='1', refant='ea05', solnorm=F, \
@@ -712,8 +666,7 @@ def test_46_amplitude_calibration_solutions_field_3():
 	""" "amplitude calibration solutions field 3"
 	"""
 	casalog.origin("test_46_amplitude_calibration_solutions_field_3")
-	casalog.post('-' * 80)
-	casalog.post("test_46_amplitude_calibration_solutions_field_3")
+	casalog.post("starting")
 
 	gaincal(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	        field='3', refant='ea05', solnorm=F, \
@@ -729,8 +682,7 @@ def test_47_flux_calibration_solutions():
 	""" "flux calibration solutions"
 	"""
 	casalog.origin("test_47_flux_calibration_solutions")
-	casalog.post('-' * 80)
-	casalog.post("test_47_flux_calibration_solutions")
+	casalog.post("starting")
 
 	flux3 = fluxscale(vis='G192_flagged_6s.ms', caltable='calG192.G2.2', \
 	                  fluxtable='calG192.F2.2', reference='0')
@@ -740,8 +692,7 @@ def test_48_apply_calibration_tables_field_0():
 	""" "apply calibration tables field 0"
 	"""
 	casalog.origin("test_48_apply_calibration_tables_field_0")
-	casalog.post('-' * 80)
-	casalog.post("test_48_apply_calibration_tables_field_0")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='0', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -754,8 +705,7 @@ def test_49_apply_calibration_tables_field_1():
 	""" "apply calibration tables field 1"
 	"""
 	casalog.origin("test_49_apply_calibration_tables_field_1")
-	casalog.post('-' * 80)
-	casalog.post("test_49_apply_calibration_tables_field_1")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='1', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -768,8 +718,7 @@ def test_50_apply_calibration_tables_field_2():
 	""" "apply calibration tables field 2"
 	"""
 	casalog.origin("test_50_apply_calibration_tables_field_2")
-	casalog.post('-' * 80)
-	casalog.post("test_50_apply_calibration_tables_field_2")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='2', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -782,8 +731,7 @@ def test_51_apply_calibration_tables_field_3():
 	""" "apply calibration tables field 3"
 	"""
 	casalog.origin("test_51_apply_calibration_tables_field_3")
-	casalog.post('-' * 80)
-	casalog.post("test_51_apply_calibration_tables_field_3")
+	casalog.post("starting")
 
 	applycal(vis='G192_flagged_6s.ms', field='3', \
 	         gaintable=['calG192.antpos', 'calG192.requantizer', 'calG192.gaincurve', 'calG192.opacity',\
@@ -796,8 +744,7 @@ def test_52_splitting_calibrated_data_3c147():
 	""" "splitting calibrated data 3C147"
 	"""
 	casalog.origin("test_52_splitting_calibrated_data_3c147")
-	casalog.post('-' * 80)
-	casalog.post("test_52_splitting_calibrated_data_3c147")
+	casalog.post("starting")
 
 	os.system('rm -rf 3C147_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='3C147_split_6s.ms', \
@@ -808,8 +755,7 @@ def test_53_splitting_calibrated_data_j0603_174():
 	""" "splitting calibrated data J0603+174"
 	"""
 	casalog.origin("test_53_splitting_calibrated_data_j0603_174")
-	casalog.post('-' * 80)
-	casalog.post("test_53_splitting_calibrated_data_j0603_174")
+	casalog.post("starting")
 
 	os.system('rm -rf J0603_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='J0603_split_6s.ms', \
@@ -820,8 +766,7 @@ def test_54_splitting_calibrated_data_g192():
 	""" "splitting calibrated data G192"
 	"""
 	casalog.origin("test_54_splitting_calibrated_data_g192")
-	casalog.post('-' * 80)
-	casalog.post("test_54_splitting_calibrated_data_g192")
+	casalog.post("starting")
 
 	os.system('rm -rf G192_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='G192_split_6s.ms', \
@@ -832,8 +777,7 @@ def test_55_splitting_calibrated_data_3c84():
 	""" "splitting calibrated data 3C84"
 	"""
 	casalog.origin("test_55_splitting_calibrated_data_3c84")
-	casalog.post('-' * 80)
-	casalog.post("test_55_splitting_calibrated_data_3c84")
+	casalog.post("starting")
 
 	os.system('rm -rf 3C84_split_6s.ms')
 	split(vis='G192_flagged_6s.ms', outputvis='3C84_split_6s.ms', \
@@ -844,8 +788,7 @@ def test_56_single_spectral_window_cleaning():
 	""" "single spectral window cleaning"
 	"""
 	casalog.origin("test_56_single_spectral_window_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_56_single_spectral_window_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -865,8 +808,7 @@ def test_57_lower_frequency_baseband_cleaning():
 	""" "lower frequency baseband cleaning"
 	"""
 	casalog.origin("test_57_lower_frequency_baseband_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_57_lower_frequency_baseband_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -892,8 +834,7 @@ def test_58_upper_frequency_baseband_cleaning():
 	""" "upper frequency baseband cleaning"
 	"""
 	casalog.origin("test_58_upper_frequency_baseband_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_58_upper_frequency_baseband_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -921,8 +862,7 @@ def test_59_basebands_mfs_taylor_cleaning():
 	""" "basebands mfs taylor cleaning"
 	"""
 	casalog.origin("test_59_basebands_mfs_taylor_cleaning")
-	casalog.post('-' * 80)
-	casalog.post("test_59_basebands_mfs_taylor_cleaning")
+	casalog.post("starting")
 
 	# Removing any previous cleaning information
 	# This assumes you want to start this clean from scratch
@@ -946,8 +886,7 @@ def test_60_spectral_index_image_filtering():
 	""" "spectral index image filtering"
 	"""
 	casalog.origin("test_60_spectral_index_image_filtering")
-	casalog.post('-' * 80)
-	casalog.post("test_60_spectral_index_image_filtering")
+	casalog.post("starting")
 
 	immath(imagename=['imgG192_6s_spw0-63_mfs2.image.alpha', 
 	                  'imgG192_6s_spw0-63_mfs2.image.tt0'],
@@ -960,8 +899,7 @@ def test_61_spectral_index_probable_errors_filtering():
 	""" "spectral index probable errors filtering"
 	"""
 	casalog.origin("test_61_spectral_index_probable_errors_filtering")
-	casalog.post('-' * 80)
-	casalog.post("test_61_spectral_index_probable_errors_filtering")
+	casalog.post("starting")
 
 	immath(imagename=['imgG192_6s_spw0-63_mfs2.image.alpha.error', 
 	                  'imgG192_6s_spw0-63_mfs2.image.tt0'],
@@ -974,8 +912,7 @@ def test_62_intensity_weighted_mean_spectral_analysis():
 	""" "intensity weighted mean spectral analysis"
 	"""
 	casalog.origin("test_62_intensity_weighted_mean_spectral_analysis")
-	casalog.post('-' * 80)
-	casalog.post("test_62_intensity_weighted_mean_spectral_analysis")
+	casalog.post("starting")
 
 	# Removing any file output from previous runs, so immath will proceed
 	os.system('rm -rf imgG192_6s_spw0-63_mfs2.image.tt1.filtered')
