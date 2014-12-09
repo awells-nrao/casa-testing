@@ -298,8 +298,19 @@ The only difference with the regression tests, from a execution point of view, i
 
 In order to know how to use ```RegressionRunner``` and ```RegressionBase``` helper metods, refer to the regression documentation.
 
-Bear in mind the possible dependencies needed, these can be added by setting ```PYTHONPATH```  or like in this example using ones installed by ```easy_install`` or ```pip```.
+### Dependencies
+
+This code snippet belongs to the (regression)[https://github.com/atejeda/casa-testing/blob/master/jenkins/regression.sh] script executed by jenkins.
 
 ```
-sys.path.append("/usr/lib/python2.6/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg")
+$WORKSPACE/casa-testing/lib/python/site-packages/install
+export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages:$PYTHONPATH
+export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages/airspeed-0.4.2dev_20131111-py2.6.egg:$PYTHONPATH
+export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages/coverage-3.7.1-py2.6-linux-x86_64.egg:$PYTHONPATH
+export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages/psutil-2.1.3-py2.6-linux-x86_64.egg:$PYTHONPATH
 ```
+
+   * Install the needed dependencies: airspeed, coverage, psutil
+   * Update the python path 
+
+The install script is located at (lib/python/site-packages/install)[https://github.com/atejeda/casa-testing/blob/master/lib/python/site-packages/install] which is the same location of the library installation.
