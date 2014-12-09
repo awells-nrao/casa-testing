@@ -264,9 +264,9 @@ class RegressionRunner:
 						"--psprofile-file=%s.json" % test,
 						"--with-coverage",
 						#"--cover-branches",
-						"--cover-xml"
-						#"--cover-xml-file=%s.xml" % test,
-						# "--cover-package=%s" % "casac"	
+						#"--cover-xml"
+						"--cover-xml-file=%s.xml" % test,
+						"--cover-package=%s" % "casac"	
 						]
 
 		test_argv = custom_argv if custom_argv else default_argv
