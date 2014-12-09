@@ -14,6 +14,7 @@ export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages/psutil-2.1.3-
 
 # setup extraction and parsing
 export CASA_TESTING=$WORKSPACE/casa-testing
+export PYTHONPATH=$CASA_TESTING:$PYTHONPATH
 export PATH=$CASA_TESTING/testc/guide:$PATH
 export EXTRACTED=$CASA_TESTING/guides/extracted
 export PARSED=$CASA_TESTING/testc/guide
@@ -25,10 +26,8 @@ export CASAPATH=$CASAROOT
 export LD_LIBARY_PATH=$CASAPATH/lib:$LD_LIBARY_PATH
 export PATH=$CASAPATH/bin:$PATH
 
-#rm -rf $EXTRACTED
-
-PYTHONPATH=$CASA_TESTING casaGuideExtract -c $CONFIG -o $EXTRACTED
-PYTHONPATH=$CASA_TESTING casaGuideMerge -c $CONFIG -e $EXTRACTED -o $PARSED
+casaGuideExtract -c $CONFIG -o $EXTRACTED
+casaGuideMerge -c $CONFIG -e $EXTRACTED -o $PARSED
 
 # setup the testing framework
 rm -rf $CASAPATH/lib/python/testc && ln -s $WORKSPACE/casa-testing/testc $CASAPATH/lib/python/
@@ -39,4 +38,4 @@ cp $WORKSPACE/casa-testing/regression.py $WORKSPACE/test/regression.py
 
 cd $WORKSPACE/test
 #cp -r ../G192_6s.ms .
-PYTHONPATH=$PYTHONPATH:$CASA_TESTING casapy --nogui -c testc-list.py
+casapy --nogui -c regression.py
