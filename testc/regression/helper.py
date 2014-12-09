@@ -263,8 +263,8 @@ class RegressionRunner:
 						"--with-psprofile",
 						"--psprofile-file=%s.json" % test,
 						"--with-coverage",
-						#"--cover-branches",
 						"--cover-xml",
+						#"--cover-branches",
 						#"--cover-xml-file=%s.xml" % test,
 						"--cover-package=%s" % "casac"	
 						]
