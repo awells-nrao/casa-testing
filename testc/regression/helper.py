@@ -226,21 +226,21 @@ class RegressionRunner:
 		test_module_path = os.path.dirname(test_module.__file__)
 
 		default_argv = [ 
-			test_module_path,
-			test_module_uri,
-			"-d",
-			"-s",
-			"--verbosity=%s" % verbosity,
-			"--with-xunit",
-			"--xunit-file=%s.xml" % test,
-			"--with-psprofile",
-			"--psprofile-file=%s.json" % test,
-			"--with-coverage",
-			"--cover-branches",
-			"--cover-xml",
-			"--cover-xml-file=%s.xml" % test,
-			"--cover-package=%s" % "casac"	
-			]
+						test_module_path,
+						test_module_uri,
+						"-d",
+						"-s",
+						"--verbosity=%s" % verbosity,
+						"--with-xunit",
+						"--xunit-file=%s.xml" % test,
+						"--with-psprofile",
+						"--psprofile-file=%s.json" % test,
+						"--with-coverage",
+						# "--cover-branches",
+						# "--cover-xml",
+						# "--cover-xml-file=%s.xml" % test,
+						# "--cover-package=%s" % "casac"	
+						]
 
 		test_argv = custom_argv if custom_argv else default_argv
 
