@@ -59,17 +59,17 @@ class ${guide_class}(RegressionBase):
 
 #foreach ($phrase in $guide_phrases)
 #if("test_${phrase[2]}_${phrase[3]}" == "test_17_spectral_information")
-	@injectMod(module_patch)
+	@injectMod(module_patch) # patched
 #elseif("test_${phrase[2]}_${phrase[3]}" == "test_36_3c84_spectral_information_column")
-	@injectMod(module_patch)
+	@injectMod(module_patch) # patched
 #elseif("test_${phrase[2]}_${phrase[3]}" == "test_56_single_spectral_window_cleaning")
-	@injectMod(module_patch)
+	@injectMod(module_patch) # patched
 #elseif("test_${phrase[2]}_${phrase[3]}" == "test_57_lower_frequency_baseband_cleaning")
-	@injectMod(module_patch)
+	@injectMod(module_patch) # patched
 #elseif("test_${phrase[2]}_${phrase[3]}" == "test_58_upper_frequency_baseband_cleaning")
-	@injectMod(module_patch)
+	@injectMod(module_patch) # patched
 #elseif("test_${phrase[2]}_${phrase[3]}" == "test_59_basebands_mfs_taylor_cleaning")
-	@injectMod(module_patch)      
+	@injectMod(module_patch) # patched
 #else
 	@injectMod(module_helper) 
 #end

@@ -41,6 +41,105 @@ from testc import regression
 __test__ = False
 __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regressionLogger", "injectMod", "injectEnv"]
 
+cover_packages = [
+	# casa
+	"casac",
+	# tools
+	"accum",
+	"applycal",
+	"asdmsummary",
+	"autoclean",
+	"bandpass",
+	"blcal",
+	"boxit",
+	"browsetable",
+	"calstat",
+	"clean",
+	"clearcal",
+	"clearplot",
+	"clearstat",
+	"cvel",
+	"deconvolve",
+	"exportfits",
+	"exportuvfits",
+	"feather",
+	"find",
+	"fixvis",
+	"flagdata",
+	"flagmanager",
+	"fluxscale",
+	"ft",
+	"gaincal",
+	"gencal",
+	"hanningsmooth",
+	"hanningsmooth2",
+	"imcontsub",
+	"imfit",
+	"imhead",
+	"immath",
+	"immoments",
+	"importasdm",
+	"importfits",
+	"importgmrt",
+	"importuvfits",
+	"importvla",
+	"imregrid",
+	"imsmooth",
+	"imstat",
+	"imval",
+	"imview",
+	"listcal",
+	"listhistory",
+	"listobs",
+	"listvis",
+	"mosaic",
+	"msmoments",
+	"mstransform",
+	"msview",
+	"partition",
+	"plotants",
+	"plotcal",
+	"plotms",
+	"polcal",
+	"rmtables",
+	"setjy",
+	"simalma",
+	"simobserve",
+	"simanalyze",
+	"smoothcal",
+	"specfit",
+	"split",
+	"split2",
+	"uvcontsub",
+	"uvmodelfit",
+	"uvsub",
+	"viewer",
+	"vishead",
+	"visstat",
+	"widefield",
+	# asap
+	"sdcal",
+	"sdsmooth",
+	"sdbaseline",
+	"sdbaseline2",
+	"sdreduce",
+	"sdcoadd",
+	"sdsave",
+	"sdscale",
+	"sdfit",
+	"sdplot",
+	"sdstat",
+	"sdlist",
+	"sdflag",
+	"sdflag2",
+	"sdtpimaging",
+	"sdmath",
+	"sdimaging",
+	"sdimprocess"
+]
+
+cover_packages_nose = ("--cover-package=%s" % " --cover-package=".join(cover_packages)).split(" ")
+
 regressionLogger = logging.getLogger("RegressionLogger")
 
 def injectMod(module, method = True):
@@ -233,8 +332,13 @@ class RegressionRunner:
 							"--with-xunit",
 							"--xunit-file=%s.xml" % test,
 							"--with-psprofile",
-							"--psprofile-file=%s.json" % test
-						]
+							"--psprofile-file=%s.json" % test,
+							"--with-coverage",
+							"--cover-branches",
+							"--cover-xml",
+							"--cover-xml-file=%s.xml" % test
+							
+						] + cover_packages_nose
 
 		test_argv = custom_argv if custom_argv else default_argv
 

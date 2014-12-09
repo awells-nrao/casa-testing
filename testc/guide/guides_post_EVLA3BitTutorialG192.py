@@ -29,6 +29,7 @@ def mshandler(file):
 	exception = None
 	table_instance = tbtool()
 	table_instance.open(file)
+	
 	try:		
 		yield table_instance
 	except Exception, e:
@@ -36,7 +37,9 @@ def mshandler(file):
 
 	table_instance.close()
 	del table_instance
-	raise exception
+	
+	if exception:
+		raise exception
 
 def setjy_common(measet, checksum_ref):
 	with mshandler(measet) as table:
