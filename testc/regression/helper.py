@@ -265,7 +265,7 @@ class RegressionRunner:
 						"--with-coverage",
 						#"--cover-branches",
 						#"--cover-xml"
-						"--cover-xml-file=%s.xml" % test,
+						#"--cover-xml-file=%s.xml" % test,
 						"--cover-package=%s" % "casac"	
 						]
 
