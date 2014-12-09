@@ -5,7 +5,6 @@ if [ -z $WORKSPACE ]; then
 	exit 1;
 fi
 
-
 # setup libraries
 $WORKSPACE/casa-testing/lib/python/site-packages/install
 export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages:$PYTHONPATH
