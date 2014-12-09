@@ -11,38 +11,18 @@ import sys
 
 import os
 import time
-from contextlib import contextmanager
-from contextlib import closing
 
 from testc.regression.helper import RegressionHelper
 from testc.regression.helper import RegressionBase
 from testc.regression.helper import regressionLogger
-from testc.regression.helper import injectEnv
+from testc.regression.helper import msHandler
 
 from numpy import count_nonzero
 
 __test__ = False
 
-@contextmanager
-@injectEnv
-def mshandler(file):
-	exception = None
-	table_instance = tbtool()
-	table_instance.open(file)
-	
-	try:		
-		yield table_instance
-	except Exception, e:
-		exception = e
-
-	table_instance.close()
-	del table_instance
-	
-	if exception:
-		raise exception
-
 def setjy_common(measet, checksum_ref):
-	with mshandler(measet) as table:
+	with msHandler(measet) as table:
 		source_model = table.getcell('SOURCE_MODEL', 0)
 		assert source_model, "no model defined at SOURCE.SOURCE_MODEL[0]"
 		checksum = RegressionHelper.md5sum(source_model, on_memory = True)
@@ -51,7 +31,7 @@ def setjy_common(measet, checksum_ref):
 def applycal_common(measet, field_id, checksum_ref):
 	column = "CORRECTED_DATA"
 
-	with mshandler(measet) as table:
+	with msHandler(measet) as table:
 		assert table.iscelldefined(column), "no %s column is defined" % column
 		corrected_data_table = table.query('FIELD_ID == %s' % field_id, columns = '%s' % column)
 		corrected_data_rows = corrected_data_table.getcol(column)
@@ -87,7 +67,7 @@ def test_03_bandpass_calibrator_analysis_flagging():
 	"""
 	measet = "%s/G192_6s.ms" % os.getcwd()
 	
-	with mshandler(measet) as table:
+	with msHandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == 2909568, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
@@ -98,7 +78,7 @@ def test_04_rfi_phase_calibrator_flagging():
 	"""
 	measet = "%s/G192_6s.ms" % os.getcwd()
 	
-	with mshandler(measet) as table:
+	with msHandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == 2909568, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
@@ -943,7 +923,7 @@ def test_33_flagging_isolated_rfi():
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
 	
-	with mshandler(measet) as table:
+	with msHandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == -1, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows
@@ -953,7 +933,7 @@ def test_34_baseline_flagging():
 	"""
 	measet = "%s/G192_flagged_6s.ms" % os.getcwd()
 	
-	with mshandler(measet) as table:
+	with msHandler(measet) as table:
 		nrows = count_nonzero(table.getcol("FLAG_ROW"))
 		assert nrows, "no FLAG_ROWS in %s" % measet
 		assert nrows == 30912, "the number of FLAG_ROWS (%s) doesn't match to the expected one" % nrows

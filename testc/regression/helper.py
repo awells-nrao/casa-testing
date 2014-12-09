@@ -30,6 +30,8 @@ import logging
 import hashlib
 import threading
 import imp
+from contextlib import contextmanager
+from contextlib import closing
 from functools import wraps
 
 import unittest
@@ -71,6 +73,31 @@ def injectEnv(func):
 		# see http://snipplr.com/view/17819/
 		return type(func)(func.func_code, casa_globals)(*args, **kwargs)
 	return wraps(func)(wrapped)
+
+@contextmanager
+@injectEnv
+def msHandler(file):
+	exception = None
+	table_instance = tbtool()
+	table_instance.open(file)
+	
+	try:		
+		yield table_instance
+	except Exception, e:
+		exception = e
+
+	try:
+		table_instance.close()
+	except: 
+		pass
+
+	try:
+		del table_instance
+	except:
+		pass
+
+	if exception:
+		raise exception
 
 class RegressionHelper():
 
@@ -236,9 +263,9 @@ class RegressionRunner:
 						"--with-psprofile",
 						"--psprofile-file=%s.json" % test,
 						"--with-coverage",
-						# "--cover-branches",
-						# "--cover-xml",
-						# "--cover-xml-file=%s.xml" % test,
+						#"--cover-branches",
+						"--cover-xml",
+						"--cover-xml-file=%s.xml" % test,
 						# "--cover-package=%s" % "casac"	
 						]
 
