@@ -24,7 +24,7 @@ export LD_LIBARY_PATH=$CASAPATH/lib:$LD_LIBARY_PATH
 export PATH=$CASAPATH/bin:$PATH
 
 # setup libraries
-./$WORKSPACE/casa-testing/lib/python/site-packages/install
+$WORKSPACE/casa-testing/lib/python/site-packages/install
 export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages:$PYTHONPATH
 export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages/airspeed-0.4.2dev_20131111-py2.6.egg:$PYTHONPATH
 export PYTHONPATH=$WORKSPACE/casa-testing/lib/python/site-packages/coverage-3.7.1-py2.6-linux-x86_64.egg:$PYTHONPATH
