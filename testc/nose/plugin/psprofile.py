@@ -133,7 +133,10 @@ class PSProfile(Plugin):
 		report_file_path = "%s/%s" % (os.getcwd(), self.__psp_report)
 		with open(report_file_path, 'w') as report_file:
 			report_file.write(json_report)
+
+		print "-"*70
 		print "PROFILE: %s" % self.__psp_report
+		print "-"*70
 
 	def finalize(self, result):
 		logger.debug("finalize(self, result):...")
@@ -180,6 +183,7 @@ class PSProfile(Plugin):
 		data['time'] = stamp
 		data['cpu'] = cpu
 
+# not used in the plugin, for testing purposes only
 class PSProfileThread(threading.Thread):
 	"""
 	This class does the same as PSProfile intented

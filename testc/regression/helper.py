@@ -269,7 +269,7 @@ class RegressionRunner:
 						"--with-xunit",
 						"--xunit-file=%s.xml" % test,
 						"--with-psprofile",
-						"--psprofile-file=%s.json" % test,
+						"--psprofile-file=%s.json" % test
 						]
 
 		test_argv = custom_argv if custom_argv else default_argv
@@ -282,7 +282,7 @@ class RegressionRunner:
 
 		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
 
-		#coverage_instance.xml_report(outfile="%s.xml" % test)
+		coverage_instance.xml_report(outfile="%s.xml" % test)
 		coverage_instance.stop()
 		
 		del coverage_instance
