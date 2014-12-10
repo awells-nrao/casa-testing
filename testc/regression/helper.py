@@ -257,7 +257,6 @@ class RegressionBase(unittest.TestCase):
 	def tearDownClass(cls):
 		pass
 
-#@injectEnv
 def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 	"""Execute the regression test by using nose with the nose arguments
 	and with -d -s -v and --with-xunit (xml generation)
@@ -287,12 +286,12 @@ def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 
 	py_coverage_tree = [ "%s/lib/python" % os.getenv("CASAROOT") ]
 
-	coverage_instance = coverage.coverage(branch=True, source=cover_packages)
+	coverage_instance = coverage.coverage(branch=True, source=py_coverage_tree)
 	coverage_instance.start()
 
 	nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
 
-	coverage_instance.xml_report(outfile="%s.xml" % test)
+	#coverage_instance.xml_report(outfile="%s.xml" % test)
 	coverage_instance.stop()
 	
 	del coverage_instance
