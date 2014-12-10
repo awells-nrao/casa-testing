@@ -39,3 +39,6 @@ cp $WORKSPACE/casa-testing/regression.py $WORKSPACE/test/regression.py
 cd $WORKSPACE/test
 #cp -r ../G192_6s.ms .
 casapy --nogui -c regression.py
+
+# coverage generation
+#coverage xml

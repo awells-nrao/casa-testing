@@ -40,6 +40,8 @@ import nose
 from testc.nose.plugin import psprofile
 from testc import regression
 
+import coverage
+
 __test__ = False
 __all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regressionLogger", "injectMod", "injectEnv"]
 
@@ -123,6 +125,10 @@ class RegressionHelper():
 		# module_path =  RegressionHelper.base_path(importlib.import_module(self.__module__).__file__)
 		# index_file = file if file else 
 		pass
+
+	@staticmethod
+	def assertenvvar(envvar):
+		assert os.getenv(envvar), "The envvar %s is not defined" % envvar
 	
 	# deprecated
 	@staticmethod
@@ -252,6 +258,8 @@ class RegressionRunner:
 		test_module = importlib.import_module(test_module_uri)
 		test_module_path = os.path.dirname(test_module.__file__)
 
+		RegressionHelper.assertenvvar("CASAROOT")
+
 		default_argv = [ 
 						test_module_path,
 						test_module_uri,
@@ -262,14 +270,23 @@ class RegressionRunner:
 						"--xunit-file=%s.xml" % test,
 						"--with-psprofile",
 						"--psprofile-file=%s.json" % test,
-						"--with-coverage",
-						"--cover-package=%s" % "casac"	
+						#"--with-coverage",
+						#"--cover-package=%s" % "casac"	
 						]
 
 		test_argv = custom_argv if custom_argv else default_argv
 
-		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])		
 
+		py_coverage_tree = "%s/lib/python" % os.getenv("CASAROOT")
+		coverage_instance = coverage.coverage(branch=True, source=py_coverage_tree)
+		coverage_instance.start()
+
+		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
+
+		coverage_instance.stop()
+		coverage_instance.xml_report(outfile="%s.xml" % test)
+
+		del coverage_instance
 		del test_module
 
 if __name__ == "__main__":
