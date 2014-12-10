@@ -284,9 +284,9 @@ def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 	test_argv = custom_argv if custom_argv else default_argv
 
 
-	py_coverage_tree = [ "%s/lib/python/xml" % os.getenv("CASAROOT") ]
+	py_coverage_tree = [ "%s/lib/python/.*py" % os.getenv("CASAROOT") ]
 
-	coverage_instance = coverage.coverage(branch=True, source=cover_packages)
+	coverage_instance = coverage.coverage(branch=True, cover_pylib=False, include=py_coverage_tree)
 	coverage_instance.start()
 
 	nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
