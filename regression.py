@@ -6,7 +6,7 @@ assert globals().has_key("casa"), "CASA environment is needed for this module (%
 
 import os
 
-from testc.regression.helper import RegressionRunner
+from testc.regression.helper import regressionExecutor
 
 # configure regression tests to execute
 regressions = []
@@ -17,9 +17,9 @@ guides.append("regression_EVLA3BitTutorialG192")
 
 # test the regression
 for test in regressions:
-	RegressionRunner.execute(test)
+	regressionExecutor(test)
 
 # test the guides
 for test in guides:
-	RegressionRunner.execute(test, guide = True)
+	regressionExecutor(test, guide = True)
 

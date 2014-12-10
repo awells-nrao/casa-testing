@@ -43,9 +43,107 @@ from testc import regression
 import coverage
 
 __test__ = False
-__all__ = ["RegressionHelper", "RegressionBase", "RegressionRunner", "regressionLogger", "injectMod", "injectEnv"]
+__all__ = ["RegressionHelper", "RegressionBase", "regressionExecutor", "regressionLogger", "injectMod", "injectEnv"]
 
 regressionLogger = logging.getLogger("RegressionLogger")
+
+
+cover_packages = [
+	# casa
+	"casac",
+	# tools
+	"accum",
+	"applycal",
+	"asdmsummary",
+	"autoclean",
+	"bandpass",
+	"blcal",
+	"boxit",
+	"browsetable",
+	"calstat",
+	"clean",
+	"clearcal",
+	"clearplot",
+	"clearstat",
+	"cvel",
+	"deconvolve",
+	"exportfits",
+	"exportuvfits",
+	"feather",
+	"find",
+	"fixvis",
+	"flagdata",
+	"flagmanager",
+	"fluxscale",
+	"ft",
+	"gaincal",
+	"gencal",
+	"hanningsmooth",
+	"hanningsmooth2",
+	"imcontsub",
+	"imfit",
+	"imhead",
+	"immath",
+	"immoments",
+	"importasdm",
+	"importfits",
+	"importgmrt",
+	"importuvfits",
+	"importvla",
+	"imregrid",
+	"imsmooth",
+	"imstat",
+	"imval",
+	"imview",
+	"listcal",
+	"listhistory",
+	"listobs",
+	"listvis",
+	"mosaic",
+	"msmoments",
+	"mstransform",
+	"msview",
+	"partition",
+	"plotants",
+	"plotcal",
+	"plotms",
+	"polcal",
+	"rmtables",
+	"setjy",
+	"simalma",
+	"simobserve",
+	"simanalyze",
+	"smoothcal",
+	"specfit",
+	"split",
+	"split2",
+	"uvcontsub",
+	"uvmodelfit",
+	"uvsub",
+	"viewer",
+	"vishead",
+	"visstat",
+	"widefield",
+	# asap
+	"sdcal",
+	"sdsmooth",
+	"sdbaseline",
+	"sdbaseline2",
+	"sdreduce",
+	"sdcoadd",
+	"sdsave",
+	"sdscale",
+	"sdfit",
+	"sdplot",
+	"sdstat",
+	"sdlist",
+	"sdflag",
+	"sdflag2",
+	"sdtpimaging",
+	"sdmath",
+	"sdimaging",
+	"sdimprocess"
+]
 
 def injectMod(module, method = True):
 	def test_injection(func):
@@ -240,118 +338,12 @@ class RegressionBase(unittest.TestCase):
 	def tearDownClass(cls):
 		pass
 
-cover_packages = [
-	# casa
-	"casac",
-	# tools
-	"accum",
-	"applycal",
-	"asdmsummary",
-	"autoclean",
-	"bandpass",
-	"blcal",
-	"boxit",
-	"browsetable",
-	"calstat",
-	"clean",
-	"clearcal",
-	"clearplot",
-	"clearstat",
-	"cvel",
-	"deconvolve",
-	"exportfits",
-	"exportuvfits",
-	"feather",
-	"find",
-	"fixvis",
-	"flagdata",
-	"flagmanager",
-	"fluxscale",
-	"ft",
-	"gaincal",
-	"gencal",
-	"hanningsmooth",
-	"hanningsmooth2",
-	"imcontsub",
-	"imfit",
-	"imhead",
-	"immath",
-	"immoments",
-	"importasdm",
-	"importfits",
-	"importgmrt",
-	"importuvfits",
-	"importvla",
-	"imregrid",
-	"imsmooth",
-	"imstat",
-	"imval",
-	"imview",
-	"listcal",
-	"listhistory",
-	"listobs",
-	"listvis",
-	"mosaic",
-	"msmoments",
-	"mstransform",
-	"msview",
-	"partition",
-	"plotants",
-	"plotcal",
-	"plotms",
-	"polcal",
-	"rmtables",
-	"setjy",
-	"simalma",
-	"simobserve",
-	"simanalyze",
-	"smoothcal",
-	"specfit",
-	"split",
-	"split2",
-	"uvcontsub",
-	"uvmodelfit",
-	"uvsub",
-	"viewer",
-	"vishead",
-	"visstat",
-	"widefield",
-	# asap
-	"sdcal",
-	"sdsmooth",
-	"sdbaseline",
-	"sdbaseline2",
-	"sdreduce",
-	"sdcoadd",
-	"sdsave",
-	"sdscale",
-	"sdfit",
-	"sdplot",
-	"sdstat",
-	"sdlist",
-	"sdflag",
-	"sdflag2",
-	"sdtpimaging",
-	"sdmath",
-	"sdimaging",
-	"sdimprocess"
-]
-
-class RegressionRunner:
-	"""This class only implements static methods, intented to be used as
-	a regression test runner
+@injectEnv
+def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
+	"""Execute the regression test by using nose with the nose arguments
+	and with -d -s -v and --with-xunit (xml generation)
 	"""
-
-	def __init__(self):
-		raise NotImplementedError("This class only implements static methods")
-
-	@staticmethod
-	@injectEnv
-	def execute(test, custom_argv = None, guide = False, verbosity = 2):
-		"""Execute the regression test by using nose with the nose arguments
-		and with -d -s -v and --with-xunit (xml generation)
-		"""
-		# use imp instead of fixed package uri? not sure yet - atejeda
+	# use imp instead of fixed package uri? not sure yet - atejeda
 		test_package = "testc.regression" if not guide else "testc.guide"
 		test_module_uri = "%s.%s" % (test_package, test)
 		test_module = importlib.import_module(test_module_uri)
@@ -389,4 +381,4 @@ class RegressionRunner:
 
 if __name__ == "__main__":
 	assert sys.argv[1], "an argument is needed, e.g.: regression_3c129_tutorial"
-	RegressionRunner.execute(sys.argv[1])
+	regressionExecutor(sys.argv[1])
