@@ -276,9 +276,9 @@ def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 					"-s",
 					"--verbosity=%s" % verbosity,
 					"--with-xunit",
-					"--xunit-file=%s.xml" % test,
+					"--xunit-file=%s/xunit_%s.xml" % (os.getcwd(), test),
 					"--with-psprofile",
-					"--psprofile-file=%s.json" % test
+					"--psprofile-file=%s/profile_%s.json" % (os.getcwd(), test)
 					]
 
 	test_argv = custom_argv if custom_argv else default_argv
