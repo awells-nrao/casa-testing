@@ -270,8 +270,6 @@ class RegressionRunner:
 						"--xunit-file=%s.xml" % test,
 						"--with-psprofile",
 						"--psprofile-file=%s.json" % test,
-						#"--with-coverage",
-						#"--cover-package=%s" % "casac"	
 						]
 
 		test_argv = custom_argv if custom_argv else default_argv

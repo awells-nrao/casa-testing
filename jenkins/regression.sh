@@ -41,4 +41,4 @@ cd $WORKSPACE/test
 casapy --nogui -c regression.py
 
 # coverage generation
-#coverage xml
+coverage xml

@@ -138,10 +138,3 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 		"""test 03 EVLA_3-bit_Tutorial_G192 "bandpass calibrator analysis flagging"
 		"""
 		pass
-
-	@injectMod(module_helper) 
-	@injectMod(module_post)
-	def test_04_rfi_phase_calibrator_flagging(self):
-		"""test 04 EVLA_3-bit_Tutorial_G192 "RFI phase calibrator flagging"
-		"""
-		pass
