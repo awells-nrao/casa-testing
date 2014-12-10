@@ -278,6 +278,7 @@ class RegressionRunner:
 
 
 		py_coverage_tree = [ "%s/lib/python" % os.getenv("CASAROOT") ]
+		py_coverage_exclude = [ ]
 		coverage_instance = coverage.coverage(branch=True, source=py_coverage_tree)
 		coverage_instance.start()
 
