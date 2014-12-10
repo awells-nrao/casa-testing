@@ -283,9 +283,9 @@ class RegressionRunner:
 
 		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
 
+		#coverage_instance.xml_report(outfile="%s.xml" % test)
 		coverage_instance.stop()
-		coverage_instance.xml_report(outfile="%s.xml" % test)
-
+		
 		del coverage_instance
 		del test_module
 
