@@ -263,40 +263,40 @@ def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 	and with -d -s -v and --with-xunit (xml generation)
 	"""
 	# use imp instead of fixed package uri? not sure yet - atejeda
-		test_package = "testc.regression" if not guide else "testc.guide"
-		test_module_uri = "%s.%s" % (test_package, test)
-		test_module = importlib.import_module(test_module_uri)
-		test_module_path = os.path.dirname(test_module.__file__)
+	test_package = "testc.regression" if not guide else "testc.guide"
+	test_module_uri = "%s.%s" % (test_package, test)
+	test_module = importlib.import_module(test_module_uri)
+	test_module_path = os.path.dirname(test_module.__file__)
 
-		RegressionHelper.assertenvvar("CASAROOT")
+	RegressionHelper.assertenvvar("CASAROOT")
 
-		default_argv = [ 
-						test_module_path,
-						test_module_uri,
-						"-d",
-						"-s",
-						"--verbosity=%s" % verbosity,
-						"--with-xunit",
-						"--xunit-file=%s.xml" % test,
-						"--with-psprofile",
-						"--psprofile-file=%s.json" % test
-						]
+	default_argv = [ 
+					test_module_path,
+					test_module_uri,
+					"-d",
+					"-s",
+					"--verbosity=%s" % verbosity,
+					"--with-xunit",
+					"--xunit-file=%s.xml" % test,
+					"--with-psprofile",
+					"--psprofile-file=%s.json" % test
+					]
 
-		test_argv = custom_argv if custom_argv else default_argv
+	test_argv = custom_argv if custom_argv else default_argv
 
 
-		py_coverage_tree = [ "%s/lib/python" % os.getenv("CASAROOT") ]
+	py_coverage_tree = [ "%s/lib/python" % os.getenv("CASAROOT") ]
 
-		coverage_instance = coverage.coverage(branch=True, source=cover_packages)
-		coverage_instance.start()
+	coverage_instance = coverage.coverage(branch=True, source=cover_packages)
+	coverage_instance.start()
 
-		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
+	nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
 
-		coverage_instance.xml_report(outfile="%s.xml" % test)
-		coverage_instance.stop()
-		
-		del coverage_instance
-		del test_module
+	coverage_instance.xml_report(outfile="%s.xml" % test)
+	coverage_instance.stop()
+	
+	del coverage_instance
+	del test_module
 
 if __name__ == "__main__":
 	assert sys.argv[1], "an argument is needed, e.g.: regression_3c129_tutorial"
