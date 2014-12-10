@@ -26,19 +26,16 @@ export CASAPATH=$CASAROOT
 export LD_LIBARY_PATH=$CASAPATH/lib:$LD_LIBARY_PATH
 export PATH=$CASAPATH/bin:$PATH
 
-#casaGuideExtract -c $CONFIG -o $EXTRACTED
-#casaGuideMerge -c $CONFIG -e $EXTRACTED -o $PARSED
+casaGuideExtract -c $CONFIG -o $EXTRACTED
+casaGuideMerge -c $CONFIG -e $EXTRACTED -o $PARSED
 
 # setup the testing framework
 rm -rf $CASAPATH/lib/python/testc && ln -s $WORKSPACE/casa-testing/testc $CASAPATH/lib/python/
 
 # exec the regression
-#rm -rf $WORKSPACE/test && mkdir -p $WORKSPACE/test
+rm -rf $WORKSPACE/test && mkdir -p $WORKSPACE/test
 cp $WORKSPACE/casa-testing/regression.py $WORKSPACE/test/regression.py
 
 cd $WORKSPACE/test
-#cp -r ../G192_6s.ms .
+cp -r ../G192_6s.ms .
 casapy --nogui -c regression.py
-
-# coverage generation
-#coverage xml
