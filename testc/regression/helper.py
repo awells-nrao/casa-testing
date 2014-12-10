@@ -92,7 +92,7 @@ def injectEnv(func):
 		casa_globals = dict(RegressionHelper.casa_console_globals().items() + func.func_globals.items())
 		# see http://snipplr.com/view/17819/
 		return type(func)(func.func_code, casa_globals)(*args, **kwargs)
-	return wrapper(*args, **kwargs)
+	return wrapper
 
 @contextmanager
 @injectEnv
@@ -257,7 +257,7 @@ class RegressionBase(unittest.TestCase):
 	def tearDownClass(cls):
 		pass
 
-@injectEnv
+#@injectEnv
 def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 	"""Execute the regression test by using nose with the nose arguments
 	and with -d -s -v and --with-xunit (xml generation)
