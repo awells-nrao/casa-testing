@@ -344,8 +344,8 @@ class RegressionRunner:
 	def __init__(self):
 		raise NotImplementedError("This class only implements static methods")
 
-	@injectEnv
 	@staticmethod
+	@injectEnv
 	def execute(test, custom_argv = None, guide = False, verbosity = 2):
 		"""Execute the regression test by using nose with the nose arguments
 		and with -d -s -v and --with-xunit (xml generation)
