@@ -239,6 +239,103 @@ class RegressionBase(unittest.TestCase):
 	def tearDownClass(cls):
 		pass
 
+cover_packages = [
+	# casa
+	"casac",
+	# tools
+	"accum",
+	"applycal",
+	"asdmsummary",
+	"autoclean",
+	"bandpass",
+	"blcal",
+	"boxit",
+	"browsetable",
+	"calstat",
+	"clean",
+	"clearcal",
+	"clearplot",
+	"clearstat",
+	"cvel",
+	"deconvolve",
+	"exportfits",
+	"exportuvfits",
+	"feather",
+	"find",
+	"fixvis",
+	"flagdata",
+	"flagmanager",
+	"fluxscale",
+	"ft",
+	"gaincal",
+	"gencal",
+	"hanningsmooth",
+	"hanningsmooth2",
+	"imcontsub",
+	"imfit",
+	"imhead",
+	"immath",
+	"immoments",
+	"importasdm",
+	"importfits",
+	"importgmrt",
+	"importuvfits",
+	"importvla",
+	"imregrid",
+	"imsmooth",
+	"imstat",
+	"imval",
+	"imview",
+	"listcal",
+	"listhistory",
+	"listobs",
+	"listvis",
+	"mosaic",
+	"msmoments",
+	"mstransform",
+	"msview",
+	"partition",
+	"plotants",
+	"plotcal",
+	"plotms",
+	"polcal",
+	"rmtables",
+	"setjy",
+	"simalma",
+	"simobserve",
+	"simanalyze",
+	"smoothcal",
+	"specfit",
+	"split",
+	"split2",
+	"uvcontsub",
+	"uvmodelfit",
+	"uvsub",
+	"viewer",
+	"vishead",
+	"visstat",
+	"widefield",
+	# asap
+	"sdcal",
+	"sdsmooth",
+	"sdbaseline",
+	"sdbaseline2",
+	"sdreduce",
+	"sdcoadd",
+	"sdsave",
+	"sdscale",
+	"sdfit",
+	"sdplot",
+	"sdstat",
+	"sdlist",
+	"sdflag",
+	"sdflag2",
+	"sdtpimaging",
+	"sdmath",
+	"sdimaging",
+	"sdimprocess"
+]
+
 class RegressionRunner:
 	"""This class only implements static methods, intented to be used as
 	a regression test runner
@@ -248,6 +345,7 @@ class RegressionRunner:
 		raise NotImplementedError("This class only implements static methods")
 
 	@staticmethod
+	@injectEnv
 	def execute(test, custom_argv = None, guide = False, verbosity = 2):
 		"""Execute the regression test by using nose with the nose arguments
 		and with -d -s -v and --with-xunit (xml generation)
@@ -276,8 +374,8 @@ class RegressionRunner:
 
 
 		py_coverage_tree = [ "%s/lib/python" % os.getenv("CASAROOT") ]
-		py_coverage_exclude = [ ]
-		coverage_instance = coverage.coverage(branch=True, source=py_coverage_tree)
+
+		coverage_instance = coverage.coverage(branch=True, source=cover_packages)
 		coverage_instance.start()
 
 		nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])

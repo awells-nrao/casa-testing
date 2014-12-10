@@ -131,10 +131,3 @@ class Test_EVLA3BitTutorialG192(RegressionBase):
 		"""test 02 EVLA_3-bit_Tutorial_G192 "flag table plot"
 		"""
 		pass
-
-	@injectMod(module_helper) 
-	@injectMod(module_post)
-	def test_03_bandpass_calibrator_analysis_flagging(self):
-		"""test 03 EVLA_3-bit_Tutorial_G192 "bandpass calibrator analysis flagging"
-		"""
-		pass
