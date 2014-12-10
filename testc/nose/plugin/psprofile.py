@@ -130,7 +130,7 @@ class PSProfile(Plugin):
 	def write_report(self, json_report):
 		""" write a report, a .json file with json data
 		"""
-		report_file_path = "%s/%s" % (os.getcwd(), self.__psp_report)
+		report_file_path = self.__psp_report
 		with open(report_file_path, 'w') as report_file:
 			report_file.write(json_report)
 
