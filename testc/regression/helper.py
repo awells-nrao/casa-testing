@@ -285,7 +285,7 @@ def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 
 
 	py_coverage_tree = [ "%s/lib/python" % os.getenv("CASAROOT") ]
-	py_coverage_include = [ "%s/lib/python/task*" % os.getenv("CASAROOT") ]
+	py_coverage_include = [ "%s/lib/python/task*.py" % os.getenv("CASAROOT") ]
 
 	coverage_instance = coverage.coverage(branch=True, source=py_coverage_tree, include=py_coverage_include)
 	coverage_instance.start()
