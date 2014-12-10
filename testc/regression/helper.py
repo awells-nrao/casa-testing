@@ -91,9 +91,8 @@ def injectEnv(func):
 	def wrapper(*args, **kwargs):
 		casa_globals = dict(RegressionHelper.casa_console_globals().items() + func.func_globals.items())
 		# see http://snipplr.com/view/17819/
-		#return type(func)(func.func_code, casa_globals)(*args, **kwargs)
-		return type(func)(func.func_code, casa_globals)(args)
-	return wrapper
+		return type(func)(func.func_code, casa_globals)(*args, **kwargs)
+	return wrapper(*args, **kwargs)
 
 @contextmanager
 @injectEnv
