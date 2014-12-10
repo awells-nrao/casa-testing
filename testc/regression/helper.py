@@ -291,7 +291,7 @@ def regressionExecutor(test, custom_argv = None, guide = False, verbosity = 2):
 
 	nose.run(argv = test_argv, addplugins = [psprofile.PSProfile()])
 
-	#coverage_instance.xml_report(outfile="%s.xml" % test)
+	coverage_instance.xml_report(outfile="-")
 	coverage_instance.stop()
 	
 	del coverage_instance
