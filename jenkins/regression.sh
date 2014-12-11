@@ -21,7 +21,7 @@ export PARSED=$CASA_TESTING/testc/guide
 export CONFIG=$CASA_TESTING/guides/guides.conf
 
 # setup casa
-export CASAROOT=/export/home/alma-x01/casa/guides/casapy-42.2.30986-1-64b
+export CASAROOT=$WORKSPACE/casapy-42.2.30986-1-64b
 export CASAPATH=$CASAROOT
 export LD_LIBARY_PATH=$CASAPATH/lib:$LD_LIBARY_PATH
 export PATH=$CASAPATH/bin:$PATH
@@ -37,5 +37,8 @@ rm -rf $WORKSPACE/test && mkdir -p $WORKSPACE/test
 cp $WORKSPACE/casa-testing/regression.py $WORKSPACE/test/regression.py
 
 cd $WORKSPACE/test
+
+echo "copying G192_6s.ms"
 cp -r ../G192_6s.ms .
+
 casapy --nogui -c regression.py
